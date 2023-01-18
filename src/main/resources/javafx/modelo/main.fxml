@@ -53,99 +53,104 @@
             </Pane>
             <Pane fx:id="pane_tasks" prefHeight="200.0" prefWidth="200.0" styleClass="background" stylesheets="@style.css">
                <children>
-                  <HBox layoutX="303.0" prefHeight="72.0" prefWidth="530.0" stylesheets="@style.css">
+                  <Pane id="pane-filter" fx:id="pane_filter" onMouseEntered="#btFilterMouseEntered" onMouseExited="#btFilterMouseExited" prefHeight="200.0" prefWidth="200.0" styleClass="dropshadow" stylesheets="@style.css" translateX="218.0" translateY="56.0" />
+                  <Pane layoutX="-15.0" layoutY="-5.0" styleClass="background" stylesheets="@style.css">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="102.0" styleClass="search-button" stylesheets="@style.css" text="Filters">
-                           <graphic>
-                              <ImageView fitHeight="120.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/filter_96px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <TextField alignment="CENTER" prefHeight="40.0" prefWidth="215.0" promptText="Search" styleClass="textfield" stylesheets="@style.css">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <padding>
-                              <Insets bottom="3.0" right="3.0" />
-                           </padding>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </TextField>
-                        <Button mnemonicParsing="false" prefHeight="25.0" styleClass="search-button" text="Search">
-                           <graphic>
-                              <ImageView fitHeight="72.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Search_512px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                     <styleClass>
-                        <String fx:value="hbox" />
-                        <String fx:value="dropshadow" />
-                     </styleClass>
-                  </HBox>
-                  <HBox layoutY="72.0" prefHeight="72.0" prefWidth="1136.0" stylesheets="@style.css">
-                     <children>
-                        <Button mnemonicParsing="false" styleClass="date-arrow" stylesheets="@style.css">
-                           <graphic>
-                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/back_96px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button contentDisplay="CENTER" layoutX="588.0" layoutY="48.0" mnemonicParsing="false" styleClass="date-buttons" stylesheets="@style.css" text="YESTERDAY" />
-                        <Button contentDisplay="CENTER" layoutX="624.0" layoutY="48.0" mnemonicParsing="false" styleClass="date-buttons" stylesheets="@style.css" text="TODAY" />
-                        <Button contentDisplay="CENTER" layoutX="660.0" layoutY="48.0" mnemonicParsing="false" styleClass="date-buttons" stylesheets="@style.css" text="TOMORROW" />
-                        <Button mnemonicParsing="false" styleClass="date-arrow" stylesheets="@style.css">
-                           <graphic>
-                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                                 <image>
-                                    <Image url="@images/back_96px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                     <styleClass>
-                        <String fx:value="date-hbox" />
-                        <String fx:value="dropshadow" />
-                     </styleClass>
-                  </HBox>
-                  <GridPane layoutX="56.0" layoutY="161.0" prefHeight="545.0" prefWidth="1024.0" stylesheets="@style.css">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
-                          <columns>
-                            <TableColumn prefWidth="93.0" styleClass="tablecolumn" text="TYPE" />
-                            <TableColumn prefWidth="304.0" styleClass="tablecolumn" text="TASK" />
-                              <TableColumn prefWidth="75.0" styleClass="tablecolumn" text="PRIORITY" />
-                              <TableColumn prefWidth="68.0" styleClass="tablecolumn" text="STATUS" />
-                              <TableColumn prefWidth="87.0" styleClass="tablecolumn" text="STARTED AT" />
-                              <TableColumn prefWidth="95.0" styleClass="tablecolumn" text="UPDATED AT" />
-                              <TableColumn prefWidth="83.0" styleClass="tablecolumn" text="CREATED AT" />
-                              <TableColumn prefWidth="108.0" styleClass="tablecolumn" text="PLANNED START" />
-                              <TableColumn prefWidth="110.0" styleClass="tablecolumn" text="PLANNED FINISH" />
-                          </columns>
+                        <HBox layoutX="318.0" layoutY="5.0" prefHeight="72.0" prefWidth="530.0" stylesheets="@style.css">
+                           <children>
+                              <Button fx:id="bt_filters_tasks" mnemonicParsing="false" onMouseEntered="#btFilterMouseEntered" onMouseExited="#btFilterMouseExited" prefHeight="32.0" prefWidth="102.0" styleClass="search-button" stylesheets="@style.css" text="Filters">
+                                 <graphic>
+                                    <ImageView fitHeight="120.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/filter_96px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <TextField fx:id="txtfield_search_tasks" alignment="CENTER" prefHeight="40.0" prefWidth="215.0" promptText="Search" styleClass="textfield" stylesheets="@style.css">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets bottom="3.0" right="3.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextField>
+                              <Button fx:id="bt_search_tasks" mnemonicParsing="false" prefHeight="25.0" styleClass="search-button" text="Search">
+                                 <graphic>
+                                    <ImageView fitHeight="72.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Search_512px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
                            <styleClass>
-                              <String fx:value="tableview" />
+                              <String fx:value="hbox" />
                               <String fx:value="dropshadow" />
                            </styleClass>
-                        </TableView>
+                        </HBox>
+                        <HBox layoutX="15.0" layoutY="77.0" prefHeight="72.0" prefWidth="1136.0" stylesheets="@style.css">
+                           <children>
+                              <Button fx:id="bt_otherdate_left_tasks" mnemonicParsing="false" styleClass="date-arrow" stylesheets="@style.css">
+                                 <graphic>
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/back_96px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="bt_yesterday_tasks" contentDisplay="CENTER" layoutX="588.0" layoutY="48.0" mnemonicParsing="false" styleClass="date-buttons" stylesheets="@style.css" text="YESTERDAY" />
+                              <Button fx:id="bt_today_tasks" contentDisplay="CENTER" layoutX="624.0" layoutY="48.0" mnemonicParsing="false" styleClass="date-buttons" stylesheets="@style.css" text="TODAY" />
+                              <Button fx:id="bt_tomorrow_tasks" contentDisplay="CENTER" layoutX="660.0" layoutY="48.0" mnemonicParsing="false" styleClass="date-buttons" stylesheets="@style.css" text="TOMORROW" />
+                              <Button fx:id="bt_otherdate_right_tasks" mnemonicParsing="false" styleClass="date-arrow" stylesheets="@style.css">
+                                 <graphic>
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                       <image>
+                                          <Image url="@images/back_96px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <styleClass>
+                              <String fx:value="date-hbox" />
+                              <String fx:value="dropshadow" />
+                           </styleClass>
+                        </HBox>
+                        <GridPane layoutX="71.0" layoutY="166.0" prefHeight="545.0" prefWidth="1024.0" stylesheets="@style.css">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
+                                <columns>
+                                  <TableColumn prefWidth="93.0" styleClass="tablecolumn" text="TYPE" />
+                                  <TableColumn prefWidth="304.0" styleClass="tablecolumn" text="TASK" />
+                                    <TableColumn prefWidth="75.0" styleClass="tablecolumn" text="PRIORITY" />
+                                    <TableColumn prefWidth="68.0" styleClass="tablecolumn" text="STATUS" />
+                                    <TableColumn prefWidth="87.0" styleClass="tablecolumn" text="STARTED AT" />
+                                    <TableColumn prefWidth="95.0" styleClass="tablecolumn" text="UPDATED AT" />
+                                    <TableColumn prefWidth="83.0" styleClass="tablecolumn" text="CREATED AT" />
+                                    <TableColumn prefWidth="108.0" styleClass="tablecolumn" text="PLANNED START" />
+                                    <TableColumn prefWidth="110.0" styleClass="tablecolumn" text="PLANNED FINISH" />
+                                </columns>
+                                 <styleClass>
+                                    <String fx:value="tableview" />
+                                    <String fx:value="dropshadow" />
+                                 </styleClass>
+                              </TableView>
+                           </children>
+                        </GridPane>
                      </children>
-                  </GridPane>
+                  </Pane>
                </children>
             </Pane>
          </children>

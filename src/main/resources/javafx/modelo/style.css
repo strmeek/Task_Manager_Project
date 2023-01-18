@@ -130,3 +130,7 @@
     -fx-size: 30;
 }
 
+#pane-filter{
+    -fx-background-color: -SOFT-WHITE;
+}
+
