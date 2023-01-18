@@ -1,0 +1,57 @@
+/* VARIABLES */
+*{
+    -FONT-COLOR: #FFF;
+    -PURE-WHITE: #FFF;
+    -SOFT-WHITE: #F4F4F9;
+    -LIGHT-GRAY: #d3d3d3;
+    -BUTTON-COLOR: #B8DBD9;
+    -POWDER-BLUE: #B8DBD9;
+    -BACKGROUND: #3F3F3F;
+    -HIGHLIGHT: #F0F465
+}
+
+/* UTILITY CLASSES */
+
+.center {
+    -fx-content-display: center;
+}
+
+/* CLASSES */
+
+.header-label{
+    -fx-font: normal bolder 3em 'consolas';
+    -fx-text-fill: -LIGHT-GRAY;
+    -fx-alignment: center;
+    -fx-padding: 0.25em;
+}
+
+.copyright-label {
+    -fx-font: normal normal 0.7em 'System';
+    -fx-alignment: bottom_center;
+    -fx-text-fill: -FONT-COLOR;
+    -fx-background-color: -POWDER-BLUE;
+}
+
+.menu-button{
+    -fx-text-alignment: center;
+    -fx-pref-width:144px;
+    -fx-pref-height:72px;
+    -fx-font: normal bold 1.75em 'candara';
+    -fx-text-fill: -FONT-COLOR;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+}
+
+.menu-button:hover,
+.menu-button:focused,{
+    -fx-background-color: -BACKGROUND;
+    -fx-text-fill: #d3d3d3;
+}
+
+.vbox{
+    -fx-background-color: -POWDER-BLUE;
+}
+
+.background{
+    -fx-background-color: -BACKGROUND;
+}
