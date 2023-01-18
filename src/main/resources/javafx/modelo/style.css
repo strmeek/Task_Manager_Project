@@ -78,15 +78,6 @@
     -fx-opacity: 0.8;
 }
 
-.gridpane {
-    -fx-padding: 0.5em;
-    -fx-hgap: 0.2em;
-    -fx-vgap: 0.2em;
-    -fx-border-color: -HIGHLIGHT;
-    -fx-border-style: solid;
-    -fx-border-width: 5px;
-}
-
 .hbox {
     -fx-alignment: center;
     -fx-spacing: 0;

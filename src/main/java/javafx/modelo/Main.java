@@ -14,7 +14,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         String css = this.getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
-        stage.setTitle("Hello!");
+        stage.setTitle("Task Manager");
         stage.setScene(scene);
         stage.show();
     }
