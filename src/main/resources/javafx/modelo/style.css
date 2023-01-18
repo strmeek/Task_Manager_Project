@@ -16,14 +16,19 @@
     -fx-content-display: center;
 }
 
-/* CLASSES */
-
-.header-label{
-    -fx-font: normal bolder 3em 'consolas';
-    -fx-text-fill: -LIGHT-GRAY;
-    -fx-alignment: center;
-    -fx-padding: 0.25em;
+.dropshadow {
+    -fx-effect: dropshadow(gaussian, #000, 10, 0.1, -5, 5);
 }
+
+.dropshadow-right{
+    -fx-effect: dropshadow(gaussian, #000, 10, 0.1, 2, -1);
+}
+
+.background {
+    -fx-background-color: -BACKGROUND;
+}
+
+/* CLASSES */
 
 .copyright-label {
     -fx-font: normal normal 0.7em 'System';
@@ -32,7 +37,9 @@
     -fx-background-color: -POWDER-BLUE;
 }
 
-.menu-button{
+/* MENU CLASSES */
+
+.menu-button {
     -fx-text-alignment: center;
     -fx-pref-width:144px;
     -fx-pref-height:72px;
@@ -43,15 +50,92 @@
 }
 
 .menu-button:hover,
-.menu-button:focused,{
+.menu-button:focused {
     -fx-background-color: -BACKGROUND;
     -fx-text-fill: #d3d3d3;
 }
 
-.vbox{
+.vbox {
     -fx-background-color: -POWDER-BLUE;
 }
 
-.background{
-    -fx-background-color: -BACKGROUND;
+/* MENU/TASKS CLASSES */
+
+.search-button {
+    -fx-text-alignment: center;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 40px;
+    -fx-font: normal bold 1.2em 'candara';
+    -fx-text-fill: -BACKGROUND;
+    -fx-background-color: -SOFT-WHITE;
+    -fx-background-radius: 0;
 }
+
+.search-button:hover {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 40px;
+    -fx-background-color: -HIGHLIGHT;
+    -fx-opacity: 0.8;
+}
+
+.gridpane {
+    -fx-padding: 0.5em;
+    -fx-hgap: 0.2em;
+    -fx-vgap: 0.2em;
+    -fx-border-color: -HIGHLIGHT;
+    -fx-border-style: solid;
+    -fx-border-width: 5px;
+}
+
+.hbox {
+    -fx-alignment: center;
+    -fx-spacing: 0;
+}
+
+.date-hbox {
+    -fx-alignment: center;
+    -fx-spacing: 20;
+}
+
+.textfield {
+    -fx-background-color: -SOFT-WHITE;
+    -fx-font: normal bolder 1.25em 'candara';
+    -fx-pref-height: 41px;
+    -fx-pref-width: 300px;
+    -fx-background-radius: 0;
+    -fx-padding: 3 3 3 3;
+}
+
+.date-buttons {
+    -fx-background-color: transparent;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 150px;
+    -fx-font: normal bolder 1.5em 'candara';
+    -fx-text-fill: -SOFT-WHITE;
+}
+
+.date-buttons:hover {
+    -fx-text-fill: -HIGHLIGHT;
+    -fx-opacity: 0.8;
+}
+
+.date-arrow {
+    -fx-background-color: transparent;
+    -fx-blend-mode: add;
+}
+
+.date-arrow:hover {
+    -fx-blend-mode: difference;
+    -fx-background-color: -HIGHLIGHT;
+    -fx-opacity: 0.8;
+}
+
+.tableview {
+    -fx-background-color: transparent;
+}
+
+.tablecolumn {
+    -fx-background-color: -SOFT-WHITE;
+    -fx-size: 30;
+}
+
