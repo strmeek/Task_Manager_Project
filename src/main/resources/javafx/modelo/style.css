@@ -1,5 +1,6 @@
 /* VARIABLES */
 *{
+    /* COLOR VARIABLES */
     -FONT-COLOR: #FFF;
     -PURE-WHITE: #FFF;
     -SOFT-WHITE: #F4F4F9;
@@ -7,7 +8,7 @@
     -BUTTON-COLOR: #B8DBD9;
     -POWDER-BLUE: #B8DBD9;
     -BACKGROUND: #3F3F3F;
-    -HIGHLIGHT: #F0F465
+    -HIGHLIGHT: #F0F465;
 }
 
 /* UTILITY CLASSES */
@@ -61,6 +62,13 @@
 
 /* MENU/TASKS CLASSES */
 
+.hbox {
+    -fx-alignment: center;
+    -fx-spacing: 0;
+}
+
+/* SEARCH BAR */
+
 .search-button {
     -fx-text-alignment: center;
     -fx-pref-width: 100px;
@@ -78,16 +86,6 @@
     -fx-opacity: 0.8;
 }
 
-.hbox {
-    -fx-alignment: center;
-    -fx-spacing: 0;
-}
-
-.date-hbox {
-    -fx-alignment: center;
-    -fx-spacing: 20;
-}
-
 .textfield {
     -fx-background-color: -SOFT-WHITE;
     -fx-font: normal bolder 1.25em 'candara';
@@ -95,6 +93,17 @@
     -fx-pref-width: 300px;
     -fx-background-radius: 0;
     -fx-padding: 3 3 3 3;
+}
+
+#pane-filter{
+    -fx-background-color: -SOFT-WHITE;
+}
+
+/* DATE SELECTOR BAR */
+
+.date-hbox {
+    -fx-alignment: center;
+    -fx-spacing: 20;
 }
 
 .date-buttons {
@@ -121,6 +130,8 @@
     -fx-opacity: 0.8;
 }
 
+/* TABLE WITH ALL THE TASKS */
+
 .tableview {
     -fx-background-color: transparent;
 }
@@ -129,8 +140,3 @@
     -fx-background-color: -SOFT-WHITE;
     -fx-size: 30;
 }
-
-#pane-filter{
-    -fx-background-color: -SOFT-WHITE;
-}
-

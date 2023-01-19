@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-
+    /* FXML VARIABLES MADE BY SCENEBUILDER*/
     @FXML
     private Button bt_add_menu;
 
@@ -66,6 +66,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /* SIMPLE MENU BUTTONS */
         bt_add_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -91,6 +92,9 @@ public class MainController implements Initializable {
             }
         });
     }
+    /* Hover effect on the filter button
+    * used in both filter button and filter pane(filter tab) */
+
     @FXML
     public void btFilterMouseEntered(){
         pane_filter.toFront();

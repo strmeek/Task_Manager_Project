@@ -10,16 +10,17 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
-        String css = this.getClass().getResource("style.css").toExternalForm();
-        scene.getStylesheets().add(css);
-        stage.setTitle("Task Manager");
-        stage.setScene(scene);
-        stage.show();
+        /* Calls the FXML file and the css file to create the interactive interface(frontend) */
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main.fxml")); //gets the fxml file.
+        Scene scene = new Scene(fxmlLoader.load(), 1280, 720); // create the scene with the fxml info.
+        String css = this.getClass().getResource("style.css").toExternalForm(); // get the css file.
+        scene.getStylesheets().add(css); // add the css file to the scene.
+        stage.setTitle("Task Manager"); // title.
+        stage.setScene(scene); // display the scene.
+        stage.show(); // make visible.
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(); //launch the application.
     }
 }
