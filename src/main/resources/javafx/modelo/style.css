@@ -140,3 +140,25 @@
     -fx-background-color: -SOFT-WHITE;
     -fx-size: 30;
 }
+
+/* RESPONSIVE TEST */
+
+#pane {
+    -fx-background-color: -BACKGROUND;
+}
+
+#pane:extreme-small-device {
+    -fx-background-color: #9370db;
+}
+
+#pane:small-device {
+    -fx-background-color: -HIGHLIGHT;
+}
+
+#pane:medium-device {
+    -fx-background-color: -POWDER-BLUE;
+}
+
+#pane:large-device {
+    -fx-background-color: -PURE-WHITE;
+}

@@ -1,5 +1,6 @@
 package javafx.modelo;
 
+import com.guigarage.responsive.ResponsiveHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class Main extends Application {
         stage.setTitle("Task Manager"); // title.
         stage.setScene(scene); // display the scene.
         stage.show(); // make visible.
+        ResponsiveHandler.addResponsiveToWindow(scene.getWindow());
     }
 
     public static void main(String[] args) {

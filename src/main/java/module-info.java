@@ -8,6 +8,7 @@ module javafx.modelo {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires responsivefx;
     requires mysql.connector.j;
 
     opens javafx.modelo to javafx.fxml;
