@@ -143,6 +143,10 @@
 
 /* RESPONSIVE TEST */
 
+.search-button:medium-device{
+    -fx-background-color: -HIGHLIGHT;
+}
+
 #pane {
     -fx-background-color: -BACKGROUND;
 }
