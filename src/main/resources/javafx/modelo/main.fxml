@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,193 +15,220 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="anchor-pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.modelo.MainController">
+
+<AnchorPane id="anchor-pane" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.modelo.MainController">
    <children>
-      <StackPane id="stack=pane" layoutX="144.0" prefHeight="720.0" prefWidth="1136.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox id="first-vbox" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane id="pane" fx:id="pane_add" prefHeight="200.0" prefWidth="200.0" styleClass="background" stylesheets="@style.css">
+            <HBox id="first-hbox" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@style.css" VBox.vgrow="ALWAYS">
                <children>
-                  <Label layoutX="554.0" layoutY="352.0" text="ADD" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane id="pane" fx:id="pane_config" prefHeight="200.0" prefWidth="200.0" styleClass="background" stylesheets="@style.css">
-               <children>
-                  <Label layoutX="554.0" layoutY="352.0" text="CONFIG" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane id="pane" fx:id="pane_home" prefHeight="200.0" prefWidth="200.0" styleClass="background" stylesheets="@style.css">
-               <children>
-                  <Label layoutX="554.0" layoutY="352.0" text="HOME" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane id="pane" fx:id="pane_tasks" prefHeight="200.0" prefWidth="200.0" styleClass="background" stylesheets="@style.css">
-               <children>
-                  <Pane id="pane-filter" fx:id="pane_filter" onMouseEntered="#btFilterMouseEntered" onMouseExited="#btFilterMouseExited" prefHeight="200.0" prefWidth="200.0" styleClass="dropshadow" stylesheets="@style.css" />
-                  <Pane id="pane" layoutX="-15.0" layoutY="-5.0" styleClass="background" stylesheets="@style.css">
+                  <VBox id="vbox-menu" fillWidth="false" prefHeight="1080.0" prefWidth="240.0" styleClass="menu-background" stylesheets="@style.css" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox layoutX="318.0" layoutY="5.0" prefHeight="72.0" prefWidth="530.0" stylesheets="@style.css">
-                           <children>
-                              <Button fx:id="bt_filters_tasks" mnemonicParsing="false" onMouseEntered="#btFilterMouseEntered" onMouseExited="#btFilterMouseExited" prefHeight="32.0" prefWidth="102.0" styleClass="search-button" stylesheets="@style.css" text="Filters">
-                                 <graphic>
-                                    <ImageView fitHeight="120.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/filter_96px.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <TextField fx:id="txtfield_search_tasks" alignment="CENTER" prefHeight="40.0" prefWidth="215.0" promptText="Search" styleClass="textfield" stylesheets="@style.css">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                                 <padding>
-                                    <Insets bottom="3.0" right="3.0" />
-                                 </padding>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </TextField>
-                              <Button fx:id="bt_search_tasks" mnemonicParsing="false" prefHeight="25.0" styleClass="search-button" text="Search">
-                                 <graphic>
-                                    <ImageView fitHeight="72.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/Search_512px.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </children>
-                           <styleClass>
-                              <String fx:value="hbox" />
-                              <String fx:value="dropshadow" />
-                           </styleClass>
-                        </HBox>
-                        <HBox layoutX="15.0" layoutY="77.0" prefHeight="72.0" prefWidth="1136.0" stylesheets="@style.css">
-                           <children>
-                              <Button fx:id="bt_otherdate_left_tasks" mnemonicParsing="false" styleClass="date-arrow" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/back_96px.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="bt_yesterday_tasks" contentDisplay="CENTER" layoutX="588.0" layoutY="48.0" mnemonicParsing="false" styleClass="date-buttons" stylesheets="@style.css" text="YESTERDAY" />
-                              <Button fx:id="bt_today_tasks" contentDisplay="CENTER" layoutX="624.0" layoutY="48.0" mnemonicParsing="false" styleClass="date-buttons" stylesheets="@style.css" text="TODAY" />
-                              <Button fx:id="bt_tomorrow_tasks" contentDisplay="CENTER" layoutX="660.0" layoutY="48.0" mnemonicParsing="false" styleClass="date-buttons" stylesheets="@style.css" text="TOMORROW" />
-                              <Button fx:id="bt_otherdate_right_tasks" mnemonicParsing="false" styleClass="date-arrow" stylesheets="@style.css">
-                                 <graphic>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                                       <image>
-                                          <Image url="@images/back_96px.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </children>
-                           <styleClass>
-                              <String fx:value="date-hbox" />
-                              <String fx:value="dropshadow" />
-                           </styleClass>
-                        </HBox>
-                        <GridPane layoutX="71.0" layoutY="166.0" prefHeight="545.0" prefWidth="1024.0" stylesheets="@style.css">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
-                                <columns>
-                                  <TableColumn prefWidth="93.0" styleClass="tablecolumn" text="TYPE" />
-                                  <TableColumn prefWidth="304.0" styleClass="tablecolumn" text="TASK" />
-                                    <TableColumn prefWidth="75.0" styleClass="tablecolumn" text="PRIORITY" />
-                                    <TableColumn prefWidth="68.0" styleClass="tablecolumn" text="STATUS" />
-                                    <TableColumn prefWidth="87.0" styleClass="tablecolumn" text="STARTED AT" />
-                                    <TableColumn prefWidth="95.0" styleClass="tablecolumn" text="UPDATED AT" />
-                                    <TableColumn prefWidth="83.0" styleClass="tablecolumn" text="CREATED AT" />
-                                    <TableColumn prefWidth="108.0" styleClass="tablecolumn" text="PLANNED START" />
-                                    <TableColumn prefWidth="110.0" styleClass="tablecolumn" text="PLANNED FINISH" />
-                                </columns>
-                                 <styleClass>
-                                    <String fx:value="tableview" />
-                                    <String fx:value="dropshadow" />
-                                 </styleClass>
-                              </TableView>
-                           </children>
-                        </GridPane>
+                        <Button id="bt-home-menu" mnemonicParsing="false" prefHeight="179.0" prefWidth="256.0" styleClass="bt-menu" stylesheets="@style.css" text="Home" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="light-img">
+                                 <image>
+                                    <Image url="@images/home_144px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button id="bt-tasks-menu" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="179.0" prefWidth="256.0" styleClass="bt-menu" stylesheets="@style.css" text="Tasks" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="light-img">
+                                 <image>
+                                    <Image url="@images/bulleted_list_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button id="bt-projects-menu" layoutX="10.0" layoutY="131.0" mnemonicParsing="false" prefHeight="179.0" prefWidth="256.0" styleClass="bt-menu" stylesheets="@style.css" text="Projects" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="light-img">
+                                 <image>
+                                    <Image url="@images/goal_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Pane prefHeight="456.0" prefWidth="256.0" style="-fx-background-color: transparent;" stylesheets="@style.css" VBox.vgrow="ALWAYS" />
+                        <Button id="bt-config-menu" layoutX="10.0" layoutY="252.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="256.0" styleClass="bt-menu" stylesheets="@style.css" text="Config" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="light-img">
+                                 <image>
+                                    <Image url="@images/settings_90px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Text id="copyright-text" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="256.0" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="15.0" />
+                           </VBox.margin>
+                        </Text>
                      </children>
-                  </Pane>
+                  </VBox>
+                  <StackPane prefHeight="1080.0" prefWidth="1690.0" stylesheets="@style.css">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@style.css" />
+                           </children>
+                        </Pane>
+                        <VBox id="vbox-tasks" prefHeight="1080.0" prefWidth="1632.0" styleClass="tasks-background" stylesheets="@style.css">
+                           <children>
+                              <HBox id="top-hbox-tasks" prefHeight="97.0" prefWidth="1511.0" styleClass="tasks-hbox" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <Button id="bt-filter-tasks" mnemonicParsing="false" prefHeight="143.0" prefWidth="180.0" styleClass="tasks-search-bar" stylesheets="@style.css" text="Filter" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets bottom="1.0" />
+                                       </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/funnel_90px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <TextField id="txtfield-search-tasks" alignment="CENTER" prefHeight="145.0" prefWidth="333.0" promptText="Search" styleClass="tasks-search-bar" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button id="bt-search-tasks" mnemonicParsing="false" prefHeight="86.0" prefWidth="180.0" styleClass="tasks-search-bar" stylesheets="@style.css" text="Search" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets bottom="1.0" />
+                                       </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/search_90px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox id="mid-hbox-tasks" layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="200.0" styleClass="tasks-hbox" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <Button id="bt-arrow-tasks" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="tasks-day-bar" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+                                       <graphic>
+                                          <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/back_96px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button id="bt_yesterday-tasks" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="124.0" styleClass="tasks-day-bar" stylesheets="@style.css" text="Yesterday" HBox.hgrow="ALWAYS" />
+                                    <Button id="bt-today-tasks" layoutX="134.0" layoutY="10.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="124.0" styleClass="tasks-day-bar" stylesheets="@style.css" text="Today" HBox.hgrow="ALWAYS" />
+                                    <Button id="bt-tomorrow-tasks" layoutX="258.0" layoutY="10.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="124.0" styleClass="tasks-day-bar" stylesheets="@style.css" text="Tomorrow" HBox.hgrow="ALWAYS" />
+                                    <Button id="bt-arrow-tasks" layoutX="382.0" layoutY="10.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="tasks-day-bar" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+                                       <graphic>
+                                          <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                             <image>
+                                                <Image url="@images/back_96px.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox id="bottom-hbox-tasks" layoutX="10.0" layoutY="990.0" prefHeight="720.0" prefWidth="1560.0" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <ScrollPane id="scrollpane-tasks" fitToHeight="true" fitToWidth="true" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+                                       <content>
+                                          <GridPane id="grid-tasks" alignment="TOP_CENTER" gridLinesVisible="true" prefHeight="773.0" prefWidth="304.0" stylesheets="@style.css">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints maxHeight="390.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="753.0" minHeight="10.0" prefHeight="705.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <HBox id="grid-hbox-header" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="192.13671875" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text layoutX="10.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="192.13671875">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text layoutX="203.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="192.13671875">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text layoutX="396.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="192.13671875">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text layoutX="589.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="192.13671875">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text layoutX="782.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="192.13671875">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text layoutX="975.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="192.13671875">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text layoutX="1168.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="192.13671875">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </HBox>
+                                                <VBox id="grid-vbox-list" prefHeight="200.0" prefWidth="100.0" stylesheets="@style.css" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+                                             </children>
+                                          </GridPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
                </children>
-            </Pane>
+            </HBox>
          </children>
-      </StackPane>
-      <VBox id="vbox-menu" prefHeight="720.0" prefWidth="144.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Button fx:id="bt_home_menu" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="152.0" styleClass="menu-button" stylesheets="@style.css" text="Home">
-               <graphic>
-                  <ImageView blendMode="ADD" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/home_144px.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="bt_tasks_menu" mnemonicParsing="false" prefHeight="86.0" prefWidth="152.0" styleClass="menu-button" stylesheets="@style.css" text="Tasks">
-               <graphic>
-                  <ImageView blendMode="ADD" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/todo_list_96px.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="bt_add_menu" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="menu-button" stylesheets="@style.css" text="Add">
-               <graphic>
-                  <ImageView blendMode="ADD" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/Plus_480px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Pane prefHeight="412.0" prefWidth="144.0" styleClass="vbox" stylesheets="@style.css" VBox.vgrow="ALWAYS" />
-            <Button fx:id="bt_config_menu" layoutX="10.0" layoutY="82.0" mnemonicParsing="false" styleClass="menu-button" stylesheets="@style.css" text="Config">
-               <graphic>
-                  <ImageView blendMode="ADD" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/settings_144px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Label alignment="TOP_LEFT" contentDisplay="CENTER" prefWidth="144.0" styleClass="copyright-label" stylesheets="@style.css" text="Andrade - All Rights Reserved" textAlignment="CENTER" />
-         </children>
-         <styleClass>
-            <String fx:value="vbox" />
-            <String fx:value="dropshadow-right" />
-         </styleClass>
       </VBox>
    </children>
 </AnchorPane>

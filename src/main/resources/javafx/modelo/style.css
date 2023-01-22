@@ -1,168 +1,167 @@
 /* VARIABLES */
 *{
     /* COLOR VARIABLES */
-    -FONT-COLOR: #FFF;
-    -PURE-WHITE: #FFF;
-    -SOFT-WHITE: #F4F4F9;
-    -LIGHT-GRAY: #d3d3d3;
-    -BUTTON-COLOR: #B8DBD9;
+    -GLAUCOUS: #6184D8;
     -POWDER-BLUE: #B8DBD9;
-    -BACKGROUND: #3F3F3F;
-    -HIGHLIGHT: #F0F465;
+    -MIDNIGHT-BLUE: #114B5F;
+    -OXFORD-BLUE: #001427;
+    -RAISIN-BLACK: #1D1E2C;
+    -SMOKY-BLACK: #121113;
+    -PURE-WHITE: #FFF;
+    -GHOST-WHITE: #F4F4F9;
+    -ONYX: #3F3F3F;
+    -ENGLISH-VIOLET: #453E51;
+    -LIGHT-GRAY: #d3d3d3;
+    -LIVER-BROWN: #60463B;
+    -PLATINUM: #EAE1DF;
+    -ARMY-GREEN: #433E0E;
+    -AMBER: #FFBE0B;
+    -CHARCOAL: #334E58;
+    -SEAGREEN: #0A8754;
+    -DARK-RED: #95190C;
+
+    /* highlight colors */
+    -ICTERINE: #F0F465;
+    -INCHWORM: #B4E33D;
+    -PUMPKIN: #FA7921;
+
+    /* SPECIFIC USE*/
+    -MENU-BT-COLOR: -ONYX;
+    -MENU-BT-FONTCOLOR: -GHOST-WHITE;
+    -TASKS-BT-COLOR: -ONYX;
+    -TASKS-BT-FONTCOLOR: -GHOST-WHITE;
+    -DARK-BACKGROUND: -ONYX;
+    -LIGHT-BACKGROUND: -GHOST-WHITE;
+    -GREEN-HIGHLIGHT: -INCHWORM;
+    -ORANGE-HIGHLIGHT: -PUMPKIN;
+}
+
+/* RESPONSIVE TEST(you can use it with classes and ID) */
+
+#responsive-pane {
+    -fx-alignment: top_center;
+    -fx-background-color: #000;
+}
+
+#responsive-pane:extreme-small-device /* < 768px */{
+    -fx-pref-width: 90px;
+}
+
+#responsive-pane:small-device /* >= 768px */{
+    -fx-pref-width: 130px;
+}
+
+#responsive-pane:medium-device /* >= 992px */{
+    -fx-pref-width: 160px;
+}
+
+#responsive-pane:large-device /* > 1200px */{
+    -fx-pref-width: 200px;
 }
 
 /* UTILITY CLASSES */
-
-.center {
-    -fx-content-display: center;
-}
 
 .dropshadow {
     -fx-effect: dropshadow(gaussian, #000, 10, 0.1, -5, 5);
 }
 
-.dropshadow-right{
+.dropshadow-right {
     -fx-effect: dropshadow(gaussian, #000, 10, 0.1, 2, -1);
 }
 
-.background {
-    -fx-background-color: -BACKGROUND;
+.light-img{
+    -fx-background-color: -GHOST-WHITE;
 }
 
-/* CLASSES */
-
-.copyright-label {
-    -fx-font: normal normal 0.7em 'System';
-    -fx-alignment: bottom_center;
-    -fx-text-fill: -FONT-COLOR;
-    -fx-background-color: -POWDER-BLUE;
+/* BACKGROUND */
+.pane-background {
+    -fx-background-color: -LIGHT-BACKGROUND;
 }
 
-/* MENU CLASSES */
+/* MENU STYLING */
 
-.menu-button {
-    -fx-text-alignment: center;
-    -fx-pref-width:144px;
-    -fx-pref-height:72px;
-    -fx-font: normal bold 1.75em 'candara';
-    -fx-text-fill: -FONT-COLOR;
-    -fx-background-color: transparent;
-    -fx-background-radius: 0px;
+.menu-background {
+    -fx-background-color: -MENU-BT-COLOR;
 }
 
-.menu-button:hover,
-.menu-button:focused {
-    -fx-background-color: -BACKGROUND;
-    -fx-text-fill: #d3d3d3;
+#vbox-menu:extreme-small-device,
+.bt-menu:extreme-small-device {
+    -fx-pref-width: 200px;
+    -fx-content-display: graphic-only;
 }
 
-.vbox {
-    -fx-background-color: -POWDER-BLUE;
+#vbox-menu:small-device,
+.bt-menu:small-device {
+    -fx-pref-width: 256px;
+    -fx-content-display: graphic-only;
 }
 
-/* MENU/TASKS CLASSES */
-
-.hbox {
-    -fx-alignment: center;
-    -fx-spacing: 0;
-}
-
-/* SEARCH BAR */
-
-.search-button {
-    -fx-text-alignment: center;
-    -fx-pref-width: 100px;
-    -fx-pref-height: 40px;
-    -fx-font: normal bold 1.2em 'candara';
-    -fx-text-fill: -BACKGROUND;
-    -fx-background-color: -SOFT-WHITE;
-    -fx-background-radius: 0;
-}
-
-.search-button:hover {
-    -fx-pref-width: 100px;
-    -fx-pref-height: 40px;
-    -fx-background-color: -HIGHLIGHT;
-    -fx-opacity: 0.8;
-}
-
-.textfield {
-    -fx-background-color: -SOFT-WHITE;
-    -fx-font: normal bolder 1.25em 'candara';
-    -fx-pref-height: 41px;
+#vbox-menu:medium-device,
+.bt-menu:medium-device {
     -fx-pref-width: 300px;
+    -fx-content-display: graphic-only;
+}
+
+.light-img:medium-device {
+    -fx-scale-x: 0.82;
+    -fx-scale-Y: 0.82;
+}
+
+.light-img:small-device {
+    -fx-scale-x: 0.64;
+    -fx-scale-Y: 0.64;
+}
+
+.bt-menu {
     -fx-background-radius: 0;
-    -fx-padding: 3 3 3 3;
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: -MENU-BT-COLOR;
+    -fx-text-fill: -MENU-BT-FONTCOLOR;
+    -fx-font: normal lighter 2.2em 'candara';
 }
 
-#pane-filter{
-    -fx-background-color: -SOFT-WHITE;
+.bt-menu:hover {
+    -fx-background-color: -ORANGE-HIGHLIGHT;
 }
 
-/* DATE SELECTOR BAR */
+/* TASKS PANE STYLING */
 
-.date-hbox {
-    -fx-alignment: center;
-    -fx-spacing: 20;
+.tasks-background {
+    -fx-background-color: -LIGHT-BACKGROUND;
+    -fx-padding: 15 15 15 15;
 }
 
-.date-buttons {
+.tasks-hbox {
+    -fx-alignment: CENTER;
+    -fx-spacing: 0;
+    -fx-padding: 30 270 30 270;
+}
+
+.tasks-search-bar {
+    -fx-background-radius: 0;
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: -TASKS-BT-COLOR;
+    -fx-text-fill: -TASKS-BT-FONTCOLOR;
+    -fx-font: normal lighter 1.5em 'candara';
+    }
+
+.tasks-search-bar:hover {
+    -fx-background-color: -ORANGE-HIGHLIGHT;
+}
+
+.tasks-day-bar {
+    -fx-background-radius: 0;
+    -fx-padding: 0 0 0 0;
     -fx-background-color: transparent;
-    -fx-pref-height: 100px;
-    -fx-pref-width: 150px;
+    -fx-text-fill: -TASKS-BT-COLOR;
     -fx-font: normal bolder 1.5em 'candara';
-    -fx-text-fill: -SOFT-WHITE;
 }
 
-.date-buttons:hover {
-    -fx-text-fill: -HIGHLIGHT;
-    -fx-opacity: 0.8;
+.tasks-day-bar:hover {
+    -fx-text-fill: -ORANGE-HIGHLIGHT;
 }
 
-.date-arrow {
-    -fx-background-color: transparent;
-    -fx-blend-mode: add;
-}
-
-.date-arrow:hover {
-    -fx-blend-mode: difference;
-    -fx-background-color: -HIGHLIGHT;
-    -fx-opacity: 0.8;
-}
-
-/* TABLE WITH ALL THE TASKS */
-
-.tableview {
-    -fx-background-color: transparent;
-}
-
-.tablecolumn {
-    -fx-background-color: -SOFT-WHITE;
-    -fx-size: 30;
-}
-
-/* RESPONSIVE TEST */
-
-.search-button:medium-device{
-    -fx-background-color: -HIGHLIGHT;
-}
-
-#pane {
-    -fx-background-color: -BACKGROUND;
-}
-
-#pane:extreme-small-device {
-    -fx-background-color: #9370db;
-}
-
-#pane:small-device {
-    -fx-background-color: -HIGHLIGHT;
-}
-
-#pane:medium-device {
-    -fx-background-color: -POWDER-BLUE;
-}
-
-#pane:large-device {
-    -fx-background-color: -PURE-WHITE;
+#bt-arrow-tasks:hover {
+    -fx-background-color: -ORANGE-HIGHLIGHT;
+    -fx-background-radius: 10px;
 }

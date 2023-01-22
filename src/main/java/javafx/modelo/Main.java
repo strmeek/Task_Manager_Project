@@ -19,7 +19,7 @@ public class Main extends Application {
         stage.setTitle("Task Manager"); // title.
         stage.setScene(scene); // display the scene.
         stage.show(); // make visible.
-        ResponsiveHandler.addResponsiveToWindow(scene.getWindow());
+        ResponsiveHandler.addResponsiveToWindow(scene.getWindow());// add the responsivefx library to the scene
     }
 
     public static void main(String[] args) {
