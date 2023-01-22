@@ -40,23 +40,34 @@
 
 /* UTILITY CLASSES */
 
-.dropshadow {
-    -fx-effect: dropshadow(gaussian, #000, 10, 0.1, -5, 5);
-}
-
-.dropshadow-right {
-    -fx-effect: dropshadow(gaussian, #000, 10, 0.1, 2, -1);
+.right-side-separator{
+    -fx-border-width: 0px 3px 0px 0px;
+    -fx-border-color: -GHOST-WHITE;
+    -fx-border-style: solid;
 }
 
 /*GENERAL CLASSES*/
 
-.vbox-background{
+.vbox-background {
     -fx-background-color: -DARK-BACKGROUND;
 }
 
-#andrade-label{
+#day-label {
     -fx-text-fill: -LABEL;
-    -fx-font: normal normal 16px 'ink free';
+    -fx-font: normal bold 36px 'Leelawadee UI';
+    -fx-padding: 6px 0px 0px 0px;
+}
+
+#day-sublabel-hour, #day-sublabel-date {
+    -fx-text-fill: -LABEL
+    -fx-font: normal bold 12px 'Leelawadee UI';
+}
+
+#day-sublabel-hour {
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-border-color: -GHOST-WHITE;
+    -fx-border-style: solid;
+    -fx-padding: 0px 0px 6px 0px;
 }
 
 /*MENU STYLING*/
