@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -30,19 +31,79 @@ public class MainController implements Initializable {
     private AnchorPane anchorpane;
 
     @FXML
+    private Button bt_add_home;
+
+    @FXML
+    private Button bt_add_projects;
+
+    @FXML
+    private Button bt_add_tasks;
+
+    @FXML
+    private Button bt_all_tasks;
+
+    @FXML
     private Button bt_config_menu;
+
+    @FXML
+    private Button bt_filters_tasks;
 
     @FXML
     private Button bt_home_menu;
 
     @FXML
+    private Button bt_leftarrow_tasks;
+
+    @FXML
     private Button bt_projects_menu;
+
+    @FXML
+    private Button bt_rightarrow_tasks;
+
+    @FXML
+    private Button bt_search_config;
+
+    @FXML
+    private Button bt_search_home;
+
+    @FXML
+    private Button bt_search_projects;
+
+    @FXML
+    private Button bt_search_tasks;
 
     @FXML
     private Button bt_tasks_menu;
 
     @FXML
+    private Button bt_today_tasks;
+
+    @FXML
+    private Button bt_tomorrow_tasks;
+
+    @FXML
+    private GridPane grid_home;
+
+    @FXML
+    private GridPane grid_projects;
+
+    @FXML
+    private GridPane grid_tasks;
+
+    @FXML
     private Label label_andrade;
+
+    @FXML
+    private TextField txtfield_search_config;
+
+    @FXML
+    private TextField txtfield_search_home;
+
+    @FXML
+    private TextField txtfield_search_projects;
+
+    @FXML
+    private TextField txtfield_search_tasks;
 
     @FXML
     private VBox vbox_config;
@@ -57,7 +118,7 @@ public class MainController implements Initializable {
     private VBox vbox_projects;
 
     @FXML
-    private VBox vbox_tasks;
+    private VBox vbox_task;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,7 +133,7 @@ public class MainController implements Initializable {
         bt_tasks_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                vbox_tasks.toFront();
+                vbox_task.toFront();
             }
         });
         /* PROJECTS BUTTON */

@@ -1,4 +1,9 @@
+/* IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');/*'Fredoka One'*/
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');/*'Lilita One'*/
+
 /* VARIABLES */
+
 *{
     /* COLOR VARIABLES */
     -GLAUCOUS: #6184D8;
@@ -35,7 +40,7 @@
     -ORANGE-HIGHLIGHT: -PUMPKIN;
 
     /* FONT */
-    -FONT: normal bold 1.2em 'Leelawadee UI';
+    -DEFAULT-FONT: normal normal 1.0em 'Fredoka One';
 }
 
 /* UTILITY CLASSES */
@@ -54,13 +59,13 @@
 
 #day-label {
     -fx-text-fill: -LABEL;
-    -fx-font: normal bold 36px 'Leelawadee UI';
+    -fx-font: normal normal 3.1em 'Fredoka One';
     -fx-padding: 6px 0px 0px 0px;
 }
 
 #day-sublabel-hour, #day-sublabel-date {
-    -fx-text-fill: -LABEL
-    -fx-font: normal bold 12px 'Leelawadee UI';
+    -fx-text-fill: -LABEL;
+    -fx-font: normal normal 1.15em 'Fredoka One';
 }
 
 #day-sublabel-hour {
@@ -68,6 +73,10 @@
     -fx-border-color: -GHOST-WHITE;
     -fx-border-style: solid;
     -fx-padding: 0px 0px 6px 0px;
+}
+
+#grid-column{
+    -fx-font: normal normal 1.6em 'Fredoka One';
 }
 
 /*MENU STYLING*/
@@ -84,12 +93,12 @@
 /* /TASKS PAGE */
 
 .label{
-    -fx-font: -FONT;
+    -fx-font: normal normal 1.25em 'Fredoka One';
     -fx-text-fill: -LABEL;
 }
 
 .bt-day-picker{
-    -fx-font: normal bold 1.5em 'Leelawadee UI';
+    -fx-font: normal normal 1.75em 'Fredoka One';
     -fx-text-fill: -LABEL;
     -fx-background-color: transparent;
 }
@@ -98,17 +107,15 @@
     -fx-opacity: 0.7;
 }
 
-#gridpane-tasks{
+#gridpane-tasks {
     -fx-border-color: -GHOST-WHITE;
     -fx-border-width: 3px;
     -fx-border-radius: 12px;
     -fx-border-style: solid;
-}
-
-
+    }
 
 .search-bar{
-    -fx-font: -FONT;
+    -fx-font: normal normal 1em 'Fredoka One';
     -fx-text-fill: -LABEL;
     -fx-background-color: -DARK-BACKGROUND;
 }
@@ -133,6 +140,22 @@
     -fx-border-color: -GHOST-WHITE;
     -fx-border-radius: 0px 12px 12px 0px;
     -fx-border-style: solid;
-    -fx-pref-width: 52;
+    -fx-pref-width: 52px;
     -fx-background-radius: 0px 12px 12px 0px;
+}
+
+#bt-filter-and-add{
+    -fx-background-color: -DARK-BACKGROUND;
+    -fx-border-width: 3px;
+    -fx-border-color: -GHOST-WHITE;
+    -fx-border-radius: 12px;
+    -fx-border-style: solid;
+    -fx-pref-width: 144px;
+    -fx-background-radius: 12px;
+    -fx-font: normal normal 1.2em 'Fredoka One';
+    -fx-text-fill: -LABEL;
+}
+
+#bt-filter-and-add:hover{
+    -fx-background-color: -HOVER;
 }
