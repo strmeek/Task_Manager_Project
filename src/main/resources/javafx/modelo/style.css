@@ -45,6 +45,10 @@
 
 /* UTILITY CLASSES */
 
+.transparent{
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
 .right-side-separator{
     -fx-border-width: 0px 3px 0px 0px;
     -fx-border-color: -GHOST-WHITE;
@@ -183,7 +187,7 @@
     -fx-opacity: 0.75;
 }
 
-/* Add Tabs( New Project, Task, Block)*/
+/* Add Tabs(New Project, Task, Block)*/
 
 #bt_newblock_add,
 #bt_newtask_add,
@@ -225,8 +229,6 @@
     -fx-opacity: 0.8;
     -fx-effect: none;
 }
-
-/* comboboxes */
 
 #comboBox-type-add,
 #comboBox-priority-add{
