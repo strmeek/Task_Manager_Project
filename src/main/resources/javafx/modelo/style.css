@@ -28,7 +28,7 @@
 
     /* highlight colors */
     -ICTERINE: #F0F465;
-    -INCHWORM: #B4E33D;
+    -APPLE-GREEN: #87B319;
     -PUMPKIN: #FA7921;
 
     /* SPECIFIC USE*/
@@ -51,11 +51,52 @@
     -fx-border-style: solid;
 }
 
-/*GENERAL CLASSES*/
+.text-area .scroll-pane .content{
+    -fx-background-color: -ONYX;
+    -fx-background-radius: 7px;
+}
+
+/*GENERAL*/
 
 .vbox-background {
     -fx-background-color: -DARK-BACKGROUND;
 }
+
+.add_vboxes{
+    -fx-background-color: -ONYX;
+}
+
+#txtfield-search:hover,
+#bt-search:hover{
+    -fx-background-color: -HOVER;
+}
+
+#txtfield-search{
+    -fx-border-width: 3px 0px 3px 3px;
+    -fx-border-color: -GHOST-WHITE;
+    -fx-border-radius: 12px 0px 0px 12px;
+    -fx-border-style: solid;
+    -fx-pref-width: 256px;
+    -fx-background-radius: 12px 0px 0px 12px;
+    -fx-font-size: 1.2em;
+    }
+
+#bt-search{
+    -fx-border-width: 3px 3px 3px 0px;
+    -fx-border-color: -GHOST-WHITE;
+    -fx-border-radius: 0px 12px 12px 0px;
+    -fx-border-style: solid;
+    -fx-pref-width: 52px;
+    -fx-background-radius: 0px 12px 12px 0px;
+}
+
+.search-bar{
+    -fx-font: normal normal 1em 'Fredoka One';
+    -fx-text-fill: -LABEL;
+    -fx-background-color: -DARK-BACKGROUND;
+}
+
+/*MENU STYLING*/
 
 #day-label {
     -fx-text-fill: -LABEL;
@@ -74,12 +115,6 @@
     -fx-border-style: solid;
     -fx-padding: 0px 0px 6px 0px;
 }
-
-#grid-column{
-    -fx-font: normal normal 1.6em 'Fredoka One';
-}
-
-/*MENU STYLING*/
 
 .menu-bt{
     -fx-background-color: -DARK-BACKGROUND;
@@ -112,39 +147,13 @@
     -fx-border-width: 3px;
     -fx-border-radius: 12px;
     -fx-border-style: solid;
-    }
-
-.search-bar{
-    -fx-font: normal normal 1em 'Fredoka One';
-    -fx-text-fill: -LABEL;
-    -fx-background-color: -DARK-BACKGROUND;
 }
 
-#txtfield-search:hover,
-#bt-search:hover{
-    -fx-background-color: -HOVER;
+#grid-column {
+    -fx-font: normal normal 1.6em 'Fredoka One';
 }
 
-#txtfield-search{
-    -fx-border-width: 3px 0px 3px 3px;
-    -fx-border-color: -GHOST-WHITE;
-    -fx-border-radius: 12px 0px 0px 12px;
-    -fx-border-style: solid;
-    -fx-pref-width: 256px;
-    -fx-background-radius: 12px 0px 0px 12px;
-    -fx-font-size: 1.2em;
-    }
-
-#bt-search{
-    -fx-border-width: 3px 3px 3px 0px;
-    -fx-border-color: -GHOST-WHITE;
-    -fx-border-radius: 0px 12px 12px 0px;
-    -fx-border-style: solid;
-    -fx-pref-width: 52px;
-    -fx-background-radius: 0px 12px 12px 0px;
-}
-
-#bt-filter-and-add{
+.bt-filter-and-add{
     -fx-background-color: -DARK-BACKGROUND;
     -fx-border-width: 3px;
     -fx-border-color: -GHOST-WHITE;
@@ -156,6 +165,111 @@
     -fx-text-fill: -LABEL;
 }
 
-#bt-filter-and-add:hover{
+.bt-filter-and-add:hover{
     -fx-background-color: -HOVER;
 }
+
+#hbox-filter{
+    -fx-background-color: -ONYX;
+    -fx-background-radius: 0px 0px 12px 12px;
+}
+
+#bt-filter-close{
+    -fx-font: normal normal 1.2em 'Fredoka One';
+    -fx-text-fill: -LABEL;
+}
+
+#bt-filter-close:hover{
+    -fx-opacity: 0.75;
+}
+
+/* Add Tabs( New Project, Task, Block)*/
+
+#bt_newblock_add,
+#bt_newtask_add,
+#bt_newproject_add{
+    -fx-pref-width: 250px;
+    -fx-pref-height: 50px;
+    -fx-background-color: -ONYX;
+}
+
+#bt_newblock_add:hover,
+#bt_newtask_add:hover,
+#bt_newproject_add:hover{
+    -fx-opacity: 0.75;
+}
+
+#newtask-header{
+    -fx-font: normal normal 2em 'Fredoka One';
+    -fx-text-fill: -LABEL;
+}
+
+#txtfield-title-add{
+    -fx-font: normal normal 1.25em 'Fredoka One';
+    -fx-text-fill: -SMOKY-BLACK;
+    -fx-background-color: -GHOST-WHITE;
+}
+/* background to description text area*/
+.text-area .scroll-pane .content{
+    -fx-background-color: -GHOST-WHITE;
+}
+
+#txtarea-description-add{
+    -fx-font: normal normal 1.25em 'Fredoka One';
+    -fx-text-fill: -SMOKY-BLACK;
+    -fx-highlight-fill: -GHOST-WHITE;
+    -fx-highlight-text-fill: -GHOST-WHITE;
+}
+
+#txtarea-description-add:hover{
+    -fx-opacity: 0.8;
+    -fx-effect: none;
+}
+
+/* comboboxes */
+
+#comboBox-type-add,
+#comboBox-priority-add{
+    -fx-background-color: -GHOST-WHITE;
+    -fx-font: normal normal 1.25em 'Fredoka One';
+
+    -fx-border-width: 3px;
+    -fx-border-color: -GHOST-WHITE;
+    -fx-border-style: solid;
+    -fx-border-radius: 12px;
+}
+
+#datepicker-PStart,
+#datepicker-PFinish{
+    -fx-background-color: transparent;
+    -fx-font: normal normal 1.25em 'Fredoka One';
+}
+
+.dropshadow{
+    -fx-effect: dropshadow(gaussian, #000, 15, 0.1, 5, 5)
+}
+
+#bt-create-add{
+    -fx-background-color: -APPLE-GREEN;
+    -fx-font: normal normal 1.5em 'Fredoka One';
+    -fx-text-fill: -LABEL;
+    -fx-border-width: 3px;
+    -fx-border-color: -GHOST-WHITE;
+    -fx-border-style: solid;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 6px;
+}
+
+#bt-create-add:hover,
+#txtfield-title-add:hover{
+    -fx-opacity: 0.8;
+    -fx-effect: none;
+}
+
+#datepicker-PStart:hover,
+#datepicker-PFinish:hover,
+#comboBox-type-add:hover,
+#comboBox-priority-add:hover{
+    -fx-blend-mode: difference;
+}
+

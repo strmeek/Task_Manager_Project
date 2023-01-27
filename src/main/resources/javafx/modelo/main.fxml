@@ -2,8 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
@@ -60,6 +63,15 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="bt_add_menu" layoutX="10.0" layoutY="309.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="96.0" styleClass="menu-bt" stylesheets="@style.css">
+               <graphic>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Plus_96px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS" />
             <Button fx:id="bt_config_menu" layoutX="10.0" layoutY="202.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="96.0" styleClass="menu-bt" stylesheets="@style.css">
                <graphic>
@@ -74,92 +86,24 @@
       </VBox>
       <StackPane layoutX="606.0" layoutY="262.0" prefHeight="720.0" prefWidth="1164.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox fx:id="vbox_home" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
+            <VBox fx:id="vbox_filters" prefHeight="200.0" prefWidth="100.0" stylesheets="@style.css">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
+                  <HBox id="hbox-filter" prefHeight="200.0" prefWidth="1184.0" stylesheets="@style.css">
+                     <VBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </VBox.margin>
                      <children>
-                        <Pane prefHeight="100.0" prefWidth="344.0" />
-                        <TextField id="txtfield-search" fx:id="txtfield_search_home" prefHeight="38.0" prefWidth="144.0" promptText="Search" styleClass="search-bar" stylesheets="@style.css" />
-                        <Button id="bt-search" fx:id="bt_search_home" mnemonicParsing="false" styleClass="search-bar" stylesheets="@style.css">
+                        <Button id="bt-filter-close" fx:id="bt_filter_close" ellipsisString="" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@style.css" text="Close">
                            <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" style="-fx-background-color: transparent;">
                                  <image>
-                                    <Image url="@images/search_90px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Button id="bt-filter-and-add" fx:id="bt_add_home" ellipsisString="" layoutX="422.0" layoutY="48.0" mnemonicParsing="false" stylesheets="@style.css" text="Add">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Plus_96px.png" />
+                                    <Image url="@images/expand_arrow_96px.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
                      </children>
-                     <padding>
-                        <Insets left="25.0" right="25.0" />
-                     </padding>
                   </HBox>
-                  <ScrollPane prefHeight="600.0" prefWidth="1134.0" style="-fx-background-color: transparent;" stylesheets="@style.css">
-                     <content>
-                        <GridPane fx:id="grid_home">
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
-                     </content>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
-                     </VBox.margin>
-                  </ScrollPane>
-               </children>
-            </VBox>
-            <VBox fx:id="vbox_projects" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
-                     <children>
-                        <Pane prefHeight="100.0" prefWidth="344.0" />
-                        <TextField id="txtfield-search" fx:id="txtfield_search_projects" prefHeight="38.0" prefWidth="144.0" promptText="Search" styleClass="search-bar" stylesheets="@style.css" />
-                        <Button id="bt-search" fx:id="bt_search_projects" mnemonicParsing="false" styleClass="search-bar" stylesheets="@style.css">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/search_90px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Button id="bt-filter-and-add" fx:id="bt_add_projects" ellipsisString="" layoutX="422.0" layoutY="48.0" mnemonicParsing="false" stylesheets="@style.css" text="Add">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Plus_96px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets left="25.0" right="25.0" />
-                     </padding>
-                  </HBox>
-                  <ScrollPane prefHeight="600.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
-                     </VBox.margin>
-                     <content>
-                        <GridPane fx:id="grid_projects">
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
-                     </content>
-                  </ScrollPane>
                </children>
             </VBox>
             <VBox fx:id="vbox_config" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
@@ -188,11 +132,47 @@
                   </HBox>
                </children>
             </VBox>
+            <VBox fx:id="vbox_New_Block" prefHeight="200.0" prefWidth="100.0" styleClass="add_vboxes" stylesheets="@style.css">
+               <children>
+                  <HBox alignment="TOP_RIGHT">
+                     <children>
+                        <Button id="bt-filter-close" fx:id="bt_close_newBlock" ellipsisString="" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@style.css" text="Close" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+                                 <image>
+                                    <Image url="@images/Plus_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Label text="New Block" />
+               </children>
+            </VBox>
+            <VBox fx:id="vbox_New_Project" prefHeight="200.0" prefWidth="100.0" styleClass="add_vboxes" stylesheets="@style.css">
+               <children>
+                  <HBox alignment="TOP_RIGHT">
+                     <children>
+                        <Button id="bt-filter-close" fx:id="bt_close_newProject" ellipsisString="" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@style.css" text="Close" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+                                 <image>
+                                    <Image url="@images/Plus_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Label text="New Project" />
+               </children>
+            </VBox>
             <VBox fx:id="vbox_task" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
                      <children>
-                        <Button id="bt-filter-and-add" fx:id="bt_filters_tasks" ellipsisString="" mnemonicParsing="false" stylesheets="@style.css" text="Filters">
+                        <Button fx:id="bt_filters_tasks" ellipsisString="" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="Filters">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -213,7 +193,7 @@
                            </graphic>
                         </Button>
                         <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Button id="bt-filter-and-add" fx:id="bt_add_tasks" ellipsisString="" layoutX="422.0" layoutY="48.0" mnemonicParsing="false" stylesheets="@style.css" text="Add">
+                        <Button fx:id="bt_add_tasks" ellipsisString="" layoutX="422.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="Add">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -277,13 +257,239 @@
                                     <Label id="grid-column" alignment="CENTER" ellipsisString="" layoutX="829.0" layoutY="10.0" prefHeight="65.0" prefWidth="275.0" stylesheets="@style.css" text="Controls" textAlignment="CENTER" />
                                  </children>
                               </HBox>
-                              <VBox fx:id="vbox_tasks" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
+                              <VBox fx:id="grid_vbox_tasks" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
                      </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="vbox_projects" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
+                     <children>
+                        <Pane prefHeight="100.0" prefWidth="344.0" />
+                        <TextField id="txtfield-search" fx:id="txtfield_search_projects" prefHeight="38.0" prefWidth="144.0" promptText="Search" styleClass="search-bar" stylesheets="@style.css" />
+                        <Button id="bt-search" fx:id="bt_search_projects" mnemonicParsing="false" styleClass="search-bar" stylesheets="@style.css">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/search_90px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <Button fx:id="bt_add_projects" ellipsisString="" layoutX="422.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="Add">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Plus_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="25.0" right="25.0" />
+                     </padding>
+                  </HBox>
+                  <ScrollPane prefHeight="600.0" prefWidth="200.0" stylesheets="@style.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
+                     </VBox.margin>
+                     <content>
+                        <GridPane fx:id="grid_projects" stylesheets="@style.css">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <VBox fx:id="vbox_home" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
+                     <children>
+                        <Pane prefHeight="100.0" prefWidth="344.0" />
+                        <TextField id="txtfield-search" fx:id="txtfield_search_home" prefHeight="38.0" prefWidth="144.0" promptText="Search" styleClass="search-bar" stylesheets="@style.css" />
+                        <Button id="bt-search" fx:id="bt_search_home" mnemonicParsing="false" styleClass="search-bar" stylesheets="@style.css">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/search_90px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <Button fx:id="bt_add_home" ellipsisString="" layoutX="422.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="Add">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Plus_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="25.0" right="25.0" />
+                     </padding>
+                  </HBox>
+                  <ScrollPane prefHeight="600.0" prefWidth="1134.0" stylesheets="@style.css">
+                     <content>
+                        <GridPane fx:id="grid_home">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </content>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
+                     </VBox.margin>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <VBox fx:id="vbox_add" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox id="hbox-filter" prefHeight="200.0" prefWidth="1184.0" spacing="20.0" stylesheets="@style.css">
+                     <children>
+                        <Button id="bt-filter-close" fx:id="bt_close_add" ellipsisString="" layoutX="361.0" layoutY="85.0" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@style.css" text="Close" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+                                 <image>
+                                    <Image url="@images/Plus_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button id="bt_newtask_add" fx:id="bt_newtask_add" alignment="CENTER" ellipsisString="" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="New Task" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/bulleted_list_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="75.0" top="75.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button id="bt_newproject_add" fx:id="bt_newproject_add" alignment="CENTER" ellipsisString="" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="New Project" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/goal_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets top="75.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button id="bt_newblock_add" fx:id="bt_newblock_add" alignment="CENTER" ellipsisString="" layoutX="154.0" layoutY="10.0" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="New Block (Home)" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/four_squares_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets top="75.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="vbox_New_Task" prefHeight="200.0" prefWidth="100.0" styleClass="add_vboxes" stylesheets="@style.css">
+               <children>
+                  <HBox alignment="TOP_RIGHT">
+                     <children>
+                        <Label id="newtask-header" alignment="CENTER" prefHeight="35.0" prefWidth="960.0" stylesheets="@style.css" text="Create New Task" />
+                        <Button id="bt-filter-close" fx:id="bt_close_newTask" ellipsisString="" mnemonicParsing="false" prefHeight="35.0" prefWidth="83.0" style="-fx-background-color: transparent;" stylesheets="@style.css" text="Close" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+                                 <image>
+                                    <Image url="@images/Plus_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="665.0" prefWidth="1190.0" spacing="35.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <TextField id="txtfield-title-add" fx:id="txtfield_title_add" prefHeight="40.0" prefWidth="634.0" promptText="Title" styleClass="dropshadow" stylesheets="@style.css">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextArea id="txtarea-description-add" fx:id="txtarea_description_add" prefHeight="200.0" prefWidth="200.0" promptText="Description" styleClass="dropshadow" stylesheets="@style.css">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextArea>
+                              <HBox prefHeight="25.0" prefWidth="449.0">
+                                 <children>
+                                    <ComboBox id="comboBox-type-add" fx:id="comboBox_type_add" prefHeight="25.0" prefWidth="200.0" promptText="Type" styleClass="dropshadow" stylesheets="@style.css" translateX="25.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <ComboBox id="comboBox-priority-add" fx:id="comboBox_priority_add" prefHeight="25.0" prefWidth="200.0" promptText="Priority" styleClass="dropshadow" stylesheets="@style.css" translateX="201.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <DatePicker id="datepicker-PStart" fx:id="datepicker_PStart" prefHeight="37.0" prefWidth="201.0" promptText="Planned Start" styleClass="dropshadow" stylesheets="@style.css" translateX="25.0" />
+                                    <DatePicker id="datepicker-PFinish" fx:id="datepicker_PFinish" nodeOrientation="LEFT_TO_RIGHT" prefHeight="37.0" prefWidth="201.0" promptText="Planned Finish" styleClass="dropshadow" stylesheets="@style.css" translateX="200.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <Button id="bt-create-add" fx:id="bt_create_add" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="240.0" styleClass="dropshadow" stylesheets="@style.css" text="Create">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Plus_96px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="250.0" right="250.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
                   </HBox>
                </children>
             </VBox>
