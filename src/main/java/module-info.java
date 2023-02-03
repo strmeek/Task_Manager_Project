@@ -10,6 +10,7 @@ module javafx.modelo {
     requires com.almasb.fxgl.all;
     requires responsivefx;
     requires mysql.connector.j;
+    requires java.sql;
 
     opens javafx.modelo to javafx.fxml;
     exports javafx.modelo;

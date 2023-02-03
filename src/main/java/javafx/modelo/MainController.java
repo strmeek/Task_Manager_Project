@@ -1,18 +1,24 @@
 package javafx.modelo;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.chrono.Chronology;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -59,6 +65,9 @@ public class MainController implements Initializable {
 
     @FXML
     private Button bt_config_menu;
+
+    @FXML
+    private Button bt_create_add;
 
     @FXML
     private Button bt_filter_close;
@@ -109,6 +118,18 @@ public class MainController implements Initializable {
     private Button bt_tomorrow_tasks;
 
     @FXML
+    private ComboBox<String> comboBox_priority_add;
+
+    @FXML
+    private ComboBox<String> comboBox_type_add;
+
+    @FXML
+    private DatePicker datepicker_PFinish;
+
+    @FXML
+    private DatePicker datepicker_PStart;
+
+    @FXML
     private GridPane grid_home;
 
     @FXML
@@ -124,6 +145,9 @@ public class MainController implements Initializable {
     private Label label_andrade;
 
     @FXML
+    private TextArea txtarea_description_add;
+
+    @FXML
     private TextField txtfield_search_config;
 
     @FXML
@@ -134,6 +158,9 @@ public class MainController implements Initializable {
 
     @FXML
     private TextField txtfield_search_tasks;
+
+    @FXML
+    private TextField txtfield_title_add;
 
     @FXML
     private VBox vbox_New_Block;
@@ -165,11 +192,21 @@ public class MainController implements Initializable {
     @FXML
     private VBox vbox_task;
 
+    ObservableList<String> list_type = FXCollections.observableArrayList();
+    ObservableList<String> list_priority = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         /* Home always the first screen */
         vbox_home.toFront();
+
+        /*ComboBoxes items*/
+        list_type.addAll("Work", "House", "Routine", "Special");
+        comboBox_type_add.setItems(list_type);
+        list_priority.addAll("High", "Medium", "Low");
+        comboBox_priority_add.setItems(list_priority);
+
         /* HOME BUTTON */
         bt_home_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -287,6 +324,36 @@ public class MainController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 vbox_New_Block.toBack();
+            }
+        });
+
+        bt_create_add.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                String title = txtfield_title_add.getText();
+                String description = txtarea_description_add.getText();
+                String type = comboBox_type_add.getValue();
+                String priority = comboBox_priority_add.getValue();
+                String status = "To-Do";
+                //transforming planning start and finish to date
+                LocalDateTime planned_start_dt = datepicker_PStart.getValue().atStartOfDay();
+                Timestamp planned_start_tstamp = Timestamp.valueOf(planned_start_dt);
+                Date planned_Start = new Date(planned_start_tstamp.getTime());//converted
+                LocalDateTime planned_finish_dt = datepicker_PFinish.getValue().atStartOfDay();
+                Timestamp planned_finish_tstamp = Timestamp.valueOf(planned_finish_dt);
+                Date planned_Finish = new Date(planned_finish_tstamp.getTime());//converted
+
+                /*actually add to the database*/
+                if (!title.isEmpty() &&
+                    !description.isEmpty() &&
+                    !type.isEmpty() &&
+                    !status.isEmpty() && !priority.isEmpty()){
+                    try {
+                        DataBase.addTask(type, title, description, priority, status, planned_Start, planned_Finish);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
             }
         });
     }
