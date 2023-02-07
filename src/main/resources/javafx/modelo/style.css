@@ -341,4 +341,32 @@
     -fx-background-color: transparent;
 }
 
+/*Personalized alert message*/
+
+#alert-vbox{
+    -fx-background-color: -DARK-BACKGROUND;
+    -fx-background-radius: 12px;
+    -fx-border-color: -GHOST-WHITE;
+    -fx-border-radius: 12px;
+    -fx-border-width: 3px;
+}
+
+#alert-button {
+    -fx-font: normal normal 1.25em 'Fredoka One';
+    -fx-text-fill: -LABEL;
+    -fx-background-color: -SEAGREEN;
+    -fx-background-radius: 12px;
+    -fx-border-color: -GHOST-WHITE;
+    -fx-border-radius: 12px;
+    -fx-border-width: 3px;
+}
+
+#alert-button:hover {
+    -fx-background-color: -ICTERINE;
+}
+
+#alert-label{
+    -fx-font: normal normal 1.5em 'Fredoka One';
+    -fx-text-fill: -DARK-RED;
+}
 

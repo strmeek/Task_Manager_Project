@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -337,6 +338,7 @@ public class MainController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 vbox_New_Task.toBack();
+                vbox_add.toBack();
             }
         });
         /*Collapse add tabs*/
@@ -344,6 +346,7 @@ public class MainController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 vbox_New_Project.toBack();
+                vbox_add.toBack();
             }
         });
         /*Collapse add tabs*/
@@ -351,24 +354,25 @@ public class MainController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 vbox_New_Block.toBack();
+                vbox_add.toBack();
             }
         });
 
         bt_create_add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String title = txtfield_title_add.getText();
-                String description = txtarea_description_add.getText();
-                String type = comboBox_type_add.getValue();
-                String priority = comboBox_priority_add.getValue();
-                String status = "To-Do";
-                //transforming planning start and finish to date
-                LocalDateTime planned_start_dt = datepicker_PStart.getValue().atStartOfDay();
-                Timestamp planned_start_tstamp = Timestamp.valueOf(planned_start_dt);
-                Date planned_Start = new Date(planned_start_tstamp.getTime());//converted
-                LocalDateTime planned_finish_dt = datepicker_PFinish.getValue().atStartOfDay();
-                Timestamp planned_finish_tstamp = Timestamp.valueOf(planned_finish_dt);
-                Date planned_Finish = new Date(planned_finish_tstamp.getTime());//converted
+                    String title = txtfield_title_add.getText();
+                    String description = txtarea_description_add.getText();
+                    String type = comboBox_type_add.getValue();
+                    String priority = comboBox_priority_add.getValue();
+                    String status = "To-Do";
+                    //transforming planning start and finish to date
+                    LocalDateTime planned_start_dt = datepicker_PStart.getValue().atStartOfDay();
+                    Timestamp planned_start_tstamp = Timestamp.valueOf(planned_start_dt);
+                    Date planned_Start = new Date(planned_start_tstamp.getTime());//converted
+                    LocalDateTime planned_finish_dt = datepicker_PFinish.getValue().atStartOfDay();
+                    Timestamp planned_finish_tstamp = Timestamp.valueOf(planned_finish_dt);
+                    Date planned_Finish = new Date(planned_finish_tstamp.getTime());//converted
 
                 /*actually add to the database*/
                 if (!title.isEmpty() &&
@@ -377,11 +381,30 @@ public class MainController implements Initializable {
                     !status.isEmpty() && !priority.isEmpty()){
                     try {
                         DataBase.addTask(type, title, description, priority, status, planned_Start, planned_Finish);
+
+                        // Alerta de Operação bem sucedida
+                        customAlertSucess();
+
                     }catch (Exception e){
                         e.printStackTrace();
                     }
                 }
             }
         });
+    }
+    public void customAlertSucess(){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("alert.fxml"));
+
+            AlertController alertController = new AlertController();
+            loader.setController(alertController);
+            VBox vbox = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(vbox.getScene());
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
