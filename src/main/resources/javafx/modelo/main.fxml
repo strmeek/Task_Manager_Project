@@ -483,7 +483,15 @@
                                     <Label id="grid-column" alignment="CENTER" ellipsisString="" layoutX="829.0" layoutY="10.0" prefHeight="65.0" prefWidth="275.0" stylesheets="@style.css" text="Controls" textAlignment="CENTER" />
                                  </children>
                               </HBox>
-                              <VBox fx:id="grid_vbox_tasks" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
+                              <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                 <content>
+                                    <GridPane fx:id="grid_vbox_tasks">
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                 </content>
+                              </ScrollPane>
                            </children>
                         </GridPane>
                      </children>

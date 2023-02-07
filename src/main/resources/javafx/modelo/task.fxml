@@ -8,60 +8,59 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane fx:id="anchor_pane_task" prefHeight="100.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.modelo.TaskController">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox fx:id="hbox_sections" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+            <HBox id="task-block" fx:id="hbox_sections" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" VBox.vgrow="ALWAYS">
                <children>
-                  <Label id="label-type" fx:id="label_type" alignment="CENTER" ellipsisString="" prefHeight="108.0" prefWidth="117.0" stylesheets="@style.css" text="type" textAlignment="CENTER" />
-                  <Label id="label-title" fx:id="label_title" alignment="CENTER" prefHeight="113.0" prefWidth="256.0" stylesheets="@style.css" text="title" />
-                  <Label id="label-priority" fx:id="label_priority" alignment="CENTER" layoutX="127.0" layoutY="10.0" prefHeight="100.0" prefWidth="117.0" stylesheets="@style.css" text="priority" />
-                  <Label id="label-status" fx:id="label_status" alignment="CENTER" layoutX="383.0" layoutY="10.0" prefHeight="100.0" prefWidth="117.0" stylesheets="@style.css" text="status" />
-                  <Label id="label-created-at" fx:id="label_created_at" alignment="CENTER" layoutX="500.0" layoutY="10.0" prefHeight="100.0" prefWidth="117.0" stylesheets="@style.css" text="created" />
-                  <Label id="label-planned-end" fx:id="label_planned_finish" alignment="CENTER" layoutX="617.0" layoutY="10.0" prefHeight="100.0" prefWidth="122.0" stylesheets="@style.css" text="pfinish" />
-                  <HBox fx:id="hbox_controls" alignment="CENTER" prefHeight="100.0" prefWidth="274.0" stylesheets="@style.css">
+                  <Label id="label-type" fx:id="label_type" alignment="CENTER" ellipsisString="" prefHeight="108.0" prefWidth="117.0" styleClass="task-block-label" stylesheets="@style.css" text="type" textAlignment="CENTER" />
+                  <Label id="label-title" fx:id="label_title" alignment="CENTER" prefHeight="113.0" prefWidth="256.0" styleClass="task-block-label" stylesheets="@style.css" text="title" />
+                  <Label id="label-priority" fx:id="label_priority" alignment="CENTER" layoutX="127.0" layoutY="10.0" prefHeight="100.0" prefWidth="117.0" styleClass="task-block-label" stylesheets="@style.css" text="priority" />
+                  <Label id="label-status" fx:id="label_status" alignment="CENTER" layoutX="383.0" layoutY="10.0" prefHeight="100.0" prefWidth="117.0" styleClass="task-block-label" stylesheets="@style.css" text="status" />
+                  <Label id="label-created-at" fx:id="label_created_at" alignment="CENTER" layoutX="500.0" layoutY="10.0" prefHeight="100.0" prefWidth="117.0" styleClass="task-block-label" stylesheets="@style.css" text="created" />
+                  <Label id="label-planned-end" fx:id="label_planned_finish" alignment="CENTER" layoutX="617.0" layoutY="10.0" prefHeight="100.0" prefWidth="122.0" styleClass="task-block-label" stylesheets="@style.css" text="pfinish" />
+                  <HBox fx:id="hbox_controls" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="274.0" stylesheets="@style.css">
                      <children>
-                        <Button id="bt-complete-task" fx:id="bt_completed_controls" alignment="CENTER" layoutX="52.0" layoutY="44.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="40.0" stylesheets="@style.css">
+                        <Button id="bt-complete-task" fx:id="bt_completed_controls" alignment="CENTER" layoutX="52.0" layoutY="44.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css">
                            <graphic>
-                              <ImageView accessibleText="Complete Task" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView id="imgview-completed" accessibleText="Complete Task" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/done_104px.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button id="bt-addsubtask-task" fx:id="bt_addsubtask_controls" alignment="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="40.0" stylesheets="@style.css">
+                        <Button id="bt-addsubtask-task" fx:id="bt_addsubtask_controls" alignment="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css">
                            <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView id="imgview-addsubtask" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/Plus_96px.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button id="bt-edit-task" fx:id="bt_edit_controls" alignment="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="40.0" stylesheets="@style.css">
+                        <Button id="bt-edit-task" fx:id="bt_edit_controls" alignment="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css">
                            <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView id="imgview-edit" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/edit_104px.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button id="bt-remove-task" fx:id="bt_remove_controls" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" stylesheets="@style.css">
+                        <Button id="bt-remove-task" fx:id="bt_remove_controls" alignment="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css">
                            <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView id="imgview-remove" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/trash_can_104px.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button id="bt-expand-task" fx:id="bt_expand_controls" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" stylesheets="@style.css" textAlignment="CENTER" translateX="30.0">
+                        <Button id="bt-expand-task" fx:id="bt_expand_controls" alignment="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css" textAlignment="CENTER" translateX="16.0">
                            <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView id="imgview-expand" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/expand_arrow_96px.png" />
                                  </image>

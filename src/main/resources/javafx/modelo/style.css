@@ -275,3 +275,75 @@
     -fx-blend-mode: difference;
 }
 
+/*TASK BLOCK*/
+
+.task-block-label {
+    -fx-font: normal normal 1.25em 'Fredoka One';
+    -fx-text-fill: -LABEL;
+}
+
+#task-block{
+    -fx-background-color: -POWDER-BLUE;
+}
+
+#bt-complete-task {
+    -fx-background-color: transparent;
+}
+
+#bt-complete-task:hover {
+    -fx-background-radius: 0;
+    -fx-background-color: -SEAGREEN;
+    -fx-scale-x: 1.35;
+    -fx-scale-y: 1.35;
+    -fx-translate-y: -5px;
+}
+
+#bt-addsubtask-task {
+    -fx-background-color: transparent;
+}
+
+#bt-addsubtask-task:hover{
+    -fx-background-radius: 0;
+    -fx-background-color: -PUMPKIN;
+    -fx-scale-x: 1.35;
+    -fx-scale-y: 1.35;
+    -fx-translate-y: -5px;
+}
+
+#bt-edit-task {
+    -fx-background-color: transparent;
+}
+
+#bt-edit-task:hover {
+    -fx-background-color: -AMBER;
+    -fx-background-radius: 0;
+    -fx-scale-x: 1.35;
+    -fx-scale-y: 1.35;
+    -fx-translate-y: -5px;
+}
+
+#bt-remove-task {
+    -fx-background-color: transparent;
+}
+
+#bt-remove-task:hover{
+    -fx-background-color: -DARK-RED;
+    -fx-background-radius: 0;
+    -fx-scale-x: 1.35;
+    -fx-scale-y: 1.35;
+    -fx-translate-y: -5px;
+}
+
+#bt-expand-task {
+    -fx-background-color: transparent;
+}
+
+#bt-expand-task:hover {
+    -fx-background-color: -ONYX;
+    -fx-background-radius: 0;
+    -fx-scale-x: 1.35;
+    -fx-scale-y: 1.35;
+    -fx-translate-y: -5px;
+}
+
+
