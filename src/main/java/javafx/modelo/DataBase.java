@@ -1,6 +1,11 @@
 package javafx.modelo;
 
+import com.almasb.fxgl.scene3d.Cone;
+import com.guigarage.responsive.ResponsiveHandler;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBase {
     /*The Objective of this class is connect the program to the database
@@ -27,7 +32,6 @@ public class DataBase {
     finished_at datetime
     planned_start datetime
     planned_finish datetime
-    subtask (foreign key)
 
     to do the statements faster:
     (type_task,title_task,description_task,priority_task,status_task,created_at,updated_at,started_at,finished_at,planned_start,planned_finish)
@@ -47,9 +51,10 @@ public class DataBase {
     finished_at datetime
     planned_start datetime
     planned_finish datetime
+    id_task (foreign key)
 
     to do the statements faster:
-    (title_subtask,description_subtask,priority_subtask,status_subtask,created_at,started_at,finished_at,planned_start,planned_finish)
+    (title_subtask,description_subtask,priority_subtask,status_subtask,created_at,started_at,finished_at,planned_start,planned_finish,id_task)
     */
 
     /*Add the tasks to the DB*/
@@ -85,7 +90,6 @@ public class DataBase {
 
         } catch(SQLException e){
             e.printStackTrace();
-
         } finally {
             try {
                 if(psAdd != null){
@@ -109,5 +113,66 @@ public class DataBase {
     }
 
     public static void completeTask(){
+    }
+    public static List<Task> grid_List_tasks() {
+        List<Task> grid = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement psList = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DriverManager.getConnection(db_Url, db_User, db_Password);
+            psList = connection.prepareStatement("SELECT * FROM task");
+            resultSet = psList.executeQuery();
+
+            while (resultSet.next()) {
+                Task task = new Task();
+                task.setId_task(resultSet.getInt("id_task"));
+                task.setType_task(resultSet.getString("type_task"));
+                task.setTitle_task(resultSet.getString("title_task"));
+                task.setDescription_task(resultSet.getString("description_task"));
+                task.setPriority_task(resultSet.getString("priority_task"));
+                task.setStatus_task(resultSet.getString("status_task"));
+                task.setTask_created_at(resultSet.getDate("created_at").toString());
+                task.setPlanned_start(resultSet.getDate("planned_start").toString());
+                task.setPlanned_finish(resultSet.getDate("planned_finish").toString());
+
+                if (resultSet.getDate("updated_at") == null) {
+                    task.setTask_updated_at("None");
+                } else {
+                    task.setTask_updated_at(resultSet.getDate("updated_at").toString());
+                }
+                if (resultSet.getDate("started_at") == null) {
+                    task.setTask_started_at("None");
+                } else {
+                    task.setTask_started_at(resultSet.getDate("started_at").toString());
+                }
+                if (resultSet.getDate("finished_at") == null) {
+                    task.setFinished_at("None");
+                } else {
+                    task.setFinished_at(resultSet.getDate("finished_at").toString());
+                }
+
+                grid.add(task);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (psList != null) {
+                    psList.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return grid;
     }
 }

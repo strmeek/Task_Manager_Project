@@ -10,16 +10,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.chrono.Chronology;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -212,30 +209,6 @@ public class MainController implements Initializable {
         list_priority.addAll("High", "Medium", "Low");
         comboBox_priority_add.setItems(list_priority);
 
-        /*Task Grid*/
-        tasks = new ArrayList<>(grid_List_tasks());
-
-        int columns = 0;
-        int row = 1;
-
-        try{
-            for(int i=0; i<tasks.size(); i++){
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("task.fxml"));
-                AnchorPane block = fxmlLoader.load();
-                TaskController taskController = fxmlLoader.getController();
-                taskController.setTaskData(tasks.get(i));
-
-                if(columns == 1){
-                    columns = 0;
-                    ++row;
-                }
-                grid_vbox_tasks.add(block, columns++,row);
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
         /* HOME BUTTON */
         bt_home_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -247,6 +220,31 @@ public class MainController implements Initializable {
         bt_tasks_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                grid_vbox_tasks.getChildren().clear();
+
+                /*Task Grid*/
+                tasks = new ArrayList<>(DataBase.grid_List_tasks());
+
+                int columns = 0;
+                int row = 1;
+
+                try{
+                    for(int i=0; i<tasks.size(); i++){
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("task.fxml"));
+                        VBox block = fxmlLoader.load();
+                        TaskController taskController = fxmlLoader.getController();
+                        taskController.setTaskData(tasks.get(i));
+
+                        if(columns == 1){
+                            columns = 0;
+                            ++row;
+                        }
+                        grid_vbox_tasks.add(block, columns++,row);
+                    }
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
                 vbox_task.toFront();
             }
         });
@@ -385,22 +383,5 @@ public class MainController implements Initializable {
                 }
             }
         });
-    }
-    private List<Task> grid_List_tasks(){
-        List<Task> grid = new ArrayList<>();
-
-        Task task = new Task();
-        task.setId_task(1);
-        task.setTitle_task("Gym");
-        task.setDescription_task("Leg day");
-        task.setPriority_task("Medium");
-        task.setStatus_task("To-Do");
-        task.setType_task("Routine");
-        Date date = new Date(System.currentTimeMillis());
-        task.setTask_created_at(date.toString());
-        task.setPlanned_finish(date.toString());
-        grid.add(task);
-
-        return grid;
     }
 }

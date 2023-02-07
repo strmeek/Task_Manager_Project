@@ -3,12 +3,13 @@ package javafx.modelo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class TaskController {
+
     @FXML
-    private AnchorPane anchor_pane_task;
+    private VBox vbox_task_fxml;
 
     @FXML
     private Button bt_addsubtask_controls;

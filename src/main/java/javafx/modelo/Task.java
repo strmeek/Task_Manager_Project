@@ -12,6 +12,14 @@ public class Task {
     private String task_started_at;
     private String description_task;
     private String task_updated_at;
+    private String finished_at;
+
+    public String getFinished_at() {
+        return finished_at;
+    }
+    public void setFinished_at(String finished_at) {
+        this.finished_at = finished_at;
+    }
     private int id_task;
 
     public String getType_task() {
