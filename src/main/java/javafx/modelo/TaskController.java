@@ -1,12 +1,18 @@
 package javafx.modelo;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class TaskController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class TaskController implements Initializable{
 
     @FXML
     private VBox vbox_task_fxml;
@@ -58,5 +64,15 @@ public class TaskController {
         label_priority.setText(task.getPriority_task());
         label_created_at.setText(task.getTask_created_at());
         label_planned_finish.setText(task.getPlanned_finish());
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        bt_remove_controls.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                int id = ;
+            }
+        });
     }
 }

@@ -1,8 +1,5 @@
 package javafx.modelo;
 
-import com.almasb.fxgl.scene3d.Cone;
-import com.guigarage.responsive.ResponsiveHandler;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +95,7 @@ public class DataBase {
                 if (connection != null){
                     connection.close();
                 }
-            }catch (Exception e){
+            }catch (SQLException e){
                 e.printStackTrace();
             }
         }
@@ -108,11 +105,46 @@ public class DataBase {
 
     }
 
-    public static void deleteTask(){
+    public static void deleteTask(int id_task){
+        Connection connection = null;
+        PreparedStatement psDelete = null;
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+            psDelete = connection.prepareStatement("DELETE FROM task WHERE id_task = ?");
+            psDelete.setInt(1, id_task);
 
+            psDelete.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if(psDelete != null){
+                    psDelete.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public static void completeTask(){
+    public static void completeTask(int id_task){
+        Connection connection = null;
+        PreparedStatement psComplete = null;
+
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+            psComplete = connection.prepareStatement("UPDATE task " +
+                    "SET status_task = \"Completed\" " +
+                    "WHERE id_task = ?");
+            psComplete.setInt(1,id_task);
+
+            psComplete.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
     public static List<Task> grid_List_tasks() {
         List<Task> grid = new ArrayList<>();

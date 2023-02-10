@@ -1,6 +1,7 @@
 package javafx.modelo;
 
 public class Task {
+    private int id_task;
     private String type_task;
     private String title_task;
     private String priority_task;
@@ -20,7 +21,6 @@ public class Task {
     public void setFinished_at(String finished_at) {
         this.finished_at = finished_at;
     }
-    private int id_task;
 
     public String getType_task() {
         return type_task;

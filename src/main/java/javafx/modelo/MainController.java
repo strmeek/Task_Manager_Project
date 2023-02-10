@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -381,30 +380,11 @@ public class MainController implements Initializable {
                     !status.isEmpty() && !priority.isEmpty()){
                     try {
                         DataBase.addTask(type, title, description, priority, status, planned_Start, planned_Finish);
-
-                        // Alerta de Operação bem sucedida
-                        customAlertSucess();
-
                     }catch (Exception e){
                         e.printStackTrace();
                     }
                 }
             }
         });
-    }
-    public void customAlertSucess(){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("alert.fxml"));
-
-            AlertController alertController = new AlertController();
-            loader.setController(alertController);
-            VBox vbox = loader.load();
-
-            Stage stage = new Stage();
-            stage.setScene(vbox.getScene());
-            stage.show();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }
