@@ -220,31 +220,7 @@ public class MainController implements Initializable {
         bt_tasks_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                grid_vbox_tasks.getChildren().clear();
-
-                /*Task Grid*/
-                tasks = new ArrayList<>(DataBase.grid_List_tasks());
-
-                int columns = 0;
-                int row = 1;
-
-                try{
-                    for(int i=0; i<tasks.size(); i++){
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("task.fxml"));
-                        VBox block = fxmlLoader.load();
-                        TaskController taskController = fxmlLoader.getController();
-                        taskController.setTaskData(tasks.get(i));
-
-                        if(columns == 1){
-                            columns = 0;
-                            ++row;
-                        }
-                        grid_vbox_tasks.add(block, columns++,row);
-                    }
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
+                refreshGridTasks();
                 vbox_task.toFront();
             }
         });
@@ -380,11 +356,42 @@ public class MainController implements Initializable {
                     !status.isEmpty() && !priority.isEmpty()){
                     try {
                         DataBase.addTask(type, title, description, priority, status, planned_Start, planned_Finish);
+                        refreshGridTasks();
+                        vbox_New_Task.toBack();
+                        vbox_add.toBack();
                     }catch (Exception e){
                         e.printStackTrace();
                     }
                 }
             }
         });
+    }
+    public void refreshGridTasks(){
+        grid_vbox_tasks.getChildren().clear();
+
+        /*Task Grid*/
+        tasks = new ArrayList<>(DataBase.grid_List_tasks());
+
+        int columns = 0;
+        int row = 1;
+
+        try{
+            for(int i=0; i<tasks.size(); i++){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("task.fxml"));
+                VBox block = fxmlLoader.load();
+                TaskController taskController = fxmlLoader.getController();
+                taskController.setTaskData(tasks.get(i));
+                taskController.setMainController(this);
+
+                if(columns == 1){
+                    columns = 0;
+                    ++row;
+                }
+                grid_vbox_tasks.add(block, columns++,row);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }

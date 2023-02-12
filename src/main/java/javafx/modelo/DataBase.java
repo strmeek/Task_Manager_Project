@@ -105,13 +105,13 @@ public class DataBase {
 
     }
 
-    public static void deleteTask(int id_task){
+    public static void deleteTask(Task task){
         Connection connection = null;
         PreparedStatement psDelete = null;
         try{
             connection = DriverManager.getConnection(db_Url,db_User,db_Password);
             psDelete = connection.prepareStatement("DELETE FROM task WHERE id_task = ?");
-            psDelete.setInt(1, id_task);
+            psDelete.setInt(1, task.getId_task());
 
             psDelete.executeUpdate();
         }catch (SQLException e){
@@ -130,7 +130,7 @@ public class DataBase {
         }
     }
 
-    public static void completeTask(int id_task){
+    public static void completeTask(Task task){
         Connection connection = null;
         PreparedStatement psComplete = null;
 
@@ -139,7 +139,7 @@ public class DataBase {
             psComplete = connection.prepareStatement("UPDATE task " +
                     "SET status_task = \"Completed\" " +
                     "WHERE id_task = ?");
-            psComplete.setInt(1,id_task);
+            psComplete.setInt(1,task.getId_task());
 
             psComplete.executeUpdate();
         }catch (SQLException e){

@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox fx:id="vbox_task_fxml" prefHeight="100.0" prefWidth="1126.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.modelo.TaskController">
    <children>
       <HBox id="task-block" fx:id="hbox_sections" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" VBox.vgrow="ALWAYS">
@@ -20,7 +19,7 @@
             <Label id="label-planned-end" fx:id="label_planned_finish" alignment="CENTER" layoutX="617.0" layoutY="10.0" prefHeight="100.0" prefWidth="122.0" styleClass="task-block-label" stylesheets="@style.css" text="pfinish" />
             <HBox fx:id="hbox_controls" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="274.0" stylesheets="@style.css">
                <children>
-                  <Button id="bt-complete-task" fx:id="bt_completed_controls" alignment="CENTER" layoutX="52.0" layoutY="44.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css">
+                  <Button id="bt-complete-task" fx:id="bt_completed_controls" alignment="CENTER" layoutX="52.0" layoutY="44.0" mnemonicParsing="false" onAction="#btCompleteTaskAction" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css">
                      <graphic>
                         <ImageView id="imgview-completed" accessibleText="Complete Task" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -47,7 +46,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="bt-remove-task" fx:id="bt_remove_controls" alignment="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css">
+                  <Button id="bt-remove-task" fx:id="bt_remove_controls" alignment="CENTER" mnemonicParsing="false" onAction="#btDeleteTaskAction" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css">
                      <graphic>
                         <ImageView id="imgview-remove" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>

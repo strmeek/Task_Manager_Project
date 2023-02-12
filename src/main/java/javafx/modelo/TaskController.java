@@ -1,18 +1,13 @@
 package javafx.modelo;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class TaskController implements Initializable{
+public class TaskController{
 
     @FXML
     private VBox vbox_task_fxml;
@@ -56,6 +51,10 @@ public class TaskController implements Initializable{
     @FXML
     private Label label_type;
 
+    private Task task;
+
+    private MainController mainController;
+
 
     public void setTaskData(Task task){
         label_type.setText(task.getType_task());
@@ -64,15 +63,26 @@ public class TaskController implements Initializable{
         label_priority.setText(task.getPriority_task());
         label_created_at.setText(task.getTask_created_at());
         label_planned_finish.setText(task.getPlanned_finish());
+
+        this.task = task;
+    }
+    /*ChatGPT solution to a big error i was having*/
+    public void setMainController(MainController mainController){
+        this.mainController = mainController;
+    }
+    public void callRefreshGridTasks(){
+        mainController.refreshGridTasks();
+    }
+    /* ------------------------------------ */
+    @FXML
+    private void btDeleteTaskAction(ActionEvent event) {
+        DataBase.deleteTask(task);
+        callRefreshGridTasks();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        bt_remove_controls.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                int id = ;
-            }
-        });
+    @FXML
+    private void btCompleteTaskAction(ActionEvent event) {
+        DataBase.completeTask(task);
+        callRefreshGridTasks();
     }
 }
