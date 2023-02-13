@@ -1,5 +1,7 @@
 package javafx.modelo;
 
+import java.sql.Date;
+
 public class Task {
     private int id_task;
     private String type_task;
@@ -14,6 +16,11 @@ public class Task {
     private String description_task;
     private String task_updated_at;
     private String finished_at;
+
+    /*public Task(String type, String title, String description, String priority, String status, Date planned_start, Date planned_finish) {
+        this.type_task = type;
+        this.title_task = title;
+    }*/
 
     public String getFinished_at() {
         return finished_at;

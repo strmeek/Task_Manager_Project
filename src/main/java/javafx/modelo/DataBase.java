@@ -80,8 +80,8 @@ public class DataBase {
             psAdd.setDate(8, planned_finish);
 
             //Gets the datetime in the instant that the program adds in the DB
-            Date created_at = new Date(System.currentTimeMillis());
-            psAdd.setDate(6, created_at);
+            Timestamp created_at = new Timestamp(System.currentTimeMillis());
+            psAdd.setTimestamp(6, created_at);
 
             psAdd.executeUpdate();
 
@@ -101,9 +101,39 @@ public class DataBase {
         }
     }
 
-    public static void editTask(){
+    public static void addSubTask(Subtask subtask){
 
     }
+
+    /* public static void editTask(Task task){
+        Connection connection = null;
+        PreparedStatement psEdit = null;
+        ResultSet resultSet;
+
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+            psEdit = connection.prepareStatement("SELECT * FROM task WHERE id_task = ?");
+            psEdit.setInt(1, task.getId_task());
+            resultSet = psEdit.executeQuery();
+
+            if (resultSet.next()){
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(psEdit != null){
+                    psEdit.close();
+                }
+                if(connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+
+    } */
 
     public static void deleteTask(Task task){
         Connection connection = null;
@@ -136,14 +166,28 @@ public class DataBase {
 
         try{
             connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+
             psComplete = connection.prepareStatement("UPDATE task " +
-                    "SET status_task = \"Completed\" " +
+                    "SET status_task = \"Completed\", finished_at = \"" + now + "\" " +
                     "WHERE id_task = ?");
             psComplete.setInt(1,task.getId_task());
 
             psComplete.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
+        }finally {
+            try{
+                if(psComplete != null){
+                    psComplete.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
         }
     }
     public static List<Task> grid_List_tasks() {

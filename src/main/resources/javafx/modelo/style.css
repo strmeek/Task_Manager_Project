@@ -286,11 +286,13 @@
 .task-block-label {
     -fx-font: normal normal 1.25em 'Fredoka One';
     -fx-text-fill: -LABEL;
+    -fx-background-color: transparent;
 }
 
 #task-block{
     -fx-background-color: -POWDER-BLUE;
 }
+
 
 #bt-complete-task {
     -fx-background-color: transparent;
