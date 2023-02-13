@@ -1,6 +1,6 @@
 package javafx.modelo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Task {
     private int id_task;
@@ -10,17 +10,40 @@ public class Task {
     private String status_task;
     private String task_created_at;
     private String planned_finish;
-
     private String planned_start;
     private String task_started_at;
     private String description_task;
     private String task_updated_at;
     private String finished_at;
 
-    /*public Task(String type, String title, String description, String priority, String status, Date planned_start, Date planned_finish) {
-        this.type_task = type;
-        this.title_task = title;
-    }*/
+    public Task() {
+    }
+
+    public Task(int id_task,
+                String type_task,
+                String title_task,
+                String priority_task,
+                String status_task,
+                String task_created_at,
+                String planned_finish,
+                String planned_start,
+                String task_started_at,
+                String description_task,
+                String task_updated_at,
+                String finished_at) {
+        this.id_task = id_task;
+        this.type_task = type_task;
+        this.title_task = title_task;
+        this.priority_task = priority_task;
+        this.status_task = status_task;
+        this.task_created_at = task_created_at;
+        this.planned_finish = planned_finish;
+        this.planned_start = planned_start;
+        this.task_started_at = task_started_at;
+        this.description_task = description_task;
+        this.task_updated_at = task_updated_at;
+        this.finished_at = finished_at;
+    }
 
     public String getFinished_at() {
         return finished_at;

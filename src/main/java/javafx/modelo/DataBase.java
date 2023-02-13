@@ -101,9 +101,9 @@ public class DataBase {
         }
     }
 
-    public static void addSubTask(Subtask subtask){
+    /*public static void addSubTask(Subtask subtask){
 
-    }
+    }*/
 
     /* public static void editTask(Task task){
         Connection connection = null;

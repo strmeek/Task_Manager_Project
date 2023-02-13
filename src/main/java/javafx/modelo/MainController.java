@@ -355,7 +355,6 @@ public class MainController implements Initializable {
                     !type.isEmpty() &&
                     !status.isEmpty() && !priority.isEmpty()){
                     try {
-                        //Task task = new Task(type, title, description, priority, status, planned_Start, planned_Finish)
                         DataBase.addTask(type, title, description, priority, status, planned_Start, planned_Finish);
                         refreshGridTasks();
                         vbox_New_Task.toBack();
