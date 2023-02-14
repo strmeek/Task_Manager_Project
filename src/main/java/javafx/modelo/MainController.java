@@ -1,5 +1,6 @@
 package javafx.modelo;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,8 +17,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -142,7 +145,13 @@ public class MainController implements Initializable {
     private GridPane grid_vbox_tasks;
 
     @FXML
-    private Label label_andrade;
+    private Label menu_Clock;
+
+    @FXML
+    private Label menu_Date;
+
+    @FXML
+    private Label menu_Day;
 
     @FXML
     private TextArea txtarea_description_add;
@@ -202,6 +211,9 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         /* Home always the first screen */
         vbox_home.toFront();
+
+        /*Clock*/
+        menuClock();
 
         /*ComboBoxes items*/
         list_type.addAll("Work", "House", "Routine", "Special");
@@ -393,5 +405,30 @@ public class MainController implements Initializable {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void menuClock(){
+        Thread clock = new Thread() {
+            public void run() {
+                while (true) {
+                    Platform.runLater(() -> {
+                        Calendar now = Calendar.getInstance();
+                        int hour = now.get(Calendar.HOUR_OF_DAY);
+                        int minute = now.get(Calendar.MINUTE);
+                        menu_Clock.setText(String.format("%02d:%02d", hour, minute));
+                        menu_Date.setText(java.time.LocalDate.now().toString());
+                        Calendar calendar = Calendar.getInstance();
+                        SimpleDateFormat dayFormat = new SimpleDateFormat("E");
+                        String abbreviatedDayOfWeek = dayFormat.format(calendar.getTime());
+                        menu_Day.setText(abbreviatedDayOfWeek);
+                    });
+                    try {
+                        sleep(1000);
+                    } catch (InterruptedException e) {
+                    }
+                }
+            }
+        };
+        clock.start();
     }
 }

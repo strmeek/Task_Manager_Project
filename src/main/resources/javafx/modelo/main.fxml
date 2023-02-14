@@ -6,6 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
@@ -23,17 +24,20 @@
    <children>
       <VBox fx:id="vbox_menu" prefHeight="880.0" prefWidth="96.0" styleClass="vbox-background" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox id="date-vbox" alignment="CENTER" prefHeight="161.0" prefWidth="96.0" spacing="6.0" stylesheets="@style.css">
+            <VBox id="date-vbox" alignment="TOP_CENTER" prefHeight="161.0" prefWidth="96.0" spacing="10.0" stylesheets="@style.css">
                <children>
-                  <Label id="day-label" fx:id="label_andrade" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="19.0" prefWidth="96.0" stylesheets="@style.css" text="WED" textAlignment="CENTER" />
+                  <Label id="day-label" fx:id="menu_Day" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="19.0" prefWidth="96.0" stylesheets="@style.css" text="WED" textAlignment="CENTER" />
                   <ImageView fitHeight="4.0" fitWidth="4.0" layoutX="56.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/new_moon_96px.png" />
                      </image>
                   </ImageView>
-                  <Label id="day-sublabel-date" alignment="CENTER" prefHeight="19.0" prefWidth="96.0" stylesheets="@style.css" text="01-22-2023" textAlignment="CENTER" />
-                  <Label id="day-sublabel-hour" alignment="CENTER" prefHeight="12.0" prefWidth="96.0" stylesheets="@style.css" text="20:00 GMT" textAlignment="CENTER" />
+                  <Label id="day-sublabel-date" fx:id="menu_Date" alignment="CENTER" prefHeight="19.0" prefWidth="96.0" stylesheets="@style.css" text="01-22-2023" textAlignment="CENTER" />
+                  <Label id="day-sublabel-hour" fx:id="menu_Clock" alignment="CENTER" prefHeight="12.0" prefWidth="96.0" stylesheets="@style.css" text="20:00 GMT" textAlignment="CENTER" />
                </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
             </VBox>
             <Button fx:id="bt_home_menu" mnemonicParsing="false" prefHeight="69.0" prefWidth="96.0" styleClass="menu-bt" stylesheets="@style.css">
                <graphic>
@@ -475,7 +479,7 @@
                                     <Label id="grid-column" alignment="CENTER" ellipsisString="" layoutX="829.0" layoutY="10.0" prefHeight="65.0" prefWidth="275.0" stylesheets="@style.css" text="Controls" textAlignment="CENTER" />
                                  </children>
                               </HBox>
-                              <ScrollPane id="scroll-pane-tasks" fitToWidth="true" prefHeight="420.0" prefWidth="1128.0" stylesheets="@style.css" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                              <ScrollPane id="scroll-pane-tasks" fitToWidth="true" prefHeight="420.0" prefWidth="1128.0" stylesheets="@style.css" vbarPolicy="NEVER">
                                  <content>
                                     <GridPane fx:id="grid_vbox_tasks" alignment="TOP_CENTER" prefWidth="1126.0" stylesheets="@style.css" translateY="-30.0" vgap="3.0">
                                       <rowConstraints>
@@ -491,6 +495,69 @@
                         <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
                      </padding>
                   </HBox>
+               </children>
+            </VBox>
+            <VBox id="vbox-expand" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Created at:" />
+                        <Label text="createdatlabel" />
+                        <Separator orientation="VERTICAL" prefHeight="200.0">
+                           <padding>
+                              <Insets bottom="25.0" top="25.0" />
+                           </padding>
+                        </Separator>
+                        <Label layoutX="486.0" layoutY="50.0" text="Last Update:" />
+                        <Label layoutX="558.0" layoutY="50.0" text="LastUpdatelabel" />
+                        <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="NEVER">
+                           <padding>
+                              <Insets bottom="25.0" top="25.0" />
+                           </padding>
+                        </Separator>
+                        <Label layoutX="557.0" layoutY="50.0" text="Planned Start:" />
+                        <Label layoutX="640.0" layoutY="50.0" text="PlannedStartLabel" />
+                        <Button mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                 <image>
+                                    <Image url="@images/expand_arrow_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="460.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="216.0" prefWidth="1184.0">
+                     <children>
+                        <VBox prefHeight="216.0" prefWidth="601.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Title:" />
+                              <TextField />
+                              <Label layoutX="10.0" layoutY="10.0" text="Description:" />
+                              <TextField layoutX="10.0" layoutY="31.0" prefHeight="100.0" prefWidth="569.0" />
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="569.0" spacing="175.0">
+                                 <children>
+                                    <ComboBox prefWidth="150.0" promptText="Type" />
+                                    <ComboBox prefWidth="150.0" promptText="Priority" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="15.0" right="8.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="216.0" prefWidth="601.0" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="8.0" right="15.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="200.0" prefWidth="1184.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </children>

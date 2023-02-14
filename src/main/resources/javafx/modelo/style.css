@@ -1,6 +1,7 @@
 /* IMPORT */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');/*'Fredoka One'*/
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');/*'Lilita One'*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap'); /*'Open Sans'*/
 
 /* VARIABLES */
 
@@ -104,13 +105,12 @@
 
 #day-label {
     -fx-text-fill: -LABEL;
-    -fx-font: normal normal 3.1em 'Fredoka One';
-    -fx-padding: 6px 0px 0px 0px;
+    -fx-font: normal normal 3.5em 'Lilita One';
 }
 
 #day-sublabel-hour, #day-sublabel-date {
     -fx-text-fill: -LABEL;
-    -fx-font: normal normal 1.15em 'Fredoka One';
+    -fx-font: normal normal 1.3em 'Fredoka One';
 }
 
 #day-sublabel-hour {
@@ -290,7 +290,7 @@
 }
 
 #task-block{
-    -fx-background-color: -POWDER-BLUE;
+    -fx-background-color: -MIDNIGHT-BLUE;
 }
 
 
@@ -370,5 +370,11 @@
 #alert-label{
     -fx-font: normal normal 1.5em 'Fredoka One';
     -fx-text-fill: -DARK-RED;
+}
+
+/* EXPAND TASK*/
+
+#vbox-expand{
+    -fx-background-color: -MIDNIGHT-BLUE;
 }
 
