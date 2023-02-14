@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -447,11 +448,41 @@ public class MainController implements Initializable {
         bt_create_addSubtask.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                int foreignKey = ;
                 String title = txtfield_title_addSubtask.getText();
                 String description = txtarea_description_addSubtask.getText();
                 String priority = comboBox_priority_addSubtask.getValue();
                 String status = "To-Do";
                 //transforming planning start and finish to date
+
+                LocalDateTime planned_startDate = datepicker_PStartSubtask.getValue().atStartOfDay();
+                Timestamp plannedStartTimestamp = Timestamp.valueOf(planned_startDate);
+                Date plannedStart = new Date(plannedStartTimestamp.getTime());
+                LocalDateTime planned_finishDate = datepicker_PFinish.getValue().atStartOfDay();
+                Timestamp planned_finishTimestamp = Timestamp.valueOf(planned_finishDate);
+                Date planned_Finish = new Date(planned_finishTimestamp.getTime());//converted
+
+                //actually add to the database
+                if(!title.isEmpty() &&
+                        !description.isEmpty() &&
+                        !status.isEmpty() &&
+                        !priority.isEmpty()){
+                    try{
+                        Subtask subtask = new Subtask();
+                        subtask.setSubtask_plannedFinish(planned_Finish.toString());
+                        subtask.setStatus_subtask(status);
+                        subtask.setPriority_subtask(priority);
+                        subtask.setSubtask_plannedStart(plannedStart.toString());
+                        subtask.setTitle_subtask(title);
+                        subtask.setDescription_subtask(description);
+                        subtask.setForeign_idTask();
+
+                        DataBase.addSubTask(subtask);
+                        refreshGridSubtasks();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
             }
         });
     }

@@ -102,7 +102,41 @@ public class DataBase {
     }
 
     public static void addSubTask(Subtask subtask){
+        Connection connection = null;
+        PreparedStatement psAddSubtask = null;
 
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+            psAddSubtask = connection.prepareStatement("INSERT INTO subtask " +
+                    "(title_subtask, description_subtask, priority_subtask, status_subtask, created_at, planned_start, planned_finish, id_task) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+            psAddSubtask.setString(1, subtask.getTitle_subtask());
+            psAddSubtask.setString(2, subtask.getDescription_subtask());
+            psAddSubtask.setString(3, subtask.getPriority_subtask());
+            psAddSubtask.setString(4, subtask.getStatus_subtask());
+            psAddSubtask.setDate(6, Date.valueOf(subtask.getSubtask_plannedStart()));
+            psAddSubtask.setDate(7, Date.valueOf(subtask.getSubtask_plannedFinish()));
+            psAddSubtask.setInt(8, subtask.getForeign_idTask());
+
+            Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+            psAddSubtask.setTimestamp(5, createdAt);
+
+            psAddSubtask.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if(psAddSubtask != null){
+                    psAddSubtask.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     /* public static void editTask(Task task){
