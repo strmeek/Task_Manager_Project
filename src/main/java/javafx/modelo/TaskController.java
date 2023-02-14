@@ -73,24 +73,31 @@ public class TaskController{
     public void callRefreshGridTasks(){
         mainController.refreshGridTasks();
     }
+    public void callRefreshGridSubtasks(){
+        mainController.refreshGridSubtasks();
+    }
     /* ------------------------------------ */
     @FXML
     private void btDeleteTaskAction(ActionEvent event) {
         DataBase.deleteTask(task);
         callRefreshGridTasks();
+        DataBase.deleteAllSubtask(task);
     }
 
     @FXML
     private void btCompleteTaskAction(ActionEvent event) {
         DataBase.completeTask(task);
         callRefreshGridTasks();
+        DataBase.completeAllSubtask(task);
     }
     @FXML
     private void btAddSubtaskAction(ActionEvent event){
-        mainController.toFrontNewSubtask();
+        mainController.toFrontNewSubtask(task);
+        callRefreshGridSubtasks();
     }
     @FXML
     public void btExpandTaskAction(ActionEvent event){
-        mainController.toFrontExpand();
+        mainController.toFrontExpand(task);
+        callRefreshGridSubtasks();
     }
 }

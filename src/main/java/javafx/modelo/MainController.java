@@ -270,6 +270,8 @@ public class MainController implements Initializable {
     private List<Task> tasks;
     private List<Subtask> subtasks;
 
+    private int saveTask;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -448,7 +450,6 @@ public class MainController implements Initializable {
         bt_create_addSubtask.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int foreignKey = ;
                 String title = txtfield_title_addSubtask.getText();
                 String description = txtarea_description_addSubtask.getText();
                 String priority = comboBox_priority_addSubtask.getValue();
@@ -458,7 +459,7 @@ public class MainController implements Initializable {
                 LocalDateTime planned_startDate = datepicker_PStartSubtask.getValue().atStartOfDay();
                 Timestamp plannedStartTimestamp = Timestamp.valueOf(planned_startDate);
                 Date plannedStart = new Date(plannedStartTimestamp.getTime());
-                LocalDateTime planned_finishDate = datepicker_PFinish.getValue().atStartOfDay();
+                LocalDateTime planned_finishDate = datepicker_PFinishSubtask.getValue().atStartOfDay();
                 Timestamp planned_finishTimestamp = Timestamp.valueOf(planned_finishDate);
                 Date planned_Finish = new Date(planned_finishTimestamp.getTime());//converted
 
@@ -475,10 +476,11 @@ public class MainController implements Initializable {
                         subtask.setSubtask_plannedStart(plannedStart.toString());
                         subtask.setTitle_subtask(title);
                         subtask.setDescription_subtask(description);
-                        subtask.setForeign_idTask();
+                        subtask.setForeign_idTask(saveTask);
 
                         DataBase.addSubTask(subtask);
                         refreshGridSubtasks();
+                        vbox_New_Subtask.toBack();
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -515,8 +517,9 @@ public class MainController implements Initializable {
         }
     }
 
-    public void refreshGridSubtasks(int idTask){
+    public void refreshGridSubtasks(){
         grid_subtasks.getChildren().clear();
+        int idTask = saveTask;
 
         /*Subtask Grid*/
         subtasks = new ArrayList<>(DataBase.gridListSubtask(idTask));
@@ -544,12 +547,14 @@ public class MainController implements Initializable {
         }
     }
 
-    public void toFrontExpand(){
+    public void toFrontExpand(Task task){
         vbox_expand.toFront();
+        saveTask = task.getId_task();
     }
 
-    public void toFrontNewSubtask(){
+    public void toFrontNewSubtask(Task task){
         vbox_New_Subtask.toFront();
+        saveTask = task.getId_task();
     }
 
     public void menuClock(){

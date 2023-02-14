@@ -123,6 +123,7 @@ public class DataBase {
             psAddSubtask.setTimestamp(5, createdAt);
 
             psAddSubtask.executeUpdate();
+
         }catch (SQLException e){
             e.printStackTrace();
         } finally {
@@ -199,8 +200,32 @@ public class DataBase {
         PreparedStatement psDelete = null;
         try{
             connection = DriverManager.getConnection(db_Url,db_User,db_Password);
-            psDelete = connection.prepareStatement("DELETE FROM task WHERE id_subtask = ?");
+            psDelete = connection.prepareStatement("DELETE FROM subtask WHERE id_subtask = ?");
             psDelete.setInt(1, subtask.getId_subtask());
+
+            psDelete.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if(psDelete != null){
+                    psDelete.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void deleteAllSubtask(Task task){
+        Connection connection = null;
+        PreparedStatement psDelete = null;
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+            psDelete = connection.prepareStatement("DELETE FROM subtask WHERE id_task = ?");
+            psDelete.setInt(1, task.getId_task());
 
             psDelete.executeUpdate();
         }catch (SQLException e){
@@ -263,6 +288,37 @@ public class DataBase {
                     "SET status_subtask = \"Completed\", finished_at = \"" + now + "\" " +
                     "WHERE id_subtask = ?");
             psComplete.setInt(1, subtask.getId_subtask());
+
+            psComplete.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(psComplete != null){
+                    psComplete.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void completeAllSubtask(Task task){
+        Connection connection = null;
+        PreparedStatement psComplete = null;
+
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+
+            psComplete = connection.prepareStatement("UPDATE subtask " +
+                    "SET status_subtask = \"Completed\", finished_at = \"" + now + "\" " +
+                    "WHERE id_task = ?");
+            psComplete.setInt(1, task.getId_task());
 
             psComplete.executeUpdate();
         }catch (SQLException e){
@@ -356,7 +412,7 @@ public class DataBase {
             psList.setInt(1, idTask);
             resultSet = psList.executeQuery();
 
-            if (resultSet.next()){
+            while (resultSet.next()){
                 Subtask subtask = new Subtask();
                 subtask.setId_subtask(resultSet.getInt("id_subtask"));
                 subtask.setTitle_subtask(resultSet.getString("title_subtask"));
@@ -369,14 +425,18 @@ public class DataBase {
 
                 if(resultSet.getDate("started_at") == null){
                     subtask.setSubtask_startedAt("None");
+                }else {
+                    subtask.setSubtask_startedAt(resultSet.getDate("started_at").toString());
                 }
                 if(resultSet.getDate("finished_at") == null){
                     subtask.setSubtask_finishedAt("None");
+                }else {
+                    subtask.setSubtask_finishedAt(resultSet.getDate("finished_at").toString());
                 }
                 if(resultSet.getDate("updated_at") == null){
                     subtask.setSubtask_updatedAt("None");
                 } else {
-                    subtask.setSubtask_finishedAt(resultSet.getDate("finished_at").toString());
+                    subtask.setSubtask_updatedAt(resultSet.getDate("updated_at").toString());
                 }
 
                 grid.add(subtask);
