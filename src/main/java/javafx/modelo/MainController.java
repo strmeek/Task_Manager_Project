@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -40,6 +41,9 @@ public class MainController implements Initializable {
     private AnchorPane anchorpane;
 
     @FXML
+    private Button btClose_expand;
+
+    @FXML
     private Button bt_add_home;
 
     @FXML
@@ -64,6 +68,9 @@ public class MainController implements Initializable {
     private Button bt_close_newProject;
 
     @FXML
+    private Button bt_close_newSubtask;
+
+    @FXML
     private Button bt_close_newTask;
 
     @FXML
@@ -71,6 +78,9 @@ public class MainController implements Initializable {
 
     @FXML
     private Button bt_create_add;
+
+    @FXML
+    private Button bt_create_addSubtask;
 
     @FXML
     private Button bt_filter_close;
@@ -121,7 +131,16 @@ public class MainController implements Initializable {
     private Button bt_tomorrow_tasks;
 
     @FXML
+    private ComboBox<String> comboBoxPriority_expand;
+
+    @FXML
+    private ComboBox<String> comboBoxType_expand;
+
+    @FXML
     private ComboBox<String> comboBox_priority_add;
+
+    @FXML
+    private ComboBox<String> comboBox_priority_addSubtask;
 
     @FXML
     private ComboBox<String> comboBox_type_add;
@@ -130,7 +149,25 @@ public class MainController implements Initializable {
     private DatePicker datepicker_PFinish;
 
     @FXML
+    private DatePicker datepicker_PFinishSubtask;
+
+    @FXML
     private DatePicker datepicker_PStart;
+
+    @FXML
+    private DatePicker datepicker_PStartSubtask;
+
+    @FXML
+    private Label expandCreatedAt;
+
+    @FXML
+    private Label expandPlannedStart;
+
+    @FXML
+    private Label expandUpdatedAt;
+
+    @FXML
+    private Label expand_idTask;
 
     @FXML
     private GridPane grid_home;
@@ -139,10 +176,13 @@ public class MainController implements Initializable {
     private GridPane grid_projects;
 
     @FXML
-    private GridPane grid_tasks;
+    private GridPane grid_subtasks;
 
     @FXML
     private GridPane grid_vbox_tasks;
+
+    @FXML
+    private ImageView imgViewStatus_Expand;
 
     @FXML
     private Label menu_Clock;
@@ -154,7 +194,19 @@ public class MainController implements Initializable {
     private Label menu_Day;
 
     @FXML
+    private TextField txtFieldDescription_expand;
+
+    @FXML
+    private TextField txtFieldFinishDate_expand;
+
+    @FXML
+    private TextField txtFieldTitle_expand;
+
+    @FXML
     private TextArea txtarea_description_add;
+
+    @FXML
+    private TextArea txtarea_description_addSubtask;
 
     @FXML
     private TextField txtfield_search_config;
@@ -172,10 +224,16 @@ public class MainController implements Initializable {
     private TextField txtfield_title_add;
 
     @FXML
+    private TextField txtfield_title_addSubtask;
+
+    @FXML
     private VBox vbox_New_Block;
 
     @FXML
     private VBox vbox_New_Project;
+
+    @FXML
+    private VBox vbox_New_Subtask;
 
     @FXML
     private VBox vbox_New_Task;
@@ -185,6 +243,9 @@ public class MainController implements Initializable {
 
     @FXML
     private VBox vbox_config;
+
+    @FXML
+    private VBox vbox_expand;
 
     @FXML
     private VBox vbox_filters;
@@ -201,10 +262,12 @@ public class MainController implements Initializable {
     @FXML
     private VBox vbox_task;
 
+
     ObservableList<String> list_type = FXCollections.observableArrayList();
     ObservableList<String> list_priority = FXCollections.observableArrayList();
 
     private List<Task> tasks;
+    private List<Subtask> subtasks;
 
 
     @Override
@@ -218,8 +281,12 @@ public class MainController implements Initializable {
         /*ComboBoxes items*/
         list_type.addAll("Work", "House", "Routine", "Special");
         comboBox_type_add.setItems(list_type);
+        comboBoxType_expand.setItems(list_type);
+
         list_priority.addAll("High", "Medium", "Low");
         comboBox_priority_add.setItems(list_priority);
+        comboBox_priority_addSubtask.setItems(list_priority);
+        comboBoxPriority_expand.setItems(list_priority);
 
         /* HOME BUTTON */
         bt_home_menu.setOnAction(new EventHandler<ActionEvent>() {
@@ -377,6 +444,16 @@ public class MainController implements Initializable {
                 }
             }
         });
+        bt_create_addSubtask.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String title = txtfield_title_addSubtask.getText();
+                String description = txtarea_description_addSubtask.getText();
+                String priority = comboBox_priority_addSubtask.getValue();
+                String status = "To-Do";
+                //transforming planning start and finish to date
+            }
+        });
     }
     public void refreshGridTasks(){
         grid_vbox_tasks.getChildren().clear();
@@ -405,6 +482,43 @@ public class MainController implements Initializable {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void refreshGridSubtasks(int idTask){
+        grid_subtasks.getChildren().clear();
+
+        /*Subtask Grid*/
+        subtasks = new ArrayList<>(DataBase.gridListSubtask(idTask));
+
+        int columns = 0;
+        int row = 1;
+
+        try{
+            for(int i=0; i<subtasks.size(); i++){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("subtask.fxml"));
+                VBox block = fxmlLoader.load();
+                SubtaskController subtaskController = fxmlLoader.getController();
+                subtaskController.setSubtaskData(subtasks.get(i));
+                subtaskController.setMainController(this);
+
+                if(columns == 1){
+                    columns = 0;
+                    ++row;
+                }
+                grid_subtasks.add(block, columns++,row);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void toFrontExpand(){
+        vbox_expand.toFront();
+    }
+
+    public void toFrontNewSubtask(){
+        vbox_New_Subtask.toFront();
     }
 
     public void menuClock(){

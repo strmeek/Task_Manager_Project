@@ -378,3 +378,51 @@
     -fx-background-color: -MIDNIGHT-BLUE;
 }
 
+#hbox-grid-expand{
+    -fx-background-color: -MIDNIGHT-BLUE;
+    -fx-background-radius: 12px 12px 0px 0px;
+}
+
+#subtask-vbox,
+#subtask-hbox{
+    -fx-background-color: -POWDER-BLUE;
+}
+
+.text-field-subtask{
+    -fx-background-color: transparent;
+    -fx-font: normal normal 1.05em 'Fredoka One';
+    -fx-text-fill: -SMOKY-BLACK;
+}
+
+.subtask-label {
+    -fx-font: normal normal 1.25em 'Fredoka One';
+    -fx-text-fill: -SMOKY-BLACK;
+}
+
+#bt-edit-subtask,
+#bt-complete-subtask,
+#bt-remove-subtask{
+    -fx-background-color: transparent;
+}
+
+#bt-edit-subtask:hover {
+    -fx-background-color: -AMBER;
+    -fx-background-radius: 0;
+}
+
+#bt-complete-subtask:hover{
+    -fx-background-radius: 0;
+    -fx-background-color: -SEAGREEN;
+}
+
+#bt-remove-subtask:hover{
+    -fx-background-color: -DARK-RED;
+    -fx-background-radius: 0;
+}
+
+/*New Subtask*/
+
+#vbox-addsubtask{
+    -fx-background-color: -POWDER-BLUE;
+    -fx-background-radius: 24px;
+}

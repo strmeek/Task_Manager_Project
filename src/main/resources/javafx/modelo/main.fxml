@@ -497,27 +497,34 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox id="vbox-expand" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
+            <VBox id="vbox-expand" fx:id="vbox_expand" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="1184.0" spacing="5.0">
                      <children>
-                        <Label text="Created at:" />
-                        <Label text="createdatlabel" />
-                        <Separator orientation="VERTICAL" prefHeight="200.0">
+                        <HBox alignment="CENTER" spacing="8.0">
+                           <children>
+                              <Label text="Created at:" />
+                              <Label fx:id="expandCreatedAt" text="createdatlabel" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                                 <padding>
+                                    <Insets bottom="25.0" top="25.0" />
+                                 </padding>
+                              </Separator>
+                              <Label text="Last Update:" />
+                              <Label fx:id="expandUpdatedAt" text="LastUpdatelabel" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0">
+                                 <padding>
+                                    <Insets bottom="25.0" top="25.0" />
+                                 </padding>
+                              </Separator>
+                              <Label text="Planned Start:" />
+                              <Label fx:id="expandPlannedStart" text="PlannedStartLabel" />
+                           </children>
                            <padding>
-                              <Insets bottom="25.0" top="25.0" />
+                              <Insets left="15.0" />
                            </padding>
-                        </Separator>
-                        <Label layoutX="486.0" layoutY="50.0" text="Last Update:" />
-                        <Label layoutX="558.0" layoutY="50.0" text="LastUpdatelabel" />
-                        <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="NEVER">
-                           <padding>
-                              <Insets bottom="25.0" top="25.0" />
-                           </padding>
-                        </Separator>
-                        <Label layoutX="557.0" layoutY="50.0" text="Planned Start:" />
-                        <Label layoutX="640.0" layoutY="50.0" text="PlannedStartLabel" />
-                        <Button mnemonicParsing="false">
+                        </HBox>
+                        <Button fx:id="btClose_expand" mnemonicParsing="false" styleClass="transparent" stylesheets="@style.css">
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                  <image>
@@ -536,29 +543,167 @@
                         <VBox prefHeight="216.0" prefWidth="601.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label text="Title:" />
-                              <TextField />
+                              <TextField fx:id="txtFieldTitle_expand" text="Title" />
                               <Label layoutX="10.0" layoutY="10.0" text="Description:" />
-                              <TextField layoutX="10.0" layoutY="31.0" prefHeight="100.0" prefWidth="569.0" />
+                              <TextField fx:id="txtFieldDescription_expand" layoutX="10.0" layoutY="31.0" prefHeight="100.0" prefWidth="569.0" text="Description" />
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="569.0" spacing="175.0">
                                  <children>
-                                    <ComboBox prefWidth="150.0" promptText="Type" />
-                                    <ComboBox prefWidth="150.0" promptText="Priority" />
+                                    <ComboBox fx:id="comboBoxType_expand" prefWidth="150.0" promptText="Type" />
+                                    <ComboBox fx:id="comboBoxPriority_expand" prefWidth="150.0" promptText="Priority" />
                                  </children>
                               </HBox>
                            </children>
                            <HBox.margin>
                               <Insets left="15.0" right="8.0" />
                            </HBox.margin>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
                         </VBox>
-                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="216.0" prefWidth="601.0" HBox.hgrow="ALWAYS">
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="216.0" prefWidth="601.0" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="8.0" right="15.0" />
+                           </HBox.margin>
+                           <children>
+                              <Label fx:id="expand_idTask" layoutX="10.0" layoutY="10.0" text="idTask:" />
+                              <Label layoutX="10.0" layoutY="31.0" text="Status:" />
+                              <ImageView fx:id="imgViewStatus_Expand" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/done_104px.png" />
+                                 </image>
+                              </ImageView>
+                              <Separator prefWidth="200.0">
+                                 <padding>
+                                    <Insets left="75.0" right="75.0" />
+                                 </padding>
+                              </Separator>
+                              <Label text="Planned Finish:" />
+                              <TextField fx:id="txtFieldFinishDate_expand" text="Finish Date">
+                                 <VBox.margin>
+                                    <Insets left="150.0" right="150.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="200.0" prefWidth="1184.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox id="vbox-grid-tasks" prefHeight="200.0" prefWidth="100.0" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox id="hbox-grid-expand" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
+                                 <children>
+                                    <Label id="grid-column" alignment="CENTER" prefHeight="65.0" prefWidth="235.0" styleClass="right-side-separator" stylesheets="@style.css" text="Title" />
+                                    <Label id="grid-column" alignment="CENTER" prefHeight="64.0" prefWidth="300.0" styleClass="right-side-separator" stylesheets="@style.css" text="Description" />
+                                    <Label id="grid-column" alignment="CENTER" prefHeight="65.0" prefWidth="75.0" styleClass="right-side-separator" stylesheets="@style.css" text="Priority" />
+                                    <Label id="grid-column" alignment="CENTER" prefHeight="65.0" prefWidth="75.0" styleClass="right-side-separator" stylesheets="@style.css" text="Status" />
+                                    <Label id="grid-column" alignment="CENTER" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Planned Start" />
+                                    <Label id="grid-column" alignment="CENTER" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Planned End" />
+                                    <Label id="grid-column" alignment="CENTER" ellipsisString="" prefHeight="65.0" prefWidth="250.0" stylesheets="@style.css" text="Controls" textAlignment="CENTER" />
+                                 </children>
+                              </HBox>
+                              <ScrollPane prefHeight="425.0" prefWidth="1148.0">
+                                 <content>
+                                    <GridPane fx:id="grid_subtasks" prefHeight="0.0" prefWidth="0.0">
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                            </HBox.margin>
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="200.0" prefWidth="1184.0" VBox.vgrow="ALWAYS" />
                </children>
+            </VBox>
+            <VBox id="vbox-addsubtask" fx:id="vbox_New_Subtask" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@style.css" StackPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="TOP_CENTER">
+                     <children>
+                        <Label id="newtask-header" alignment="CENTER" prefHeight="35.0" prefWidth="1090.0" stylesheets="@style.css" text="Create New Subtask" />
+                        <Button id="bt-filter-close" fx:id="bt_close_newSubtask" ellipsisString="" mnemonicParsing="false" prefHeight="35.0" prefWidth="83.0" style="-fx-background-color: transparent;" stylesheets="@style.css" text="Close" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+                                 <image>
+                                    <Image url="@images/Plus_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="665.0" prefWidth="1190.0" spacing="35.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <TextField id="txtfield-title-add" fx:id="txtfield_title_addSubtask" prefHeight="40.0" prefWidth="634.0" promptText="Title" styleClass="dropshadow" stylesheets="@style.css">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextArea id="txtarea-description-add" fx:id="txtarea_description_addSubtask" prefHeight="200.0" prefWidth="200.0" promptText="Description" styleClass="dropshadow" stylesheets="@style.css">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextArea>
+                              <HBox alignment="TOP_CENTER" spacing="20.0">
+                                 <children>
+                                    <DatePicker id="datepicker-PStart" fx:id="datepicker_PStartSubtask" prefHeight="37.0" prefWidth="201.0" promptText="Planned Start" styleClass="dropshadow" stylesheets="@style.css" />
+                                    <DatePicker id="datepicker-PFinish" fx:id="datepicker_PFinishSubtask" nodeOrientation="LEFT_TO_RIGHT" prefHeight="37.0" prefWidth="201.0" promptText="Planned Finish" styleClass="dropshadow" stylesheets="@style.css" />
+                                    <ComboBox id="comboBox-priority-add" fx:id="comboBox_priority_addSubtask" prefHeight="25.0" prefWidth="200.0" promptText="Priority" styleClass="dropshadow" stylesheets="@style.css" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <Button id="bt-create-add" fx:id="bt_create_addSubtask" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="240.0" styleClass="dropshadow" stylesheets="@style.css" text="Create Subtask">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/Plus_96px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="250.0" right="250.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <StackPane.margin>
+                  <Insets bottom="100.0" left="50.0" right="50.0" top="75.0" />
+               </StackPane.margin>
+               <padding>
+                  <Insets left="-20.0" right="-20.0" />
+               </padding>
             </VBox>
          </children>
       </StackPane>

@@ -101,9 +101,9 @@ public class DataBase {
         }
     }
 
-    /*public static void addSubTask(Subtask subtask){
+    public static void addSubTask(Subtask subtask){
 
-    }*/
+    }
 
     /* public static void editTask(Task task){
         Connection connection = null;
@@ -160,6 +160,31 @@ public class DataBase {
         }
     }
 
+    public static void deleteSubtask(Subtask subtask){
+        Connection connection = null;
+        PreparedStatement psDelete = null;
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+            psDelete = connection.prepareStatement("DELETE FROM task WHERE id_subtask = ?");
+            psDelete.setInt(1, subtask.getId_subtask());
+
+            psDelete.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if(psDelete != null){
+                    psDelete.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void completeTask(Task task){
         Connection connection = null;
         PreparedStatement psComplete = null;
@@ -190,6 +215,38 @@ public class DataBase {
             }
         }
     }
+
+    public static void completeSubtask(Subtask subtask){
+        Connection connection = null;
+        PreparedStatement psComplete = null;
+
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+
+            psComplete = connection.prepareStatement("UPDATE subtask " +
+                    "SET status_subtask = \"Completed\", finished_at = \"" + now + "\" " +
+                    "WHERE id_subtask = ?");
+            psComplete.setInt(1, subtask.getId_subtask());
+
+            psComplete.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(psComplete != null){
+                    psComplete.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static List<Task> grid_List_tasks() {
         List<Task> grid = new ArrayList<>();
 
@@ -231,6 +288,64 @@ public class DataBase {
                 }
 
                 grid.add(task);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (psList != null) {
+                    psList.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return grid;
+    }
+
+    public static List<Subtask> gridListSubtask(int idTask){
+        List<Subtask> grid = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement psList = null;
+        ResultSet resultSet = null;
+
+        try{
+            connection = DriverManager.getConnection(db_Url, db_User, db_Password);
+            psList = connection.prepareStatement("SELECT * FROM subtask WHERE id_task = ?");
+            psList.setInt(1, idTask);
+            resultSet = psList.executeQuery();
+
+            if (resultSet.next()){
+                Subtask subtask = new Subtask();
+                subtask.setId_subtask(resultSet.getInt("id_subtask"));
+                subtask.setTitle_subtask(resultSet.getString("title_subtask"));
+                subtask.setDescription_subtask(resultSet.getString("description_subtask"));
+                subtask.setPriority_subtask(resultSet.getString("priority_subtask"));
+                subtask.setStatus_subtask(resultSet.getString("status_subtask"));
+                subtask.setSubtask_createdAt(resultSet.getDate("created_at").toString());
+                subtask.setSubtask_plannedStart(resultSet.getDate("planned_start").toString());
+                subtask.setSubtask_plannedFinish(resultSet.getDate("planned_finish").toString());
+
+                if(resultSet.getDate("started_at") == null){
+                    subtask.setSubtask_startedAt("None");
+                }
+                if(resultSet.getDate("finished_at") == null){
+                    subtask.setSubtask_finishedAt("None");
+                }
+                if(resultSet.getDate("updated_at") == null){
+                    subtask.setSubtask_updatedAt("None");
+                } else {
+                    subtask.setSubtask_finishedAt(resultSet.getDate("finished_at").toString());
+                }
+
+                grid.add(subtask);
             }
         } catch (SQLException e) {
             e.printStackTrace();

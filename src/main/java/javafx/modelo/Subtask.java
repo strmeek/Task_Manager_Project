@@ -7,6 +7,7 @@ public class Subtask {
     private String priority_subtask;
     private String status_subtask;
     private String subtask_createdAt;
+    private String subtask_updatedAt;
     private String subtask_startedAt;
     private String subtask_finishedAt;
     private String subtask_plannedStart;
@@ -22,6 +23,7 @@ public class Subtask {
                    String priority_subtask,
                    String status_subtask,
                    String subtask_createdAt,
+                   String subtask_updatedAt,
                    String subtask_startedAt,
                    String subtask_finishedAt,
                    String subtask_plannedStart,
@@ -33,11 +35,20 @@ public class Subtask {
         this.priority_subtask = priority_subtask;
         this.status_subtask = status_subtask;
         this.subtask_createdAt = subtask_createdAt;
+        this.subtask_updatedAt = subtask_updatedAt;
         this.subtask_startedAt = subtask_startedAt;
         this.subtask_finishedAt = subtask_finishedAt;
         this.subtask_plannedStart = subtask_plannedStart;
         this.subtask_plannedFinish = subtask_plannedFinish;
         this.foreign_idTask = foreign_idTask;
+    }
+
+    public String getSubtask_updatedAt() {
+        return subtask_updatedAt;
+    }
+
+    public void setSubtask_updatedAt(String subtask_updatedAt) {
+        this.subtask_updatedAt = subtask_updatedAt;
     }
 
     public int getId_subtask() {
