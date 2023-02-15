@@ -140,7 +140,7 @@ public class DataBase {
         }
     }
 
-    /* public static void editTask(Task task){
+    /*public static void editTask(Task task){
         Connection connection = null;
         PreparedStatement psEdit = null;
         ResultSet resultSet;
@@ -168,7 +168,41 @@ public class DataBase {
             }
         }
 
-    } */
+    }*/
+
+    public static void editSubtask(Subtask subtask){
+        Connection connection = null;
+        PreparedStatement psEdit = null;
+
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+
+            psEdit = connection.prepareStatement("UPDATE subtask " +
+                    "SET title_subtask = ?, description_subtask = ?, planned_finish = ?, updated_at = \"" + now + "\" " +
+                    "WHERE id_subtask = ?");
+            psEdit.setInt(4, subtask.getId_subtask());
+            psEdit.setString(1, subtask.getTitle_subtask());
+            psEdit.setString(2, subtask.getDescription_subtask());
+            psEdit.setDate(3, Date.valueOf(subtask.getSubtask_plannedFinish()));
+
+            psEdit.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(psEdit != null){
+                    psEdit.close();
+                }
+                if(connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static void deleteTask(Task task){
         Connection connection = null;
@@ -461,3 +495,15 @@ public class DataBase {
         return grid;
     }
 }
+
+/*                        if(isEditing){
+                    bt_edit_subtask.setStyle("-fx-background-color: #FFBE0B;");
+                    txtFieldTitle.setEditable(true);
+                    txtFieldDescription.setEditable(true);
+                    txtFieldTitle.requestFocus();
+                }else {
+                    bt_edit_subtask.setStyle("-fx-background-color: transparent;");
+                    txtFieldTitle.setEditable(false);
+                    txtFieldDescription.setEditable(false);
+                    saveSubtask();
+                }*/

@@ -405,7 +405,8 @@
     -fx-background-color: transparent;
 }
 
-#bt-edit-subtask:hover {
+#bt-edit-subtask:hover,
+#bt-edit-subtask:focused{
     -fx-background-color: -AMBER;
     -fx-background-radius: 0;
 }

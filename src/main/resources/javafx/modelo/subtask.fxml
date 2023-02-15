@@ -17,13 +17,13 @@
          <children>
             <HBox alignment="CENTER" spacing="3.0" stylesheets="@style.css">
                <children>
-                  <TextField fx:id="txtFieldTitle" alignment="CENTER" prefHeight="65.0" prefWidth="222.0" styleClass="text-field-subtask" stylesheets="@style.css" text="Title" />
+                  <TextField fx:id="txtFieldTitle" alignment="CENTER" editable="false" prefHeight="65.0" prefWidth="222.0" styleClass="text-field-subtask" stylesheets="@style.css" text="Title" />
                   <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="100.0" prefWidth="0.0">
                      <padding>
                         <Insets bottom="15.0" right="-3.0" top="15.0" />
                      </padding>
                   </Separator>
-                  <TextField fx:id="txtFieldDescription" alignment="CENTER" prefHeight="65.0" prefWidth="285.0" styleClass="text-field-subtask" stylesheets="@style.css" text="Description" />
+                  <TextField fx:id="txtFieldDescription" alignment="CENTER" editable="false" prefHeight="65.0" prefWidth="285.0" styleClass="text-field-subtask" stylesheets="@style.css" text="Description" />
                   <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="100.0" prefWidth="0.0">
                      <padding>
                         <Insets bottom="15.0" right="-3.0" top="15.0" />
@@ -45,7 +45,7 @@
                         <Insets bottom="15.0" right="-3.0" top="15.0" />
                      </padding>
                   </Separator>
-                  <Button id="bt-complete-subtask" fx:id="bt_completed_subtask" alignment="CENTER" layoutX="52.0" layoutY="44.0" mnemonicParsing="false" onAction="#btCompleteTaskAction" prefHeight="100.0" prefWidth="78.0" stylesheets="@style.css">
+                  <Button id="bt-complete-subtask" fx:id="bt_completed_subtask" alignment="CENTER" layoutX="52.0" layoutY="44.0" mnemonicParsing="false" onAction="#btCompleteSubtaskAction" prefHeight="100.0" prefWidth="78.0" stylesheets="@style.css">
                      <graphic>
                         <ImageView id="imgview-completed" accessibleText="Complete Task" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -57,9 +57,9 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="bt-edit-subtask" fx:id="bt_edit_subtask" alignment="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="78.0" stylesheets="@style.css">
+                  <Button id="bt-edit-subtask" fx:id="bt_edit_subtask" alignment="CENTER" mnemonicParsing="false" onAction="#btEditSubtaskAction" prefHeight="100.0" prefWidth="78.0" stylesheets="@style.css">
                      <graphic>
-                        <ImageView id="imgview-edit" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="imgview-edit" fx:id="imgView_edit" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/edit_104px.png" />
                            </image>
@@ -69,7 +69,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="bt-remove-subtask" fx:id="bt_remove_subtask" alignment="CENTER" mnemonicParsing="false" onAction="#btDeleteTaskAction" prefHeight="100.0" prefWidth="78.0" stylesheets="@style.css">
+                  <Button id="bt-remove-subtask" fx:id="bt_remove_subtask" alignment="CENTER" mnemonicParsing="false" onAction="#btDeleteSubtaskAction" prefHeight="100.0" prefWidth="78.0" stylesheets="@style.css">
                      <graphic>
                         <ImageView id="imgview-remove" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>

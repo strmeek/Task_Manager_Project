@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class SubtaskController {
@@ -17,6 +19,9 @@ public class SubtaskController {
 
     @FXML
     private Button bt_remove_subtask;
+
+    @FXML
+    private ImageView imgView_edit;
 
     @FXML
     private HBox hbox_controls;
@@ -43,6 +48,8 @@ public class SubtaskController {
     private int foreign_idTask;
     private MainController mainController;
 
+    private boolean isEditing = true;
+
     public void setSubtaskData(Subtask subtask){
         txtFieldTitle.setText(subtask.getTitle_subtask());
         txtFieldDescription.setText(subtask.getDescription_subtask());
@@ -64,15 +71,43 @@ public class SubtaskController {
     /* ------------------------------------ */
 
     @FXML
-    private void btDeleteTaskAction(ActionEvent event) {
+    private void btDeleteSubtaskAction(ActionEvent event) {
         DataBase.deleteSubtask(subtask);
         callRefreshGridSubtasks();
     }
 
     @FXML
-    private void btCompleteTaskAction(ActionEvent event) {
+    private void btCompleteSubtaskAction(ActionEvent event) {
         DataBase.completeSubtask(subtask);
         callRefreshGridSubtasks();
     }
 
+    @FXML
+    private void btEditSubtaskAction(ActionEvent event) {
+        if(isEditing){
+            bt_edit_subtask.setStyle("-fx-background-color: #FFBE0B;");
+            Image image = new Image("C:\\Java Projects\\Task_Manager\\src\\main\\resources\\javafx\\modelo\\images\\ok_96px.png");
+            imgView_edit.setImage(image);
+
+            txtFieldTitle.setEditable(true);
+            txtFieldDescription.setEditable(true);
+            txtFieldTitle.requestFocus();
+            isEditing = false;
+        } else {
+            bt_edit_subtask.setStyle("-fx-background-color: transparent;");
+            Image image = new Image("C:\\Java Projects\\Task_Manager\\src\\main\\resources\\javafx\\modelo\\images\\edit_104px.png");
+            imgView_edit.setImage(image);
+
+            txtFieldTitle.setEditable(false);
+            txtFieldDescription.setEditable(false);
+            saveSubtask();
+        }
+    }
+    private void saveSubtask(){
+        subtask.setTitle_subtask(txtFieldTitle.getText());
+        subtask.setDescription_subtask(txtFieldDescription.getText());
+
+        DataBase.editSubtask(subtask);
+        callRefreshGridSubtasks();
+    }
 }
