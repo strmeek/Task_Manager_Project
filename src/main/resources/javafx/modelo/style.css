@@ -343,6 +343,10 @@
     -fx-background-color: transparent;
 }
 
+#label-planned-end{
+    -fx-underline: true;
+}
+
 /*Personalized alert message*/
 
 #alert-vbox{

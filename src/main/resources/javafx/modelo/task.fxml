@@ -4,32 +4,32 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox fx:id="vbox_task_fxml" prefHeight="100.0" prefWidth="1126.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.modelo.TaskController">
    <children>
       <HBox id="task-block" fx:id="hbox_sections" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" VBox.vgrow="ALWAYS">
          <children>
-            <Label id="label-type" fx:id="label_type" alignment="CENTER" ellipsisString="" prefHeight="108.0" prefWidth="117.0" styleClass="task-block-label" stylesheets="@style.css" text="type" textAlignment="CENTER" />
+            <TextField id="label-type" fx:id="txtField_type" alignment="CENTER" editable="false" prefHeight="100.0" prefWidth="178.0" styleClass="task-block-label" stylesheets="@style.css" text="Type" />
             <Separator layoutX="383.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0">
                <padding>
                   <Insets bottom="25.0" right="-3.0" top="25.0" />
                </padding>
             </Separator>
-            <Label id="label-title" fx:id="label_title" alignment="CENTER" prefHeight="113.0" prefWidth="245.0" styleClass="task-block-label" stylesheets="@style.css" text="title" />
+            <TextField id="label-title" fx:id="txtField_title" alignment="CENTER" editable="false" layoutX="10.0" layoutY="45.0" prefHeight="100.0" prefWidth="176.0" styleClass="task-block-label" stylesheets="@style.css" text="Title" />
             <Separator orientation="VERTICAL" prefHeight="200.0">
                <padding>
                   <Insets bottom="25.0" right="-3.0" top="25.0" />
                </padding>
             </Separator>
-            <Label id="label-priority" fx:id="label_priority" alignment="CENTER" layoutX="127.0" layoutY="10.0" prefHeight="100.0" prefWidth="120.0" styleClass="task-block-label" stylesheets="@style.css" text="priority" />
+            <TextField id="label-priority" fx:id="txtField_Priority" alignment="CENTER" prefWidth="120.0" styleClass="task-block-label" stylesheets="@style.css" text="Priority" />
             <Label id="label-status" fx:id="label_status" alignment="CENTER" layoutX="383.0" layoutY="10.0" prefHeight="100.0" prefWidth="120.0" styleClass="task-block-label" stylesheets="@style.css" text="status" />
             <Label id="label-created-at" fx:id="label_created_at" alignment="CENTER" layoutX="500.0" layoutY="10.0" prefHeight="100.0" prefWidth="120.0" styleClass="task-block-label" stylesheets="@style.css" text="created" />
-            <Label id="label-planned-end" fx:id="label_planned_finish" alignment="CENTER" layoutX="617.0" layoutY="10.0" prefHeight="100.0" prefWidth="125.0" styleClass="task-block-label" stylesheets="@style.css" text="pfinish" underline="true" />
+            <TextField id="label-planned-end" fx:id="txtField_PlannedFinish" alignment="CENTER" prefHeight="100.0" prefWidth="120.0" styleClass="task-block-label" stylesheets="@style.css" text="Pfinish" />
             <HBox fx:id="hbox_controls" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="274.0" stylesheets="@style.css">
                <children>
                   <Separator layoutX="210.0" layoutY="10.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="0.0">
@@ -55,9 +55,9 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="bt-edit-task" fx:id="bt_edit_controls" alignment="CENTER" mnemonicParsing="false" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css">
+                  <Button id="bt-edit-task" fx:id="bt_edit_controls" alignment="CENTER" mnemonicParsing="false" onAction="#btEditTaskAction" prefHeight="100.0" prefWidth="50.0" stylesheets="@style.css">
                      <graphic>
-                        <ImageView id="imgview-edit" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="imgview-edit" fx:id="imgView_edit" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/edit_104px.png" />
                            </image>

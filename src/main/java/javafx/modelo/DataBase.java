@@ -140,19 +140,26 @@ public class DataBase {
         }
     }
 
-    /*public static void editTask(Task task){
+    public static void editTask(Task task){
         Connection connection = null;
         PreparedStatement psEdit = null;
-        ResultSet resultSet;
 
         try{
             connection = DriverManager.getConnection(db_Url,db_User,db_Password);
-            psEdit = connection.prepareStatement("SELECT * FROM task WHERE id_task = ?");
-            psEdit.setInt(1, task.getId_task());
-            resultSet = psEdit.executeQuery();
 
-            if (resultSet.next()){
-            }
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+
+            psEdit = connection.prepareStatement("UPDATE task " +
+                    "SET type_task = ?, title_task = ?, priority_task = ?, planned_finish = ?, updated_at = \"" + now + "\" " +
+                    "WHERE id_task = ?");
+            psEdit.setInt(5, task.getId_task());
+            psEdit.setString(1, task.getType_task());
+            psEdit.setString(2, task.getTitle_task());
+            psEdit.setString(3, task. getPriority_task());
+            psEdit.setDate(4, Date.valueOf(task.getPlanned_finish()));
+
+            psEdit.executeUpdate();
+
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
@@ -167,8 +174,7 @@ public class DataBase {
                 e.printStackTrace();
             }
         }
-
-    }*/
+    }
 
     public static void editSubtask(Subtask subtask){
         Connection connection = null;
@@ -495,15 +501,3 @@ public class DataBase {
         return grid;
     }
 }
-
-/*                        if(isEditing){
-                    bt_edit_subtask.setStyle("-fx-background-color: #FFBE0B;");
-                    txtFieldTitle.setEditable(true);
-                    txtFieldDescription.setEditable(true);
-                    txtFieldTitle.requestFocus();
-                }else {
-                    bt_edit_subtask.setStyle("-fx-background-color: transparent;");
-                    txtFieldTitle.setEditable(false);
-                    txtFieldDescription.setEditable(false);
-                    saveSubtask();
-                }*/
