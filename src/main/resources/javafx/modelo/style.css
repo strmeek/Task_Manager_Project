@@ -6,39 +6,41 @@
 /* VARIABLES */
 
 *{
-    /* COLOR VARIABLES */
-    -GLAUCOUS: #6184D8;
-    -POWDER-BLUE: #B8DBD9;
-    -MIDNIGHT-BLUE: #114B5F;
-    -OXFORD-BLUE: #001427;
-    -RAISIN-BLACK: #1D1E2C;
-    -RAISIN-BLACK-HOVER: #30324A;
-    -SMOKY-BLACK: #121113;
-    -PURE-WHITE: #FFF;
-    -GHOST-WHITE: #F4F4F9;
-    -ONYX: #3F3F3F;
-    -ENGLISH-VIOLET: #453E51;
-    -LIGHT-GRAY: #d3d3d3;
-    -LIVER-BROWN: #60463B;
-    -PLATINUM: #EAE1DF;
-    -ARMY-GREEN: #433E0E;
-    -AMBER: #FFBE0B;
-    -CHARCOAL: #334E58;
-    -SEAGREEN: #0A8754;
-    -DARK-RED: #95190C;
+    /* COLOR PALLETE */
 
-    /* highlight colors */
-    -ICTERINE: #F0F465;
-    -APPLE-GREEN: #87B319;
-    -PUMPKIN: #FA7921;
+    /*Blue Pallete*/
+    -PURPLEISH-BLUE: #131862; /*Federal Blue*/
+    -DARK-BLUE: #041A40; /*Oxford Blue*/
+    -MEDIUM-BLUE: #0A3361; /*Berkeley Blue*/
+    -LIGHT-BLUE: #87CEEB; /*Sky Blue*/
 
-    /* SPECIFIC USE*/
-    -LABEL: -GHOST-WHITE;
-    -HOVER: -RAISIN-BLACK-HOVER;
-    -DARK-BACKGROUND: -RAISIN-BLACK;
-    -LIGHT-BACKGROUND: -GHOST-WHITE;
-    -GREEN-HIGHLIGHT: -INCHWORM;
-    -ORANGE-HIGHLIGHT: -PUMPKIN;
+    /*Whites*/
+    -WHITE: #FFFAFB; /*Snow White*/
+    -MATTE-WHITE: #F4F4F9; /*Ghost White*/
+
+    /*Blacks and Grays*/
+    -BLACK: #121113; /*Night*/
+    -DARK-GRAY: #3F3F3F; /*Onyx*/
+    -GRAY: #575757; /*Davys Gray*/
+    -LIGHT-GRAY: #C9C9C9; /*Silver*/
+    -LIGHTER-GRAY: #EAEAEA; /*Platinum*/
+
+    /*Hot Colors or Highlight Colors*/
+    -RED: #880907; /*RED*/
+    -DARK-RED: #6B0504; /*BLOOD RED*/
+    -ORANGE: #EE7B30; /*PUMPKIN*/
+    -YELLOW: #D7B633; /*OLD GOLD*/
+    -GREEN: #439523; /*FORREST GREEN*/
+    -CYAN: #09ECE5; /*FLUORESCENT CYAN*/
+    -MAGENTA: #8F008F; /*DARK MAGENTA*/
+
+    /*COLOR VARIABLES*/
+    -LABEL: -WHITE;
+    -HOVER: -MEDIUM-BLUE;
+    -DARK-BACKGROUND: -DARK-BLUE;
+    -LIGHT-BACKGROUND: -WHITE;
+    -GREEN-HIGHLIGHT: -GREEN;
+    -ORANGE-HIGHLIGHT: -ORANGE;
 
     /* FONT */
     -DEFAULT-FONT: normal normal 1.0em 'Fredoka One';
@@ -52,12 +54,12 @@
 
 .right-side-separator{
     -fx-border-width: 0px 3px 0px 0px;
-    -fx-border-color: -GHOST-WHITE;
+    -fx-border-color: -WHITE;
     -fx-border-style: solid;
 }
 
 .text-area .scroll-pane .content{
-    -fx-background-color: -ONYX;
+    -fx-background-color: -GRAY;
     -fx-background-radius: 7px;
 }
 
@@ -68,7 +70,7 @@
 }
 
 .add_vboxes{
-    -fx-background-color: -ONYX;
+    -fx-background-color: -GRAY;
 }
 
 #txtfield-search:hover,
@@ -78,7 +80,7 @@
 
 #txtfield-search{
     -fx-border-width: 3px 0px 3px 3px;
-    -fx-border-color: -GHOST-WHITE;
+    -fx-border-color: -WHITE;
     -fx-border-radius: 12px 0px 0px 12px;
     -fx-border-style: solid;
     -fx-pref-width: 256px;
@@ -88,7 +90,7 @@
 
 #bt-search{
     -fx-border-width: 3px 3px 3px 0px;
-    -fx-border-color: -GHOST-WHITE;
+    -fx-border-color: -WHITE;
     -fx-border-radius: 0px 12px 12px 0px;
     -fx-border-style: solid;
     -fx-pref-width: 52px;
@@ -102,27 +104,25 @@
 }
 
 /*MENU STYLING*/
+#menu-hbox{
+    -fx-background-color: -BLACK;
+}
 
 #day-label {
     -fx-text-fill: -LABEL;
-    -fx-font: normal normal 3.5em 'Lilita One';
+    -fx-font: normal normal 2.5em 'Lilita One';
 }
 
 #day-sublabel-hour, #day-sublabel-date {
     -fx-text-fill: -LABEL;
-    -fx-font: normal normal 1.3em 'Fredoka One';
-}
-
-#day-sublabel-hour {
-    -fx-border-width: 0px 0px 3px 0px;
-    -fx-border-color: -GHOST-WHITE;
-    -fx-border-style: solid;
-    -fx-padding: 0px 0px 6px 0px;
+    -fx-font: normal normal 1.25em 'Fredoka One';
 }
 
 .menu-bt{
-    -fx-background-color: -DARK-BACKGROUND;
+    -fx-background-color: -BLACK;
     -fx-background-radius: 0;
+    -fx-font: normal normal 1.25em 'Fredoka One';
+    -fx-text-fill: -LABEL;
 }
 
 .menu-bt:hover{
@@ -151,22 +151,22 @@
 }
 
 #vbox-grid-tasks{
-    -fx-border-color: -GHOST-WHITE;
+    -fx-border-color: -WHITE;
     -fx-border-radius: 12px;
     -fx-border-width: 3px;
     -fx-background-radius: 12px;
-    -fx-background-color: -GHOST-WHITE;
+    -fx-background-color: -WHITE;
 }
 
 #hbox-grid-tasks{
-    -fx-background-color: -RAISIN-BLACK;
+    -fx-background-color: -DARK-BLUE;
     -fx-background-radius: 12px 12px 0px 0px;
 }
 
 .bt-filter-and-add{
     -fx-background-color: -DARK-BACKGROUND;
     -fx-border-width: 3px;
-    -fx-border-color: -GHOST-WHITE;
+    -fx-border-color: -WHITE;
     -fx-border-radius: 12px;
     -fx-border-style: solid;
     -fx-pref-width: 144px;
@@ -180,7 +180,7 @@
 }
 
 #hbox-filter{
-    -fx-background-color: -ONYX;
+    -fx-background-color: -GRAY;
     -fx-background-radius: 0px 0px 12px 12px;
 }
 
@@ -200,7 +200,7 @@
 #bt_newproject_add{
     -fx-pref-width: 250px;
     -fx-pref-height: 50px;
-    -fx-background-color: -ONYX;
+    -fx-background-color: -GRAY;
 }
 
 #bt_newblock_add:hover,
@@ -216,19 +216,19 @@
 
 #txtfield-title-add{
     -fx-font: normal normal 1.25em 'Fredoka One';
-    -fx-text-fill: -SMOKY-BLACK;
-    -fx-background-color: -GHOST-WHITE;
+    -fx-text-fill: -BLACK;
+    -fx-background-color: -WHITE;
 }
 /* background to description text area*/
 .text-area .scroll-pane .content{
-    -fx-background-color: -GHOST-WHITE;
+    -fx-background-color: -WHITE;
 }
 
 #txtarea-description-add{
     -fx-font: normal normal 1.25em 'Fredoka One';
-    -fx-text-fill: -SMOKY-BLACK;
-    -fx-highlight-fill: -GHOST-WHITE;
-    -fx-highlight-text-fill: -GHOST-WHITE;
+    -fx-text-fill: -BLACK;
+    -fx-highlight-fill: -WHITE;
+    -fx-highlight-text-fill: -WHITE;
 }
 
 #txtarea-description-add:hover{
@@ -238,11 +238,11 @@
 
 #comboBox-type-add,
 #comboBox-priority-add{
-    -fx-background-color: -GHOST-WHITE;
+    -fx-background-color: -WHITE;
     -fx-font: normal normal 1.25em 'Fredoka One';
 
     -fx-border-width: 3px;
-    -fx-border-color: -GHOST-WHITE;
+    -fx-border-color: -WHITE;
     -fx-border-style: solid;
     -fx-border-radius: 12px;
 }
@@ -258,11 +258,11 @@
 }
 
 #bt-create-add{
-    -fx-background-color: -APPLE-GREEN;
+    -fx-background-color: -GREEN;
     -fx-font: normal normal 1.5em 'Fredoka One';
     -fx-text-fill: -LABEL;
     -fx-border-width: 3px;
-    -fx-border-color: -GHOST-WHITE;
+    -fx-border-color: -WHITE;
     -fx-border-style: solid;
     -fx-border-radius: 3px;
     -fx-background-radius: 6px;
@@ -290,7 +290,7 @@
 }
 
 #task-block{
-    -fx-background-color: -MIDNIGHT-BLUE;
+    -fx-background-color: -PURPLEISH-BLUE;
 }
 
 
@@ -300,7 +300,7 @@
 
 #bt-complete-task:hover {
     -fx-background-radius: 0;
-    -fx-background-color: -SEAGREEN;
+    -fx-background-color: -GREEN;
 }
 
 #bt-addsubtask-task {
@@ -309,7 +309,7 @@
 
 #bt-addsubtask-task:hover{
     -fx-background-radius: 0;
-    -fx-background-color: -PUMPKIN;
+    -fx-background-color: -ORANGE;
 }
 
 #bt-edit-task {
@@ -317,7 +317,7 @@
 }
 
 #bt-edit-task:hover {
-    -fx-background-color: -AMBER;
+    -fx-background-color: -YELLOW;
     -fx-background-radius: 0;
 }
 
@@ -326,7 +326,7 @@
 }
 
 #bt-remove-task:hover{
-    -fx-background-color: -DARK-RED;
+    -fx-background-color: -RED;
     -fx-background-radius: 0;
 }
 
@@ -335,7 +335,7 @@
 }
 
 #bt-expand-task:hover {
-    -fx-background-color: -ONYX;
+    -fx-background-color: -BLACK;
     -fx-background-radius: 0;
 }
 
@@ -352,7 +352,7 @@
 #alert-vbox{
     -fx-background-color: -DARK-BACKGROUND;
     -fx-background-radius: 12px;
-    -fx-border-color: -GHOST-WHITE;
+    -fx-border-color: -WHITE;
     -fx-border-radius: 12px;
     -fx-border-width: 3px;
 }
@@ -360,7 +360,7 @@
 #alert-button {
     -fx-font: normal normal 1.25em 'Fredoka One';
     -fx-text-fill: -LABEL;
-    -fx-background-color: -SEAGREEN;
+    -fx-background-color: -GREEN;
     -fx-background-radius: 12px;
     -fx-border-color: -GHOST-WHITE;
     -fx-border-radius: 12px;
@@ -368,39 +368,39 @@
 }
 
 #alert-button:hover {
-    -fx-background-color: -ICTERINE;
+    -fx-background-color: -GREEN;
 }
 
 #alert-label{
     -fx-font: normal normal 1.5em 'Fredoka One';
-    -fx-text-fill: -DARK-RED;
+    -fx-text-fill: -RED;
 }
 
 /* EXPAND TASK*/
 
 #vbox-expand{
-    -fx-background-color: -MIDNIGHT-BLUE;
+    -fx-background-color: -MEDIUM-BLUE;
 }
 
 #hbox-grid-expand{
-    -fx-background-color: -MIDNIGHT-BLUE;
+    -fx-background-color: -MEDIUM-BLUE;
     -fx-background-radius: 12px 12px 0px 0px;
 }
 
 #subtask-vbox,
 #subtask-hbox{
-    -fx-background-color: -POWDER-BLUE;
+    -fx-background-color: -LIGHT-BLUE;
 }
 
 .text-field-subtask{
     -fx-background-color: transparent;
     -fx-font: normal normal 1.05em 'Fredoka One';
-    -fx-text-fill: -SMOKY-BLACK;
+    -fx-text-fill: -BLACK;
 }
 
 .subtask-label {
     -fx-font: normal normal 1.25em 'Fredoka One';
-    -fx-text-fill: -SMOKY-BLACK;
+    -fx-text-fill: -BLACK;
 }
 
 #bt-edit-subtask,
@@ -411,23 +411,23 @@
 
 #bt-edit-subtask:hover,
 #bt-edit-subtask:focused{
-    -fx-background-color: -AMBER;
+    -fx-background-color: -YELLOW;
     -fx-background-radius: 0;
 }
 
 #bt-complete-subtask:hover{
     -fx-background-radius: 0;
-    -fx-background-color: -SEAGREEN;
+    -fx-background-color: -GREEN;
 }
 
 #bt-remove-subtask:hover{
-    -fx-background-color: -DARK-RED;
+    -fx-background-color: -RED;
     -fx-background-radius: 0;
 }
 
 /*New Subtask*/
 
 #vbox-addsubtask{
-    -fx-background-color: -POWDER-BLUE;
+    -fx-background-color: -LIGHT-BLUE;
     -fx-background-radius: 24px;
 }
