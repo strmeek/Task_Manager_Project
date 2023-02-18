@@ -1,0 +1,150 @@
+/* IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'); /*'Bebas Neue'*/
+@import url('https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap');/*'Arsenal'*/
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');/*'Cutive Mono'*/
+/*'Montserrat'*/@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*'Montserrat Alternates'*/@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');/*'Questrial'*/
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap');/*'Sen'*/
+
+/*-Fonts
+Classic -
+Questrial == Helvetic
+
+Modern -
+Arsenal == Optima
+Sen == Avenir
+Bebas Neue
+Cutive Mono
+Montserrat
+Montserrat Alternates*/
+
+/* VARIABLES */
+
+*{
+    /* COLOR PALLETE */
+    /*Blue Pallete*/
+    -PURPLEISH-BLUE: #131862; /*Federal Blue*/
+    -DARK-BLUE: #041A40; /*Oxford Blue*/
+    -MEDIUM-BLUE: #0A3361; /*Berkeley Blue*/
+    -LIGHT-BLUE: #87CEEB; /*Sky Blue*/
+
+    /*Whites*/
+    -WHITE: #FFFAFB; /*Snow White*/
+    -MATTE-WHITE: #F4F4F9; /*Ghost White*/
+
+    /*Blacks and Grays*/
+    -BLACK: #121113; /*Night*/
+    -DARK-GRAY: #3F3F3F; /*Onyx*/
+    -GRAY: #575757; /*Davys Gray*/
+    -LIGHT-GRAY: #C9C9C9; /*Silver*/
+    -LIGHTER-GRAY: #EAEAEA; /*Platinum*/
+
+    /*Hot Colors or Highlight Colors*/
+    -RED: #880907; /*RED*/
+    -DARK-RED: #6B0504; /*BLOOD RED*/
+    -ORANGE: #EE7B30; /*PUMPKIN*/
+    -YELLOW: #D7B633; /*OLD GOLD*/
+    -GREEN: #439523; /*FORREST GREEN*/
+    -CYAN: #09ECE5; /*FLUORESCENT CYAN*/
+    -MAGENTA: #8F008F; /*DARK MAGENTA*/
+
+    /*COLOR VARIABLES*/
+    /*LABELS*/
+    -LIGHT-LABEL: -WHITE;
+    -DARK-LABEL: -BLACK;
+    -SECONDARY-LABEL: -LIGHT-GRAY;
+
+    /*BACKGROUND*/
+    -DARK-BACKGROUND: -DARK-GRAY;
+    -LIGHT-BACKGROUND: -MATTE-WHITE;
+
+    /*BUTTONS HOVER*/
+    -HOVER: -LIGHT-GRAY;
+    -EDIT-BT: -YELLOW;
+    -REMOVE-BT: -RED;
+    -CONFIRM-BT: -GREEN;
+    -TASK-ADD-BT: -ORANGE;
+
+    /*MENU COLORS*/
+    -MENU-BACKGROUND: -BLACK;
+    -MENU-FONT-COLOR: -WHITE;
+    -MENU-HOVER: -LIGHT-GRAY;
+
+    /*FONT VARIABLES*/
+    -MENU-CLOCK-FONT: 'Bebas Neue';
+    -BT-FONT: 'Sen';
+    -GRID-FONT: 'Bebas Neue';
+    -TASKS-FONT: 'Montserrat';
+    -INFORMATION-FONT: 'Questrial';
+    }
+
+/*UTILITY CLASSES*/
+
+.transparent{
+    -fx-background-color: rgba(0 ,0 ,0 ,0);
+}
+
+/*Background*/
+
+.background{
+    -fx-background-color: -DARK-BACKGROUND
+}
+
+/*Menu*/
+
+#menu-hbox{
+    -fx-background-color: -MENU-BACKGROUND;
+}
+
+.menu-clock{
+    -fx-font: normal normal 1.5em -MENU-CLOCK-FONT;
+    -fx-text-fill: -MENU-FONT-COLOR;
+}
+
+.menu-buttons{
+    -fx-background-color: transparent;
+    -fx-font: normal normal 1.5em -BT-FONT;
+    -fx-text-fill: -MENU-FONT-COLOR;
+}
+
+.menu-buttons:hover{
+    -fx-text-fill: -MENU-HOVER;
+    -fx-underline: true;
+}
+
+#bt-add:hover{
+    -fx-background-color: -GRAY;
+    -fx-background-radius: 12px;
+    -fx-text-fill: -WHITE;
+    -fx-underline: false;
+}
+
+#bt-close:hover{
+    -fx-background-color: -GRAY;
+    -fx-background-radius: 12px;
+    -fx-text-fill: -WHITE;
+    -fx-underline: false;
+}
+
+#bt-config:hover{
+    -fx-background-color: -GRAY;
+    -fx-background-radius: 12px;
+    -fx-underline: false;
+}
+
+/*Tasks Grid*/
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+/*Tasks Block*/
+
+#task-block{
+    -fx-background-color: -LIGHT-GRAY;
+    -fx-background-radius: 16px;
+    -fx-border-color: -WHITE;
+    -fx-border-radius: 16px;
+    -fx-border-width: 3px;
+}

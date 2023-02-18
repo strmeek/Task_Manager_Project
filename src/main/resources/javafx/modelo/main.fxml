@@ -20,7 +20,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.modelo.MainController">
    <children>
       <HBox id="menu-hbox" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1280.0" spacing="10.0" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -340,106 +339,6 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="vbox_task" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
-                     <children>
-                        <Button fx:id="bt_filters_tasks" ellipsisString="" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="Filters">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/expand_arrow_96px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <TextField id="txtfield-search" fx:id="txtfield_search_tasks" prefHeight="38.0" prefWidth="144.0" promptText="Search" styleClass="search-bar" stylesheets="@style.css" />
-                        <Button id="bt-search" fx:id="bt_search_tasks" mnemonicParsing="false" styleClass="search-bar" stylesheets="@style.css">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/search_90px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                        <Button fx:id="bt_add_tasks" ellipsisString="" layoutX="422.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="Add">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/Plus_96px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets left="25.0" right="25.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
-                     <children>
-                        <Button fx:id="bt_leftarrow_tasks" mnemonicParsing="false" styleClass="bt-day-picker" stylesheets="@style.css">
-                           <graphic>
-                              <ImageView blendMode="ADD" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/back_96px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="bt_all_tasks" layoutX="576.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-day-picker" stylesheets="@style.css" text="All" textAlignment="CENTER" />
-                        <Button fx:id="bt_today_tasks" layoutX="602.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-day-picker" stylesheets="@style.css" text="Today" textAlignment="CENTER" />
-                        <Button fx:id="bt_tomorrow_tasks" layoutX="628.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-day-picker" stylesheets="@style.css" text="Tomorrow" textAlignment="CENTER" />
-                        <Button fx:id="bt_rightarrow_tasks" layoutX="654.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-day-picker" stylesheets="@style.css">
-                           <graphic>
-                              <ImageView blendMode="ADD" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                                 <image>
-                                    <Image url="@images/back_96px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets left="25.0" right="25.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="TOP_CENTER" prefHeight="457.0" prefWidth="1184.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <VBox id="vbox-grid-tasks" stylesheets="@style.css">
-                           <children>
-                              <HBox id="hbox-grid-tasks" alignment="TOP_CENTER" prefHeight="65.0" prefWidth="200.0" stylesheets="@style.css">
-                                 <children>
-                                    <Label id="grid-column" alignment="CENTER" layoutX="142.0" layoutY="10.0" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Type" />
-                                    <Label id="grid-column" alignment="CENTER" layoutX="390.0" layoutY="10.0" prefHeight="64.0" prefWidth="252.0" styleClass="right-side-separator" stylesheets="@style.css" text="Title" />
-                                    <Label id="grid-column" alignment="CENTER" layoutX="744.0" layoutY="10.0" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Priority" />
-                                    <Label id="grid-column" alignment="CENTER" layoutX="804.0" layoutY="10.0" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Status" />
-                                    <Label id="grid-column" alignment="CENTER" layoutX="864.0" layoutY="10.0" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Created at" />
-                                    <Label id="grid-column" alignment="CENTER" layoutX="924.0" layoutY="10.0" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Planned End" />
-                                    <Label id="grid-column" alignment="CENTER" ellipsisString="" layoutX="829.0" layoutY="10.0" prefHeight="65.0" prefWidth="275.0" stylesheets="@style.css" text="Controls" textAlignment="CENTER" />
-                                 </children>
-                              </HBox>
-                              <ScrollPane id="scroll-pane-tasks" fitToWidth="true" prefHeight="420.0" prefWidth="1128.0" stylesheets="@style.css" vbarPolicy="NEVER">
-                                 <content>
-                                    <GridPane fx:id="grid_vbox_tasks" alignment="TOP_CENTER" prefWidth="1126.0" stylesheets="@style.css" translateY="-30.0" vgap="3.0">
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                    </GridPane>
-                                 </content>
-                              </ScrollPane>
-                           </children>
-                        </VBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
-                     </padding>
-                  </HBox>
-               </children>
-            </VBox>
             <VBox id="vbox-expand" fx:id="vbox_expand" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="1184.0" spacing="5.0">
@@ -690,6 +589,106 @@
                         <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
                      </VBox.margin>
                   </ScrollPane>
+               </children>
+            </VBox>
+            <VBox fx:id="vbox_task" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-background" stylesheets="@style.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
+                     <children>
+                        <Button fx:id="bt_filters_tasks" ellipsisString="" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="Filters">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/expand_arrow_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <TextField id="txtfield-search" fx:id="txtfield_search_tasks" prefHeight="38.0" prefWidth="144.0" promptText="Search" styleClass="search-bar" stylesheets="@style.css" />
+                        <Button id="bt-search" fx:id="bt_search_tasks" mnemonicParsing="false" styleClass="search-bar" stylesheets="@style.css">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/search_90px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <Button fx:id="bt_add_tasks" ellipsisString="" layoutX="422.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-filter-and-add" stylesheets="@style.css" text="Add">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Plus_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="25.0" right="25.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
+                     <children>
+                        <Button fx:id="bt_leftarrow_tasks" mnemonicParsing="false" styleClass="bt-day-picker" stylesheets="@style.css">
+                           <graphic>
+                              <ImageView blendMode="ADD" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/back_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="bt_all_tasks" layoutX="576.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-day-picker" stylesheets="@style.css" text="All" textAlignment="CENTER" />
+                        <Button fx:id="bt_today_tasks" layoutX="602.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-day-picker" stylesheets="@style.css" text="Today" textAlignment="CENTER" />
+                        <Button fx:id="bt_tomorrow_tasks" layoutX="628.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-day-picker" stylesheets="@style.css" text="Tomorrow" textAlignment="CENTER" />
+                        <Button fx:id="bt_rightarrow_tasks" layoutX="654.0" layoutY="48.0" mnemonicParsing="false" styleClass="bt-day-picker" stylesheets="@style.css">
+                           <graphic>
+                              <ImageView blendMode="ADD" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                 <image>
+                                    <Image url="@images/back_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="25.0" right="25.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="457.0" prefWidth="1184.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox id="vbox-grid-tasks" stylesheets="@style.css">
+                           <children>
+                              <HBox id="hbox-grid-tasks" alignment="TOP_CENTER" prefHeight="65.0" prefWidth="200.0" stylesheets="@style.css">
+                                 <children>
+                                    <Label id="grid-column" alignment="CENTER" layoutX="142.0" layoutY="10.0" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Type" />
+                                    <Label id="grid-column" alignment="CENTER" layoutX="390.0" layoutY="10.0" prefHeight="64.0" prefWidth="252.0" styleClass="right-side-separator" stylesheets="@style.css" text="Title" />
+                                    <Label id="grid-column" alignment="CENTER" layoutX="744.0" layoutY="10.0" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Priority" />
+                                    <Label id="grid-column" alignment="CENTER" layoutX="804.0" layoutY="10.0" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Status" />
+                                    <Label id="grid-column" alignment="CENTER" layoutX="864.0" layoutY="10.0" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Created at" />
+                                    <Label id="grid-column" alignment="CENTER" layoutX="924.0" layoutY="10.0" prefHeight="65.0" prefWidth="125.0" styleClass="right-side-separator" stylesheets="@style.css" text="Planned End" />
+                                    <Label id="grid-column" alignment="CENTER" ellipsisString="" layoutX="829.0" layoutY="10.0" prefHeight="65.0" prefWidth="275.0" stylesheets="@style.css" text="Controls" textAlignment="CENTER" />
+                                 </children>
+                              </HBox>
+                              <ScrollPane id="scroll-pane-tasks" fitToWidth="true" prefHeight="420.0" prefWidth="1128.0" stylesheets="@style.css" vbarPolicy="NEVER">
+                                 <content>
+                                    <GridPane fx:id="grid_vbox_tasks" alignment="TOP_CENTER" prefWidth="1126.0" stylesheets="@style.css" translateY="-30.0" vgap="3.0">
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
+                     </padding>
+                  </HBox>
                </children>
             </VBox>
          </children>

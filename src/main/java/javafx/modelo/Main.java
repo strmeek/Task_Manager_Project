@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -17,6 +18,7 @@ public class Main extends Application {
         String css = this.getClass().getResource("style.css").toExternalForm(); // get the css file.
         scene.getStylesheets().add(css); // add the css file to the scene.
         stage.setTitle("Task Manager"); // title.
+        stage.initStyle(StageStyle.UNIFIED);// makes sure that the windows button close doesn't disapear
         stage.setScene(scene); // display the scene.
         stage.show(); // make visible.
         ResponsiveHandler.addResponsiveToWindow(scene.getWindow());// add the responsivefx library to the scene
