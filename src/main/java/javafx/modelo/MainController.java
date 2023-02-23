@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -239,7 +240,7 @@ public class MainController implements Initializable {
     private VBox vbox_New_Task;
 
     @FXML
-    private VBox vbox_add;
+    private AnchorPane vbox_add;
 
     @FXML
     private VBox vbox_config;
@@ -263,6 +264,14 @@ public class MainController implements Initializable {
     private VBox vbox_task;
 
 
+    @FXML
+    private Button bt_close_menu;
+    @FXML
+    private Button bt_search_menu;
+
+    @FXML
+    private TextField txtField_search_menu;
+
     ObservableList<String> list_type = FXCollections.observableArrayList();
     ObservableList<String> list_priority = FXCollections.observableArrayList();
 
@@ -270,6 +279,7 @@ public class MainController implements Initializable {
     private List<Subtask> subtasks;
 
     private int saveTask;
+    private boolean isOnAddTab = true;
 
 
     @Override
@@ -280,7 +290,7 @@ public class MainController implements Initializable {
         /*Clock*/
         menuClock();
 
-        /*ComboBoxes items*/
+        /*ComboBoxes items
         list_type.addAll("Work", "House", "Routine", "Special");
         comboBox_type_add.setItems(list_type);
         comboBoxType_expand.setItems(list_type);
@@ -288,8 +298,15 @@ public class MainController implements Initializable {
         list_priority.addAll("High", "Medium", "Low");
         comboBox_priority_add.setItems(list_priority);
         comboBox_priority_addSubtask.setItems(list_priority);
-        comboBoxPriority_expand.setItems(list_priority);
+        comboBoxPriority_expand.setItems(list_priority);*/
 
+        /* CLOSE BUTTON */
+        bt_close_menu.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.exit(0);
+            }
+        });
         /* HOME BUTTON */
         bt_home_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -319,55 +336,13 @@ public class MainController implements Initializable {
                 vbox_config.toFront();
             }
         });
-        /* Expand the filters in task screen */
-        bt_filters_tasks.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                vbox_filters.toFront();
-            }
-        });
-        /* Collapse the filters in task screen */
-        bt_filter_close.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                vbox_filters.toBack();
-            }
-        });
         /*show add options*/
-        bt_add_tasks.setOnAction(new EventHandler<ActionEvent>() {
+        /*bt_add_tasks.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 vbox_add.toFront();
             }
-        });
-        /*show add options*/
-        bt_add_menu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                vbox_add.toFront();
-            }
-        });
-        /*show add options*/
-        bt_add_home.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                vbox_add.toFront();
-            }
-        });
-        /*show add options*/
-        bt_add_projects.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                vbox_add.toFront();
-            }
-        });
-        /*closes add options*/
-        bt_close_add.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                vbox_add.toBack();
-            }
-        });
+        });*/
         /*Shows New Tasks options*/
         bt_newtask_add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -382,38 +357,32 @@ public class MainController implements Initializable {
                 vbox_New_Project.toFront();
             }
         });
-        /*Shows New Blocks options*/
-        bt_newblock_add.setOnAction(new EventHandler<ActionEvent>() {
+        //1o click do botão é dado aqui
+        bt_add_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
-                vbox_New_Block.toFront();
+            public void handle(ActionEvent event) {
+                vbox_add.toFront();
+                closeAddTabAction();
             }
         });
         /*Collapse add tabs*/
-        bt_close_newTask.setOnAction(new EventHandler<ActionEvent>() {
+        /*bt_close_newTask.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 vbox_New_Task.toBack();
                 vbox_add.toBack();
             }
-        });
+        });*/
         /*Collapse add tabs*/
-        bt_close_newProject.setOnAction(new EventHandler<ActionEvent>() {
+        /*bt_close_newProject.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 vbox_New_Project.toBack();
                 vbox_add.toBack();
             }
-        });
-        /*Collapse add tabs*/
-        bt_close_newBlock.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                vbox_New_Block.toBack();
-                vbox_add.toBack();
-            }
-        });
+        });*/
 
+        /*
         bt_create_add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -429,8 +398,8 @@ public class MainController implements Initializable {
                     LocalDateTime planned_finish_dt = datepicker_PFinish.getValue().atStartOfDay();
                     Timestamp planned_finish_tstamp = Timestamp.valueOf(planned_finish_dt);
                     Date planned_Finish = new Date(planned_finish_tstamp.getTime());//converted
-
-                /*actually add to the database*/
+        */
+                /*actually add to the database
                 if (!title.isEmpty() &&
                     !description.isEmpty() &&
                     !type.isEmpty() &&
@@ -445,7 +414,8 @@ public class MainController implements Initializable {
                     }
                 }
             }
-        });
+        });*/
+        /*
         bt_create_addSubtask.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -485,42 +455,43 @@ public class MainController implements Initializable {
                     }
                 }
             }
-        });
+        });*/
     }
-    public void refreshGridTasks(){
-        grid_vbox_tasks.getChildren().clear();
+        public void refreshGridTasks(){
+            grid_vbox_tasks.getChildren().clear();
 
-        /*Task Grid*/
-        tasks = new ArrayList<>(DataBase.grid_List_tasks());
+            //Task Grid
+            tasks = new ArrayList<>(DataBase.grid_List_tasks());
 
-        int columns = 0;
-        int row = 1;
+            int columns = 0;
+            int row = 1;
 
-        try{
-            for(int i=0; i<tasks.size(); i++){
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("task.fxml"));
-                VBox block = fxmlLoader.load();
-                TaskController taskController = fxmlLoader.getController();
-                taskController.setTaskData(tasks.get(i));
-                taskController.setMainController(this);
+            try {
+                for (int i = 0; i < tasks.size(); i++) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("task.fxml"));
+                    VBox taskBlock = fxmlLoader.load();
+                    TaskController taskController = fxmlLoader.getController();
+                    taskController.setTaskData(tasks.get(i));
+                    taskController.setMainController(this);
 
-                if(columns == 1){
-                    columns = 0;
-                    ++row;
+                    if (columns == 5) {
+                        columns = 0;
+                        ++row;
+                    }
+                    grid_vbox_tasks.add(taskBlock, columns++, row);
+                    GridPane.setMargin(taskBlock, new Insets(12));
                 }
-                grid_vbox_tasks.add(block, columns++,row);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }catch (IOException e){
-            e.printStackTrace();
         }
-    }
 
-    public void refreshGridSubtasks(){
+    /*public void refreshGridSubtasks(){
         grid_subtasks.getChildren().clear();
         int idTask = saveTask;
 
-        /*Subtask Grid*/
+        //Subtask Grid
         subtasks = new ArrayList<>(DataBase.gridListSubtask(idTask));
 
         int columns = 0;
@@ -544,40 +515,61 @@ public class MainController implements Initializable {
         }catch(IOException e){
             e.printStackTrace();
         }
-    }
+    }*/
 
-    public void toFrontExpand(Task task){
-        vbox_expand.toFront();
-        saveTask = task.getId_task();
-    }
+        public void toFrontExpand(Task task) {
+            vbox_expand.toFront();
+            saveTask = task.getId_task();
+        }
 
-    public void toFrontNewSubtask(Task task){
-        vbox_New_Subtask.toFront();
-        saveTask = task.getId_task();
-    }
+        public void toFrontNewSubtask(Task task) {
+            vbox_New_Subtask.toFront();
+            saveTask = task.getId_task();
+        }
 
-    public void menuClock(){
-        Thread clock = new Thread() {
-            public void run() {
-                while (true) {
-                    Platform.runLater(() -> {
-                        Calendar now = Calendar.getInstance();
-                        int hour = now.get(Calendar.HOUR_OF_DAY);
-                        int minute = now.get(Calendar.MINUTE);
-                        menu_Clock.setText(String.format("%02d:%02d", hour, minute));
-                        menu_Date.setText(java.time.LocalDate.now().toString());
-                        Calendar calendar = Calendar.getInstance();
-                        SimpleDateFormat dayFormat = new SimpleDateFormat("E");
-                        String abbreviatedDayOfWeek = dayFormat.format(calendar.getTime());
-                        menu_Day.setText(abbreviatedDayOfWeek);
-                    });
-                    try {
-                        sleep(1000);
-                    } catch (InterruptedException e) {
+        public void menuClock() {
+            Thread clock = new Thread() {
+                public void run() {
+                    while (true) {
+                        Platform.runLater(() -> {
+                            Calendar now = Calendar.getInstance();
+                            int hour = now.get(Calendar.HOUR_OF_DAY);
+                            int minute = now.get(Calendar.MINUTE);
+                            menu_Clock.setText(String.format("%02d:%02d", hour, minute));
+                            menu_Date.setText(java.time.LocalDate.now().toString());
+                            Calendar calendar = Calendar.getInstance();
+                            SimpleDateFormat dayFormat = new SimpleDateFormat("E");
+                            String abbreviatedDayOfWeek = dayFormat.format(calendar.getTime());
+                            menu_Day.setText(abbreviatedDayOfWeek);
+                        });
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                        }
                     }
                 }
-            }
-        };
-        clock.start();
-    }
+            };
+            clock.start();
+        }
+        /*abre a aba e devolve pra closeAddTabaction*/
+        public void openAddTabAction() {
+            bt_add_menu.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    vbox_add.toFront();
+                    closeAddTabAction();
+                }
+            });
+        }
+
+        /*2o click do botão vem pra a cá, agora joga ping pong com openAddTabAction*/
+        public void closeAddTabAction() {
+            bt_add_menu.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    vbox_add.toBack();
+                    openAddTabAction();
+                }
+            });
+        }
 }

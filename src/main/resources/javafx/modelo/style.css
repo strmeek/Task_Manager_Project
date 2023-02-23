@@ -23,7 +23,6 @@ Montserrat Alternates*/
 
 *{
     /* COLOR PALLETE */
-
     /*Blue Pallete*/
     -PURPLEISH-BLUE: #131862; /*Federal Blue*/
     -DARK-BLUE: #041A40; /*Oxford Blue*/
@@ -51,399 +50,214 @@ Montserrat Alternates*/
     -MAGENTA: #8F008F; /*DARK MAGENTA*/
 
     /*COLOR VARIABLES*/
-    -LABEL: -WHITE;
-    -HOVER: -MEDIUM-BLUE;
-    -DARK-BACKGROUND: -DARK-BLUE;
-    -LIGHT-BACKGROUND: -WHITE;
-    -GREEN-HIGHLIGHT: -GREEN;
-    -ORANGE-HIGHLIGHT: -ORANGE;
+    /*LABELS*/
+    -LIGHT-LABEL: -WHITE;
+    -DARK-LABEL: -BLACK;
+    -SECONDARY-LABEL: -LIGHT-GRAY;
 
-    /* FONT */
-    -DEFAULT-FONT: normal normal 1.0em 'Sen';
-}
+    /*BACKGROUND*/
+    -DARK-BACKGROUND: -DARK-GRAY;
+    -LIGHT-BACKGROUND: -MATTE-WHITE;
 
-/* UTILITY CLASSES */
+    /*BUTTONS HOVER*/
+    -HOVER: -LIGHT-GRAY;
+    -EDIT-BT: -YELLOW;
+    -REMOVE-BT: -RED;
+    -CONFIRM-BT: -GREEN;
+    -TASK-ADD-BT: -ORANGE;
 
-.transparent{
-    -fx-background-color: rgba(0, 0, 0, 0);
-}
+    /*MENU COLORS*/
+    -MENU-BACKGROUND: -BLACK;
+    -MENU-FONT-COLOR: -WHITE;
+    -MENU-HOVER: -LIGHT-GRAY;
 
-.right-side-separator{
-    -fx-border-width: 0px 3px 0px 0px;
-    -fx-border-color: -WHITE;
-    -fx-border-style: solid;
-}
-
-.text-area .scroll-pane .content{
-    -fx-background-color: -GRAY;
-    -fx-background-radius: 7px;
-}
-
-/*GENERAL*/
-
-.vbox-background {
-    -fx-background-color: -DARK-BACKGROUND;
-}
-
-.add_vboxes{
-    -fx-background-color: -GRAY;
-}
-
-#txtfield-search:hover,
-#bt-search:hover{
-    -fx-background-color: -HOVER;
-}
-
-#txtfield-search{
-    -fx-border-width: 3px 0px 3px 3px;
-    -fx-border-color: -WHITE;
-    -fx-border-radius: 12px 0px 0px 12px;
-    -fx-border-style: solid;
-    -fx-pref-width: 256px;
-    -fx-background-radius: 12px 0px 0px 12px;
-    -fx-font-size: 1.2em;
+    /*FONT VARIABLES
+    -MENU-CLOCK-FONT: 'Sen';
+    -BT-FONT: 'Sen';
+    -GRID-FONT: 'Bebas Neue';
+    -TASKS-FONT: 'Montserrat';
+    -INFORMATION-FONT: 'Questrial';*/
     }
 
-#bt-search{
-    -fx-border-width: 3px 3px 3px 0px;
-    -fx-border-color: -WHITE;
-    -fx-border-radius: 0px 12px 12px 0px;
-    -fx-border-style: solid;
-    -fx-pref-width: 52px;
-    -fx-background-radius: 0px 12px 12px 0px;
+/*UTILITY CLASSES*/
+
+.transparent{
+    -fx-background-color: rgba(0 ,0 ,0 ,0);
 }
 
-.search-bar{
-    -fx-font: normal normal 1em 'Sen';
-    -fx-text-fill: -LABEL;
-    -fx-background-color: -DARK-BACKGROUND;
+.alignment-center{
+    -fx-alignment: center;
+    -fx-content-display: center;
 }
 
-/*MENU STYLING*/
+.alignment-center-left{
+    -fx-alignment: center-left;
+}
+
+/*Background*/
+
+.background{
+    -fx-background-color: -DARK-BACKGROUND
+}
+
+/*Menu*/
+
 #menu-hbox{
-    -fx-background-color: -BLACK;
+    -fx-background-color: -MENU-BACKGROUND;
 }
 
-#day-label {
-    -fx-text-fill: -LABEL;
-    -fx-font: normal normal 2.5em 'Sen';
+.menu-clock{
+    -fx-font: normal normal 1.36em 'Sen';
+    -fx-text-fill: -MENU-FONT-COLOR;
 }
 
-#day-sublabel-hour, #day-sublabel-date {
-    -fx-text-fill: -LABEL;
-    -fx-font: normal normal 1.25em 'Sen';
-}
-
-.menu-bt{
-    -fx-background-color: -BLACK;
-    -fx-background-radius: 0;
-    -fx-font: normal normal 1.25em 'Sen';
-    -fx-text-fill: -LABEL;
-}
-
-.menu-bt:hover{
-    -fx-background-color: -HOVER;
-}
-
-/* /TASKS PAGE */
-
-.label{
-    -fx-font: normal normal 1.25em 'Sen';
-    -fx-text-fill: -LABEL;
-}
-
-.bt-day-picker{
-    -fx-font: normal normal 1.75em 'Sen';
-    -fx-text-fill: -LABEL;
+.menu-buttons{
     -fx-background-color: transparent;
+    -fx-font: normal normal 1.36em 'Sen';
+    -fx-text-fill: -MENU-FONT-COLOR;
 }
 
-.bt-day-picker:hover{
-    -fx-opacity: 0.7;
-}
-
-#grid-column {
-    -fx-font: normal normal 1.6em 'Sen';
-}
-
-#vbox-grid-tasks{
-    -fx-border-color: -WHITE;
-    -fx-border-radius: 12px;
-    -fx-border-width: 3px;
-    -fx-background-radius: 12px;
-    -fx-background-color: -WHITE;
-}
-
-#hbox-grid-tasks{
-    -fx-background-color: -DARK-BLUE;
-    -fx-background-radius: 12px 12px 0px 0px;
-}
-
-.bt-filter-and-add{
-    -fx-background-color: -DARK-BACKGROUND;
-    -fx-border-width: 3px;
-    -fx-border-color: -WHITE;
-    -fx-border-radius: 12px;
-    -fx-border-style: solid;
-    -fx-pref-width: 144px;
-    -fx-background-radius: 12px;
-    -fx-font: normal normal 1.2em 'Sen';
-    -fx-text-fill: -LABEL;
-}
-
-.bt-filter-and-add:hover{
-    -fx-background-color: -HOVER;
-}
-
-#hbox-filter{
-    -fx-background-color: -GRAY;
-    -fx-background-radius: 0px 0px 12px 12px;
-}
-
-#bt-filter-close{
-    -fx-font: normal normal 1.2em 'Sen';
-    -fx-text-fill: -LABEL;
-}
-
-#bt-filter-close:hover{
-    -fx-opacity: 0.75;
-}
-
-/* Add Tabs(New Project, Task, Block)*/
-
-#bt_newblock_add,
-#bt_newtask_add,
-#bt_newproject_add{
-    -fx-pref-width: 250px;
-    -fx-pref-height: 50px;
-    -fx-background-color: -GRAY;
-}
-
-#bt_newblock_add:hover,
-#bt_newtask_add:hover,
-#bt_newproject_add:hover{
-    -fx-opacity: 0.75;
-}
-
-#newtask-header{
-    -fx-font: normal normal 2em 'Sen';
-    -fx-text-fill: -LABEL;
-}
-
-#txtfield-title-add{
-    -fx-font: normal normal 1.25em 'Sen';
-    -fx-text-fill: -BLACK;
-    -fx-background-color: -WHITE;
-}
-/* background to description text area*/
-.text-area .scroll-pane .content{
-    -fx-background-color: -WHITE;
-}
-
-#txtarea-description-add{
-    -fx-font: normal normal 1.25em 'Sen';
-    -fx-text-fill: -BLACK;
-    -fx-highlight-fill: -WHITE;
-    -fx-highlight-text-fill: -WHITE;
-}
-
-#txtarea-description-add:hover{
-    -fx-opacity: 0.8;
-    -fx-effect: none;
-}
-
-#comboBox-type-add,
-#comboBox-priority-add{
-    -fx-background-color: -WHITE;
-    -fx-font: normal normal 1.25em 'Sen';
-
-    -fx-border-width: 3px;
-    -fx-border-color: -WHITE;
-    -fx-border-style: solid;
-    -fx-border-radius: 12px;
-}
-
-#datepicker-PStart,
-#datepicker-PFinish{
-    -fx-background-color: transparent;
-    -fx-font: normal normal 1.25em 'Sen';
-}
-
-.dropshadow{
-    -fx-effect: dropshadow(gaussian, #000, 15, 0.1, 5, 5)
-}
-
-#bt-create-add{
-    -fx-background-color: -GREEN;
-    -fx-font: normal normal 1.5em 'Sen';
-    -fx-text-fill: -LABEL;
-    -fx-border-width: 3px;
-    -fx-border-color: -WHITE;
-    -fx-border-style: solid;
-    -fx-border-radius: 3px;
-    -fx-background-radius: 6px;
-}
-
-#bt-create-add:hover,
-#txtfield-title-add:hover{
-    -fx-opacity: 0.8;
-    -fx-effect: none;
-}
-
-#datepicker-PStart:hover,
-#datepicker-PFinish:hover,
-#comboBox-type-add:hover,
-#comboBox-priority-add:hover{
-    -fx-blend-mode: difference;
-}
-
-/*TASK BLOCK*/
-
-.task-block-label {
-    -fx-font: normal normal 1.25em 'Sen';
-    -fx-text-fill: -LABEL;
-    -fx-background-color: transparent;
-}
-
-#task-block{
-    -fx-background-color: -PURPLEISH-BLUE;
-}
-
-
-#bt-complete-task {
-    -fx-background-color: transparent;
-}
-
-#bt-complete-task:hover {
-    -fx-background-radius: 0;
-    -fx-background-color: -GREEN;
-}
-
-#bt-addsubtask-task {
-    -fx-background-color: transparent;
-}
-
-#bt-addsubtask-task:hover{
-    -fx-background-radius: 0;
-    -fx-background-color: -ORANGE;
-}
-
-#bt-edit-task {
-    -fx-background-color: transparent;
-}
-
-#bt-edit-task:hover {
-    -fx-background-color: -YELLOW;
-    -fx-background-radius: 0;
-}
-
-#bt-remove-task {
-    -fx-background-color: transparent;
-}
-
-#bt-remove-task:hover{
-    -fx-background-color: -RED;
-    -fx-background-radius: 0;
-}
-
-#bt-expand-task {
-    -fx-background-color: transparent;
-}
-
-#bt-expand-task:hover {
-    -fx-background-color: -BLACK;
-    -fx-background-radius: 0;
-}
-
-#scroll-pane-tasks{
-    -fx-background-color: transparent;
-}
-
-#label-planned-end{
+.menu-buttons:hover,
+.menu-buttons:focused {
+    -fx-text-fill: -MENU-HOVER;
     -fx-underline: true;
 }
 
-/*Personalized alert message*/
-
-#alert-vbox{
-    -fx-background-color: -DARK-BACKGROUND;
+#bt-add:hover,
+#bt-add:focused {
+    -fx-background-color: -GRAY;
     -fx-background-radius: 12px;
-    -fx-border-color: -WHITE;
-    -fx-border-radius: 12px;
-    -fx-border-width: 3px;
+    -fx-text-fill: -WHITE;
+    -fx-underline: false;
 }
 
-#alert-button {
-    -fx-font: normal normal 1.25em 'Sen';
-    -fx-text-fill: -LABEL;
-    -fx-background-color: -GREEN;
+#bt-close:hover,
+#bt-close:focused {
+    -fx-background-color: -GRAY;
     -fx-background-radius: 12px;
-    -fx-border-color: -GHOST-WHITE;
-    -fx-border-radius: 12px;
-    -fx-border-width: 3px;
+    -fx-text-fill: -WHITE;
+    -fx-underline: false;
 }
 
-#alert-button:hover {
-    -fx-background-color: -GREEN;
+#bt-config:hover,
+#bt-config:focused {
+    -fx-background-color: -GRAY;
+    -fx-background-radius: 12px;
+    -fx-underline: false;
 }
 
-#alert-label{
-    -fx-font: normal normal 1.5em 'Sen';
-    -fx-text-fill: -RED;
+/*MENU\SEARCH*/
+#searchbar-border{
+    -fx-background-radius: 12px;
 }
 
-/* EXPAND TASK*/
-
-#vbox-expand{
-    -fx-background-color: -MEDIUM-BLUE;
+#bt-search {
+    -fx-background-color: -LIGHT-GRAY;
+    -fx-background-radius: 12px 0px 0px 12px;
+    -fx-text-fill: -MENU-FONT-COLOR;
 }
 
-#hbox-grid-expand{
-    -fx-background-color: -MEDIUM-BLUE;
-    -fx-background-radius: 12px 12px 0px 0px;
-}
-
-#subtask-vbox,
-#subtask-hbox{
-    -fx-background-color: -LIGHT-BLUE;
-}
-
-.text-field-subtask{
-    -fx-background-color: transparent;
-    -fx-font: normal normal 1.05em 'Sen';
+#txtfield-search{
+    -fx-background-color: -LIGHT-GRAY;
+    -fx-background-radius: 0px 12px 12px 0px;
+    -fx-prompt-text-fill: -GRAY;
     -fx-text-fill: -BLACK;
 }
 
-.subtask-label {
-    -fx-font: normal normal 1.25em 'Sen';
-    -fx-text-fill: -BLACK;
+#bt-search:hover,
+#txtfield-search:hover{
+    -fx-background-color: -LIGHTER-GRAY;
 }
 
-#bt-edit-subtask,
-#bt-complete-subtask,
-#bt-remove-subtask{
+/*HOME TAB*/
+
+.header-label{
+    -fx-font: normal lighter 1.6em 'Sen';
+    -fx-text-fill: -WHITE;
+}
+
+/*Tasks Grid*/
+
+/*Tasks Block*/
+
+.task-block-label{
+    -fx-font: normal normal 1.2em 'Montserrat';
+    -fx-text-fill: -LIGHT-GRAY;
+}
+
+.task-block-buttons{
     -fx-background-color: transparent;
 }
 
-#bt-edit-subtask:hover,
-#bt-edit-subtask:focused{
-    -fx-background-color: -YELLOW;
+#txtfield-title-task{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+
+    -fx-font: normal bold 1.8em 'Montserrat';
+    -fx-text-fill: -WHITE;
+}
+
+#task-block{
+    -fx-background-color: -BLACK;
+    -fx-background-radius: 20px;
+
+    -fx-border-color: -LIGHTER-GRAY;
+    -fx-border-radius: 16px;
+    -fx-border-width: 6px;
+}
+
+#task-block:hover,
+#task-block:focused{
+    -fx-background-color: -LIGHTER-GRAY;
+}
+
+#txtfield-title-task{
+    -fx-editable: false;
+}
+
+#bt-confirm-task:hover {
+    -fx-background-color: -CONFIRM-BT;
+    -fx-background-radius: 0;
+    -fx-background-radius: 0px 0px 0px 12px;
+}
+
+#bt-addsubtask-task:hover {
+    -fx-background-color: -TASK-ADD-BT;
     -fx-background-radius: 0;
 }
 
-#bt-complete-subtask:hover{
+#bt-edit-task:hover {
+    -fx-background-color: -EDIT-BT;
     -fx-background-radius: 0;
-    -fx-background-color: -GREEN;
+
 }
 
-#bt-remove-subtask:hover{
-    -fx-background-color: -RED;
+#bt-remove-task:hover {
+    -fx-background-color: -REMOVE-BT;
     -fx-background-radius: 0;
+    -fx-background-radius: 0px 0px 12px 0px;
 }
 
-/*New Subtask*/
+/*ADD OPTIONS*/
 
-#vbox-addsubtask{
-    -fx-background-color: -LIGHT-BLUE;
-    -fx-background-radius: 24px;
+#add-options{
+    -fx-background-color: -LIGHT-GRAY;
+    -fx-background-radius: 0px 32px 32px 32px;
+}
+
+#bt-create-task,
+#bt-create-project{
+    -fx-background-color: transparent;
+    -fx-font: normal bold 1.3em 'Sen';
+    -fx-text-fill: -BLACK;
+}
+
+#bt-create-task:hover{
+    -fx-background-color: -LIGHTER-GRAY;
+    -fx-background-radius: 0px 32px 0px 0px;
+}
+
+#bt-create-project:hover{
+    -fx-background-color: -LIGHTER-GRAY;
+    -fx-background-radius: 0px 0px 32px 32px;
 }

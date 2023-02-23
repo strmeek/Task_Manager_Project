@@ -6,6 +6,7 @@ public class Task {
     private int id_task;
     private String type_task;
     private String title_task;
+    private String Project_task;
     private String priority_task;
     private String status_task;
     private String task_created_at;
@@ -48,6 +49,7 @@ public class Task {
     public String getFinished_at() {
         return finished_at;
     }
+
     public void setFinished_at(String finished_at) {
         this.finished_at = finished_at;
     }
@@ -138,5 +140,13 @@ public class Task {
 
     public void setId_task(int id_task) {
         this.id_task = id_task;
+    }
+
+    public String getProject_task() {
+        return Project_task;
+    }
+
+    public void setProject_task(String project_task) {
+        Project_task = project_task;
     }
 }

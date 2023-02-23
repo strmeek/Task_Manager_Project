@@ -66,7 +66,7 @@ public class SubtaskController {
         this.mainController = mainController;
     }
     public void callRefreshGridSubtasks(){
-        mainController.refreshGridSubtasks();
+        //mainController.refreshGridSubtasks();
     }
     /* ------------------------------------ */
 
