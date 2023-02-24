@@ -2,6 +2,7 @@ package javafx.modelo;
 
 public class Subtask {
     private int id_subtask;
+    private String type_subtask;
     private String title_subtask;
     private String description_subtask;
     private String priority_subtask;
@@ -18,6 +19,7 @@ public class Subtask {
     }
 
     public Subtask(int id_subtask,
+                   String type_subtask,
                    String title_subtask,
                    String description_subtask,
                    String priority_subtask,
@@ -30,6 +32,7 @@ public class Subtask {
                    String subtask_plannedFinish,
                    int foreign_idTask) {
         this.id_subtask = id_subtask;
+        this.type_subtask = type_subtask;
         this.title_subtask = title_subtask;
         this.description_subtask = description_subtask;
         this.priority_subtask = priority_subtask;
@@ -137,5 +140,13 @@ public class Subtask {
 
     public void setForeign_idTask(int foreign_idTask) {
         this.foreign_idTask = foreign_idTask;
+    }
+
+    public String getType_subtask() {
+        return type_subtask;
+    }
+
+    public void setType_subtask(String type_subtask) {
+        this.type_subtask = type_subtask;
     }
 }

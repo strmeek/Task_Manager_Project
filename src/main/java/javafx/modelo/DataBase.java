@@ -109,8 +109,8 @@ public class DataBase {
         try{
             connection = DriverManager.getConnection(db_Url,db_User,db_Password);
             psAddSubtask = connection.prepareStatement("INSERT INTO subtask " +
-                    "(title_subtask, description_subtask, priority_subtask, status_subtask, created_at, planned_start, planned_finish, id_task) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    "(title_subtask, description_subtask, priority_subtask, status_subtask, created_at, planned_start, planned_finish, type_subtask, id_task) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             psAddSubtask.setString(1, subtask.getTitle_subtask());
             psAddSubtask.setString(2, subtask.getDescription_subtask());
@@ -118,7 +118,8 @@ public class DataBase {
             psAddSubtask.setString(4, subtask.getStatus_subtask());
             psAddSubtask.setDate(6, Date.valueOf(subtask.getSubtask_plannedStart()));
             psAddSubtask.setDate(7, Date.valueOf(subtask.getSubtask_plannedFinish()));
-            psAddSubtask.setInt(8, subtask.getForeign_idTask());
+            psAddSubtask.setString(8,subtask.getType_subtask());
+            psAddSubtask.setInt(9, subtask.getForeign_idTask());
 
             Timestamp createdAt = new Timestamp(System.currentTimeMillis());
             psAddSubtask.setTimestamp(5, createdAt);
@@ -457,6 +458,7 @@ public class DataBase {
             while (resultSet.next()){
                 Subtask subtask = new Subtask();
                 subtask.setId_subtask(resultSet.getInt("id_subtask"));
+                subtask.setType_subtask(resultSet.getString("type_subtask"));
                 subtask.setTitle_subtask(resultSet.getString("title_subtask"));
                 subtask.setDescription_subtask(resultSet.getString("description_subtask"));
                 subtask.setPriority_subtask(resultSet.getString("priority_subtask"));
@@ -480,7 +482,6 @@ public class DataBase {
                 } else {
                     subtask.setSubtask_updatedAt(resultSet.getDate("updated_at").toString());
                 }
-
                 grid.add(subtask);
             }
         } catch (SQLException e) {

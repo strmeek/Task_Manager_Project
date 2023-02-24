@@ -148,6 +148,8 @@ public class MainController implements Initializable {
 
     @FXML
     private ComboBox<String> comboBox_type_add;
+    @FXML
+    private ComboBox<String> comboBox_type_addSubtask;
 
     @FXML
     private DatePicker datepicker_PFinish;
@@ -237,7 +239,7 @@ public class MainController implements Initializable {
     private VBox vbox_New_Project;
 
     @FXML
-    private VBox vbox_New_Subtask;
+    private AnchorPane vbox_New_Subtask;
 
     @FXML
     private AnchorPane vbox_New_Task;
@@ -276,6 +278,7 @@ public class MainController implements Initializable {
     private TextField txtField_search_menu;
 
     ObservableList<String> list_type = FXCollections.observableArrayList();
+    ObservableList<String> list_type_subtasks = FXCollections.observableArrayList();
     ObservableList<String> list_priority = FXCollections.observableArrayList();
 
     private List<Task> tasks;
@@ -298,9 +301,12 @@ public class MainController implements Initializable {
         comboBox_type_add.setItems(list_type);
         //comboBoxType_expand.setItems(list_type);
 
+        list_type_subtasks.addAll("Documentation", "Coding");
+        comboBox_type_addSubtask.setItems(list_type_subtasks);
+
         list_priority.addAll("High", "Medium", "Low");
         comboBox_priority_add.setItems(list_priority);
-        //comboBox_priority_addSubtask.setItems(list_priority);
+        comboBox_priority_addSubtask.setItems(list_priority);
         //comboBoxPriority_expand.setItems(list_priority);
 
         /* CLOSE BUTTON */
@@ -369,6 +375,13 @@ public class MainController implements Initializable {
                 vbox_add.toBack();
             }
         });
+
+        bt_close_newSubtask.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                vbox_New_Subtask.toBack();
+            }
+        });
         /*Collapse add tabs*/
         /*bt_close_newProject.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -377,13 +390,6 @@ public class MainController implements Initializable {
                 vbox_add.toBack();
             }
         });*/
-
-        bt_create_add.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-
-            }
-        });
 
         bt_create_add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -425,12 +431,13 @@ public class MainController implements Initializable {
                 }
             }
         });
-        /*bt_create_addSubtask.setOnAction(new EventHandler<ActionEvent>() {
+        bt_create_addSubtask.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 String title = txtfield_title_addSubtask.getText();
                 String description = txtarea_description_addSubtask.getText();
                 String priority = comboBox_priority_addSubtask.getValue();
+                String type = comboBox_type_addSubtask.getValue();
                 String status = "To-Do";
                 //transforming planning start and finish to date
 
@@ -445,7 +452,8 @@ public class MainController implements Initializable {
                 if(!title.isEmpty() &&
                         !description.isEmpty() &&
                         !status.isEmpty() &&
-                        !priority.isEmpty()){
+                        !priority.isEmpty() &&
+                        !type.isEmpty()){
                     try{
                         Subtask subtask = new Subtask();
                         subtask.setSubtask_plannedFinish(planned_Finish.toString());
@@ -454,6 +462,7 @@ public class MainController implements Initializable {
                         subtask.setSubtask_plannedStart(plannedStart.toString());
                         subtask.setTitle_subtask(title);
                         subtask.setDescription_subtask(description);
+                        subtask.setType_subtask(type);
                         subtask.setForeign_idTask(saveTask);
 
                         DataBase.addSubTask(subtask);
@@ -464,7 +473,7 @@ public class MainController implements Initializable {
                     }
                 }
             }
-        });*/
+        });
     }
         public void refreshGridTasks(){
             grid_vbox_tasks.getChildren().clear();
@@ -496,7 +505,7 @@ public class MainController implements Initializable {
             }
         }
 
-    /*public void refreshGridSubtasks(){
+    public void refreshGridSubtasks(){
         grid_subtasks.getChildren().clear();
         int idTask = saveTask;
 
@@ -510,21 +519,22 @@ public class MainController implements Initializable {
             for(int i=0; i<subtasks.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("subtask.fxml"));
-                VBox block = fxmlLoader.load();
+                VBox subtaskBlock = fxmlLoader.load();
                 SubtaskController subtaskController = fxmlLoader.getController();
                 subtaskController.setSubtaskData(subtasks.get(i));
                 subtaskController.setMainController(this);
 
-                if(columns == 1){
+                if(columns == 5){
                     columns = 0;
                     ++row;
                 }
-                grid_subtasks.add(block, columns++,row);
+                grid_subtasks.add(subtaskBlock, columns++,row);
+                GridPane.setMargin(subtaskBlock, new Insets(12));
             }
         }catch(IOException e){
             e.printStackTrace();
         }
-    }*/
+    }
 
         public void toFrontExpand(Task task) {
             vbox_expand.toFront();

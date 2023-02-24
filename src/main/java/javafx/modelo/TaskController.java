@@ -144,9 +144,9 @@ public class TaskController{
     public void callRefreshGridTasks(){
         mainController.refreshGridTasks();
     }
-    /*public void callRefreshGridSubtasks(){
+    public void callRefreshGridSubtasks(){
         mainController.refreshGridSubtasks();
-    }*/
+    }
     /* ------------------------------------ */
     @FXML
     private void btDeleteTaskAction(ActionEvent event) {
@@ -164,12 +164,7 @@ public class TaskController{
     @FXML
     private void btAddSubtaskAction(ActionEvent event){
         mainController.toFrontNewSubtask(task);
-        //callRefreshGridSubtasks();
-    }
-    @FXML
-    public void btExpandTaskAction(ActionEvent event){
-        mainController.toFrontExpand(task);
-        //callRefreshGridSubtasks();
+        callRefreshGridSubtasks();
     }
 
     @FXML
@@ -233,9 +228,10 @@ public class TaskController{
             pause.play();
         }
     }
-    public void mouseClickExpand() {
+    public void btExpandTaskAction() {
         if (!isEditing) {
             mainController.toFrontExpand(task);
+            callRefreshGridSubtasks();
         } else{
             txtField_title.setEditable(true);
             isEditing = true;

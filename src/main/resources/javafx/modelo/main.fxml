@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="background-anchor" prefHeight="720.0" prefWidth="1280.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.modelo.MainController">
    <children>
@@ -136,37 +137,6 @@
                         <Insets bottom="20.0" left="40.0" right="40.0" />
                      </padding>
                   </VBox>
-                  <VBox id="vbox-home" fx:id="vbox_home" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0" styleClass="background" stylesheets="@style.css" StackPane.alignment="TOP_CENTER">
-                     <children>
-                        <VBox>
-                           <children>
-                              <Label styleClass="header-label" stylesheets="@style.css" text="Projects" />
-                              <ScrollPane prefHeight="200.0" prefWidth="200.0" />
-                           </children>
-                        </VBox>
-                        <HBox alignment="TOP_CENTER" spacing="24.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <VBox prefHeight="406.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label styleClass="header-label" stylesheets="@style.css" text="Duty Calls" />
-                                    <ScrollPane fitToHeight="true" prefHeight="378.0" prefWidth="229.0" VBox.vgrow="ALWAYS" />
-                                 </children>
-                              </VBox>
-                              <VBox prefWidth="600.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label styleClass="header-label" stylesheets="@style.css" text="For Today" />
-                                    <ScrollPane fitToHeight="true" prefHeight="378.0" prefWidth="1075.0" VBox.vgrow="ALWAYS" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                     <StackPane.margin>
-                        <Insets />
-                     </StackPane.margin>
-                     <padding>
-                        <Insets bottom="20.0" left="40.0" right="40.0" top="12.0" />
-                     </padding></VBox>
                   <VBox fx:id="vbox_config" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
                      <children>
                         <Label text="CONFIG" textFill="WHITE" />
@@ -174,11 +144,6 @@
                   <VBox fx:id="vbox_New_Project" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
                      <children>
                         <Label text="NEW Project" />
-                     </children>
-                  </VBox>
-                  <VBox fx:id="vbox_New_Subtask" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
-                     <children>
-                        <Label text="NEW SUBTASK" />
                      </children>
                   </VBox>
                   <AnchorPane fx:id="vbox_add" prefHeight="670.0" prefWidth="1037.0">
@@ -238,30 +203,58 @@
                         <Insets left="40.0" right="40.0" />
                      </padding>
                   </VBox>
-                  <VBox fx:id="vbox_expand" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
-                     <padding>
-                        <Insets bottom="20.0" left="40.0" right="40.0" />
-                     </padding>
+                  <VBox id="vbox-home" fx:id="vbox_home" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0" styleClass="background" stylesheets="@style.css" StackPane.alignment="TOP_CENTER">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                        <VBox>
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                              <ScrollPane id="tasks-scrollpane" prefHeight="400.0" prefWidth="1200.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER">
+                              <Label styleClass="header-label" stylesheets="@style.css" text="Projects" />
+                              <ScrollPane prefHeight="200.0" prefWidth="200.0">
                                  <content>
-                                    <GridPane id="grid-tasks" fx:id="grid_subtasks" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" styleClass="background" stylesheets="@style.css">
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
+                                    <GridPane fx:id="grid_projects_home" prefHeight="0.0" prefWidth="3.0">
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
                                     </GridPane>
-                                 </content>
-                                 <padding>
-                                    <Insets left="3.0" right="2.0" />
-                                 </padding>
-                              </ScrollPane>
+                                 </content></ScrollPane>
                            </children>
                         </VBox>
+                        <HBox alignment="TOP_CENTER" spacing="24.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox prefHeight="406.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="header-label" stylesheets="@style.css" text="Duty Calls" />
+                                    <ScrollPane fitToHeight="true" prefHeight="378.0" prefWidth="229.0">
+                                       <content>
+                                          <GridPane fx:id="grid_urgent_home" prefHeight="0.0" prefWidth="0.0">
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                          </GridPane>
+                                       </content></ScrollPane>
+                                 </children>
+                              </VBox>
+                              <VBox prefWidth="600.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="header-label" stylesheets="@style.css" text="For Today" />
+                                    <ScrollPane fitToHeight="true" prefHeight="378.0" prefWidth="1075.0" VBox.vgrow="ALWAYS">
+                                       <content>
+                                          <GridPane fx:id="grid_today_home" prefHeight="0.0" prefWidth="0.0">
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                          </GridPane>
+                                       </content></ScrollPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                      </children>
-                  </VBox>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                     <padding>
+                        <Insets bottom="20.0" left="40.0" right="40.0" top="12.0" />
+                     </padding></VBox>
                   <AnchorPane fx:id="vbox_New_Task" StackPane.alignment="TOP_CENTER">
                      <children>
                         <VBox id="vbox-add-tasks" alignment="CENTER" layoutX="415.0" layoutY="110.0" prefHeight="450.0" prefWidth="450.0" spacing="12.0" stylesheets="@style.css">
@@ -293,7 +286,7 @@
                                  <children>
                                     <DatePicker fx:id="datepicker_PStart" promptText="Planned Start" styleClass="datepickers-createTask" stylesheets="@style.css">
                                        <effect>
-                                          <ColorAdjust contrast="0.25" />
+                                          <ColorAdjust contrast="-0.25" />
                                        </effect></DatePicker>
                                     <DatePicker fx:id="datepicker_PFinish" promptText="Planned Finish" styleClass="datepickers-createTask" stylesheets="@style.css">
                                        <effect>
@@ -320,6 +313,93 @@
                         </VBox>
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="vbox_New_Subtask">
+                     <children>
+                        <VBox id="vbox-newsubtask" alignment="CENTER" layoutX="415.0" layoutY="110.0" prefHeight="450.0" prefWidth="450.0" spacing="12.0" styleClass="background" stylesheets="@style.css">
+                           <children>
+                              <Button id="bt-close" fx:id="bt_close_newSubtask" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="menu-buttons" stylesheets="@style.css" translateX="185.0" translateY="5.0">
+                                 <graphic>
+                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/close_104px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Label id="create-task-header" alignment="CENTER" prefHeight="30.0" prefWidth="394.0" stylesheets="@style.css" text="Create Subtask">
+                                 <VBox.margin>
+                                    <Insets bottom="12.0" top="-12.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField id="txtField-title-createTask" fx:id="txtfield_title_addSubtask" prefHeight="40.0" promptText="Title(144 caracteres)" stylesheets="@style.css" />
+                              <TextArea id="txtField-description-createTask" fx:id="txtarea_description_addSubtask" prefHeight="120.0" prefWidth="200.0" promptText="Description" styleClass="text-area" stylesheets="@style.css" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </TextArea>
+                              <HBox prefHeight="21.0" prefWidth="450.0" spacing="8.0">
+                                 <children>
+                                    <ComboBox fx:id="comboBox_type_addSubtask" prefHeight="32.0" prefWidth="193.0" promptText="Type" styleClass="combo-boxes-createTask" />
+                                    <ComboBox fx:id="comboBox_priority_addSubtask" prefWidth="193.0" promptText="Priority" styleClass="combo-boxes-createTask" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="14.0" prefWidth="450.0" spacing="8.0">
+                                 <children>
+                                    <DatePicker fx:id="datepicker_PStartSubtask" promptText="Planned Start" styleClass="datepickers-createTask" stylesheets="@style.css">
+                                       <effect>
+                                          <ColorAdjust contrast="-0.25" />
+                                       </effect>
+                                    </DatePicker>
+                                    <DatePicker fx:id="datepicker_PFinishSubtask" promptText="Planned Finish" styleClass="datepickers-createTask" stylesheets="@style.css">
+                                       <effect>
+                                          <ColorAdjust contrast="-0.25" />
+                                       </effect>
+                                    </DatePicker>
+                                 </children>
+                              </HBox>
+                              <Button id="create-button" fx:id="bt_create_addSubtask" alignment="CENTER" graphicTextGap="8.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" stylesheets="@style.css" text="Create!">
+                                 <graphic>
+                                    <ImageView fx:id="imgView_plus_createTask1" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/plus_math_104px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" top="12.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <VBox id="vbox-expand" fx:id="vbox_expand" prefHeight="200.0" prefWidth="100.0" stylesheets="@style.css">
+                     <padding>
+                        <Insets bottom="20.0" left="40.0" right="40.0" />
+                     </padding>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                              <ScrollPane id="tasks-scrollpane" prefHeight="400.0" prefWidth="1200.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER">
+                                 <content>
+                                    <GridPane id="grid-tasks" fx:id="grid_subtasks" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" styleClass="background" stylesheets="@style.css">
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </content>
+                                 <padding>
+                                    <Insets left="3.0" right="2.0" />
+                                 </padding>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
                </children>
                <VBox.margin>
                   <Insets />

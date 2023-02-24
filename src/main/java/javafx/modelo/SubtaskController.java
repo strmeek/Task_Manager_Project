@@ -36,6 +36,9 @@ public class SubtaskController {
     private Label labelPrioritySubtask;
 
     @FXML
+    private Label labelTypeSubtask;
+
+    @FXML
     private Label labelStatusSubtask;
 
     @FXML
@@ -54,6 +57,7 @@ public class SubtaskController {
         txtFieldTitle.setText(subtask.getTitle_subtask());
         txtFieldDescription.setText(subtask.getDescription_subtask());
         labelPrioritySubtask.setText(subtask.getPriority_subtask());
+        labelTypeSubtask.setText(subtask.getType_subtask());
         labelStatusSubtask.setText(subtask.getStatus_subtask());
         labelPlannedStart.setText(subtask.getSubtask_plannedStart());
         labelPlannedEnd.setText(subtask.getSubtask_plannedFinish());
@@ -66,7 +70,7 @@ public class SubtaskController {
         this.mainController = mainController;
     }
     public void callRefreshGridSubtasks(){
-        //mainController.refreshGridSubtasks();
+        mainController.refreshGridSubtasks();
     }
     /* ------------------------------------ */
 
