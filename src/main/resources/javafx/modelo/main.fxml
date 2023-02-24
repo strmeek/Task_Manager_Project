@@ -181,28 +181,6 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <VBox id="vbox-tasks" fx:id="vbox_task" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css" StackPane.alignment="TOP_CENTER">
-                     <children>
-                        <HBox id="tasks-filters-hbox" prefHeight="150.0" prefWidth="200.0" stylesheets="@style.css" />
-                        <ScrollPane id="tasks-scrollpane" prefHeight="520.0" prefWidth="1200.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
-                           <content>
-                              <GridPane id="grid-tasks" fx:id="grid_vbox_tasks" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" styleClass="background" stylesheets="@style.css">
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                              </GridPane>
-                           </content>
-                           <padding>
-                              <Insets left="3.0" right="2.0" />
-                           </padding></ScrollPane>
-                     </children>
-                     <StackPane.margin>
-                        <Insets />
-                     </StackPane.margin>
-                     <padding>
-                        <Insets left="40.0" right="40.0" />
-                     </padding>
-                  </VBox>
                   <VBox id="vbox-home" fx:id="vbox_home" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0" styleClass="background" stylesheets="@style.css" StackPane.alignment="TOP_CENTER">
                      <children>
                         <VBox>
@@ -376,15 +354,37 @@
                         </VBox>
                      </children>
                   </AnchorPane>
+                  <VBox id="vbox-tasks" fx:id="vbox_task" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css" StackPane.alignment="TOP_CENTER">
+                     <children>
+                        <HBox id="tasks-filters-hbox" prefHeight="150.0" prefWidth="200.0" stylesheets="@style.css" />
+                        <ScrollPane id="tasks-scrollpane" prefHeight="520.0" prefWidth="1200.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                           <content>
+                              <GridPane id="grid-tasks" fx:id="grid_vbox_tasks" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" styleClass="background" stylesheets="@style.css">
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
+                           </content>
+                           <padding>
+                              <Insets left="3.0" right="2.0" />
+                           </padding></ScrollPane>
+                     </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                     <padding>
+                        <Insets left="40.0" right="40.0" />
+                     </padding>
+                  </VBox>
                   <VBox id="vbox-expand" fx:id="vbox_expand" prefHeight="200.0" prefWidth="100.0" stylesheets="@style.css">
                      <padding>
-                        <Insets bottom="20.0" left="40.0" right="40.0" />
+                        <Insets bottom="20.0" left="32.0" right="32.0" />
                      </padding>
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                        <VBox prefHeight="200.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                              <ScrollPane id="tasks-scrollpane" prefHeight="400.0" prefWidth="1200.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER">
+                              <ScrollPane id="tasks-scrollpane" prefHeight="400.0" prefWidth="1200.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                                  <content>
                                     <GridPane id="grid-tasks" fx:id="grid_subtasks" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" styleClass="background" stylesheets="@style.css">
                                        <rowConstraints>

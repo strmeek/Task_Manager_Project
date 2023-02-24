@@ -1,13 +1,19 @@
 package javafx.modelo;
 
+import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 public class SubtaskController {
 
@@ -21,7 +27,19 @@ public class SubtaskController {
     private Button bt_remove_subtask;
 
     @FXML
+    private ImageView imgView_Done;
+
+    @FXML
     private ImageView imgView_edit;
+
+    @FXML
+    private ImageView imgView_remove;
+
+    @FXML
+    private ImageView imgView_task_Pfinish;
+
+    @FXML
+    private ImageView imgView_task_Pstart;
 
     @FXML
     private HBox buttons_hbox;
@@ -47,9 +65,15 @@ public class SubtaskController {
     @FXML
     private TextField txtFieldTitle;
 
+    @FXML
+    private VBox vbox_subtask;
+
     private Subtask subtask;
     private int foreign_idTask;
     private MainController mainController;
+
+    private TranslateTransition animation;
+    private PauseTransition pause;
 
     private boolean isEditing = true;
 
@@ -64,6 +88,25 @@ public class SubtaskController {
 
         this.subtask = subtask;
         this.foreign_idTask = subtask.getForeign_idTask();
+
+        /*Buttons appear when you enter the task*/
+        firstStep();
+
+        vbox_subtask.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                secondStep();
+                animation(mouseEvent);
+            }
+        });
+
+        vbox_subtask.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                thirdStep();
+                animation(mouseEvent);
+            }
+        });
     }
     /*ChatGPT solution to a big error i was having*/
     public void setMainController(MainController mainController){
@@ -113,5 +156,90 @@ public class SubtaskController {
 
         DataBase.editSubtask(subtask);
         callRefreshGridSubtasks();
+    }
+
+    public void animation(MouseEvent mouseEvent) {
+        if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {
+            // Cancel any existing pause
+            if (pause != null) {
+                pause.stop();
+            }
+            // Cancel any existing animation
+            if (animation != null) {
+                animation.stop();
+            }
+            // Create and play a new animation
+            animation = new TranslateTransition(Duration.millis(300), vbox_subtask);
+            animation.setFromY(0);
+            animation.setToY(-16);
+            animation.play();
+
+            vbox_subtask.setStyle("-fx-effect: dropshadow(three-pass-box, #000, 10, 0, 10px, 10px)");
+        } else {
+            // Cancel any existing pause
+            if (pause != null) {
+                pause.stop();
+            }
+
+            // Create and play a new pause
+            pause = new PauseTransition(Duration.millis(100));
+            pause.setOnFinished(event -> {
+                // Create and play a new animation
+                animation = new TranslateTransition(Duration.millis(150), vbox_subtask);
+                animation.setToY(0);
+                animation.play();
+
+                vbox_subtask.setStyle("-fx-effect: dropshadow(three-pass-box, #000, 0, 0, 0, 0)");
+            });
+            pause.play();
+        }
+    }
+    /*The following methods were created to do the buttons appear
+     when you hover a task in the grid, and make readability better*/
+
+    public void firstStep(){
+        /*Initial position of the fxml*/
+        buttons_hbox.setStyle("-fx-scale-x: 0;");
+        buttons_hbox.setStyle("-fx-scale-y: 0;");
+        buttons_hbox.setStyle("-fx-pref-height: 0;");
+        imgView_Done.setStyle("-fx-scale-y: 0;");
+        imgView_remove.setStyle("-fx-scale-y: 0;");
+        imgView_edit.setStyle("-fx-scale-y: 0;");
+    }
+
+    public void secondStep(){
+        /*All appear when you hover the task*/
+        buttons_hbox.setStyle("-fx-scale-x: 1;");
+        buttons_hbox.setStyle("-fx-scale-y: 1;");
+        buttons_hbox.setStyle("-fx-pref-height: 60;");
+        imgView_Done.setStyle("-fx-scale-y: 1;");
+        imgView_remove.setStyle("-fx-scale-y: 1;");
+        imgView_edit.setStyle("-fx-scale-y: 1;");
+        bt_edit_subtask.setStyle("-fx-scale-y: 1;");
+        txtFieldTitle.setStyle("-fx-text-fill: -BLACK;");
+        labelStatusSubtask.setStyle("-fx-text-fill: -GRAY;");
+        labelTypeSubtask.setStyle("-fx-text-fill: -GRAY;");
+        labelPrioritySubtask.setStyle("-fx-text-fill: -GRAY;");
+        labelPlannedStart.setStyle("-fx-text-fill: -GRAY;");
+        labelPlannedEnd.setStyle("-fx-text-fill: -GRAY;");
+        imgView_task_Pstart.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px)");
+        imgView_task_Pfinish.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px)");
+    }
+    public void thirdStep(){
+        buttons_hbox.setStyle("-fx-scale-x: 0;");
+        buttons_hbox.setStyle("-fx-scale-y: 0;");
+        buttons_hbox.setStyle("-fx-pref-height: 0;");
+        imgView_Done.setStyle("-fx-scale-y: 0;");
+        imgView_remove.setStyle("-fx-scale-y: 0;");
+        imgView_edit.setStyle("-fx-scale-y: 0;");
+        bt_edit_subtask.setStyle("-fx-scale-y: 0;");
+        txtFieldTitle.setStyle("-fx-text-fill: -WHITE;");
+        labelStatusSubtask.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        labelTypeSubtask.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        labelPrioritySubtask.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        labelPlannedStart.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        labelPlannedEnd.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        imgView_task_Pstart.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px)");
+        imgView_task_Pfinish.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px)");
     }
 }

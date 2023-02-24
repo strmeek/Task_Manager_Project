@@ -493,7 +493,7 @@ public class MainController implements Initializable {
                     taskController.setTaskData(tasks.get(i));
                     taskController.setMainController(this);
 
-                    if (columns == 5) {
+                    if (columns == 4) {
                         columns = 0;
                         ++row;
                     }
@@ -524,7 +524,7 @@ public class MainController implements Initializable {
                 subtaskController.setSubtaskData(subtasks.get(i));
                 subtaskController.setMainController(this);
 
-                if(columns == 5){
+                if(columns == 4){
                     columns = 0;
                     ++row;
                 }

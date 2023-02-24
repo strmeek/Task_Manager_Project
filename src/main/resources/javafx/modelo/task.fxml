@@ -139,7 +139,7 @@
             </Button>
          </children>
       </VBox>
-      <HBox id="hbox-buttons-task" fx:id="buttons_hbox" alignment="CENTER" minHeight="0.0" prefHeight="30.0" prefWidth="207.0" spacing="10.0" styleClass="alignment-center" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+      <HBox id="hbox-buttons-task" fx:id="buttons_hbox" alignment="CENTER" minHeight="0.0" prefHeight="30.0" prefWidth="267.0" spacing="10.0" styleClass="alignment-center" stylesheets="@style.css" VBox.vgrow="ALWAYS">
          <children>
             <Button id="bt-confirm-task" fx:id="bt_completed_task" mnemonicParsing="false" onAction="#btCompleteTaskAction" prefHeight="30.0" prefWidth="70.0" styleClass="task-block-buttons" stylesheets="@style.css" HBox.hgrow="ALWAYS">
                <graphic>

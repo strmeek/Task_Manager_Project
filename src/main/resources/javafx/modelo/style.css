@@ -266,6 +266,11 @@ Montserrat Alternates*/
     -fx-border-width: 4px;
 }
 
+#subtask-vbox:hover,
+#subtask-vbox:focused{
+    -fx-background-color: -LIGHTER-GRAY;
+}
+
 #txtField-description-subtask{
     -fx-font: normal normal 1.0em 'Montserrat';
     -fx-text-fill: -LIGHT-GRAY;
