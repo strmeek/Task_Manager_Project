@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -142,6 +143,8 @@ public class MainController implements Initializable {
 
     @FXML
     private ComboBox<String> comboBox_priority_addSubtask;
+    @FXML
+    private ComboBox<String> comboBox_project_add;
 
     @FXML
     private ComboBox<String> comboBox_type_add;
@@ -237,7 +240,7 @@ public class MainController implements Initializable {
     private VBox vbox_New_Subtask;
 
     @FXML
-    private VBox vbox_New_Task;
+    private AnchorPane vbox_New_Task;
 
     @FXML
     private AnchorPane vbox_add;
@@ -290,15 +293,15 @@ public class MainController implements Initializable {
         /*Clock*/
         menuClock();
 
-        /*ComboBoxes items
+        /*ComboBoxes items*/
         list_type.addAll("Work", "House", "Routine", "Special");
         comboBox_type_add.setItems(list_type);
-        comboBoxType_expand.setItems(list_type);
+        //comboBoxType_expand.setItems(list_type);
 
         list_priority.addAll("High", "Medium", "Low");
         comboBox_priority_add.setItems(list_priority);
-        comboBox_priority_addSubtask.setItems(list_priority);
-        comboBoxPriority_expand.setItems(list_priority);*/
+        //comboBox_priority_addSubtask.setItems(list_priority);
+        //comboBoxPriority_expand.setItems(list_priority);
 
         /* CLOSE BUTTON */
         bt_close_menu.setOnAction(new EventHandler<ActionEvent>() {
@@ -336,13 +339,6 @@ public class MainController implements Initializable {
                 vbox_config.toFront();
             }
         });
-        /*show add options*/
-        /*bt_add_tasks.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                vbox_add.toFront();
-            }
-        });*/
         /*Shows New Tasks options*/
         bt_newtask_add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -366,13 +362,13 @@ public class MainController implements Initializable {
             }
         });
         /*Collapse add tabs*/
-        /*bt_close_newTask.setOnAction(new EventHandler<ActionEvent>() {
+        bt_close_newTask.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 vbox_New_Task.toBack();
                 vbox_add.toBack();
             }
-        });*/
+        });
         /*Collapse add tabs*/
         /*bt_close_newProject.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -382,7 +378,13 @@ public class MainController implements Initializable {
             }
         });*/
 
-        /*
+        bt_create_add.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+            }
+        });
+
         bt_create_add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -391,6 +393,14 @@ public class MainController implements Initializable {
                     String type = comboBox_type_add.getValue();
                     String priority = comboBox_priority_add.getValue();
                     String status = "To-Do";
+                    String project;
+
+                    if(comboBox_project_add.getValue() == null){
+                        project = "No Project Related";
+                    } else {
+                        project = comboBox_project_add.getValue();
+                    }
+
                     //transforming planning start and finish to date
                     LocalDateTime planned_start_dt = datepicker_PStart.getValue().atStartOfDay();
                     Timestamp planned_start_tstamp = Timestamp.valueOf(planned_start_dt);
@@ -398,15 +408,15 @@ public class MainController implements Initializable {
                     LocalDateTime planned_finish_dt = datepicker_PFinish.getValue().atStartOfDay();
                     Timestamp planned_finish_tstamp = Timestamp.valueOf(planned_finish_dt);
                     Date planned_Finish = new Date(planned_finish_tstamp.getTime());//converted
-        */
-                /*actually add to the database
+                /*actually add to the database*/
                 if (!title.isEmpty() &&
                     !description.isEmpty() &&
                     !type.isEmpty() &&
                     !status.isEmpty() && !priority.isEmpty()){
                     try {
-                        DataBase.addTask(type, title, description, priority, status, planned_Start, planned_Finish);
+                        DataBase.addTask(type, title, description, project, priority, status, planned_Start, planned_Finish);
                         refreshGridTasks();
+
                         vbox_New_Task.toBack();
                         vbox_add.toBack();
                     }catch (Exception e){
@@ -414,9 +424,8 @@ public class MainController implements Initializable {
                     }
                 }
             }
-        });*/
-        /*
-        bt_create_addSubtask.setOnAction(new EventHandler<ActionEvent>() {
+        });
+        /*bt_create_addSubtask.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 String title = txtfield_title_addSubtask.getText();

@@ -57,6 +57,7 @@ public class DataBase {
     public static void addTask(String type,
                                String title,
                                String description,
+                               String project,
                                String priority,
                                String status,
                                Date planned_start,
@@ -67,20 +68,21 @@ public class DataBase {
         try{
             connection = DriverManager.getConnection(db_Url,db_User,db_Password);
             psAdd = connection.prepareStatement("INSERT INTO task " +
-                    "(type_task,title_task,description_task,priority_task,status_task,created_at,planned_start,planned_finish) " +
-                    "VALUES (?,?,?,?,?,?,?,?)");
+                    "(type_task,title_task,description_task,project_task,priority_task,status_task,created_at,planned_start,planned_finish) " +
+                    "VALUES (?,?,?,?,?,?,?,?,?)");
             //sets with the information that came from the user
             psAdd.setString(1, type);
             psAdd.setString(2, title);
             psAdd.setString(3, description);
-            psAdd.setString(4, priority);
-            psAdd.setString(5, status);
-            psAdd.setDate(7, planned_start);
-            psAdd.setDate(8, planned_finish);
+            psAdd.setString(4, project);
+            psAdd.setString(5, priority);
+            psAdd.setString(6, status);
+            psAdd.setDate(8, planned_start);
+            psAdd.setDate(9, planned_finish);
 
             //Gets the datetime in the instant that the program adds in the DB
             Timestamp created_at = new Timestamp(System.currentTimeMillis());
-            psAdd.setTimestamp(6, created_at);
+            psAdd.setTimestamp(7, created_at);
 
             psAdd.executeUpdate();
 
@@ -293,7 +295,7 @@ public class DataBase {
             Timestamp now = new Timestamp(System.currentTimeMillis());
 
             psComplete = connection.prepareStatement("UPDATE task " +
-                    "SET status_task = \"Completed\", finished_at = \"" + now + "\" " +
+                    "SET status_task = \"Done\", finished_at = \"" + now + "\" " +
                     "WHERE id_task = ?");
             psComplete.setInt(1,task.getId_task());
 
@@ -324,7 +326,7 @@ public class DataBase {
             Timestamp now = new Timestamp(System.currentTimeMillis());
 
             psComplete = connection.prepareStatement("UPDATE subtask " +
-                    "SET status_subtask = \"Completed\", finished_at = \"" + now + "\" " +
+                    "SET status_subtask = \"Done\", finished_at = \"" + now + "\" " +
                     "WHERE id_subtask = ?");
             psComplete.setInt(1, subtask.getId_subtask());
 
@@ -355,7 +357,7 @@ public class DataBase {
             Timestamp now = new Timestamp(System.currentTimeMillis());
 
             psComplete = connection.prepareStatement("UPDATE subtask " +
-                    "SET status_subtask = \"Completed\", finished_at = \"" + now + "\" " +
+                    "SET status_subtask = \"Done\", finished_at = \"" + now + "\" " +
                     "WHERE id_task = ?");
             psComplete.setInt(1, task.getId_task());
 
@@ -394,6 +396,7 @@ public class DataBase {
                 task.setType_task(resultSet.getString("type_task"));
                 task.setTitle_task(resultSet.getString("title_task"));
                 task.setDescription_task(resultSet.getString("description_task"));
+                task.setProject_task(resultSet.getString("project_task"));
                 task.setPriority_task(resultSet.getString("priority_task"));
                 task.setStatus_task(resultSet.getString("status_task"));
                 task.setTask_created_at(resultSet.getDate("created_at").toString());

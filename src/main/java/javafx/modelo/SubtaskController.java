@@ -24,7 +24,7 @@ public class SubtaskController {
     private ImageView imgView_edit;
 
     @FXML
-    private HBox hbox_controls;
+    private HBox buttons_hbox;
 
     @FXML
     private Label labelPlannedEnd;

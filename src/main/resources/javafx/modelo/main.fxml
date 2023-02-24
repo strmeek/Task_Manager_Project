@@ -2,8 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -164,45 +167,13 @@
                      <padding>
                         <Insets bottom="20.0" left="40.0" right="40.0" top="12.0" />
                      </padding></VBox>
-                  <VBox id="vbox-tasks" fx:id="vbox_task" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css" StackPane.alignment="TOP_CENTER">
-                     <children>
-                        <HBox id="tasks-filters-hbox" prefHeight="150.0" prefWidth="200.0" stylesheets="@style.css" />
-                        <ScrollPane id="tasks-scrollpane" prefHeight="520.0" prefWidth="1200.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
-                           <content>
-                              <GridPane id="grid-tasks" fx:id="grid_vbox_tasks" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" styleClass="background" stylesheets="@style.css">
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                              </GridPane>
-                           </content>
-                           <padding>
-                              <Insets left="3.0" right="2.0" />
-                           </padding></ScrollPane>
-                     </children>
-                     <StackPane.margin>
-                        <Insets />
-                     </StackPane.margin>
-                     <padding>
-                        <Insets left="40.0" right="40.0" />
-                     </padding>
-                  </VBox>
                   <VBox fx:id="vbox_config" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
                      <children>
                         <Label text="CONFIG" textFill="WHITE" />
                      </children></VBox>
-                  <VBox fx:id="vbox_expand" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
-                     <children>
-                        <Label text="EXPAND" textFill="WHITE" />
-                     </children>
-                  </VBox>
                   <VBox fx:id="vbox_New_Project" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
                      <children>
                         <Label text="NEW Project" />
-                     </children>
-                  </VBox>
-                  <VBox fx:id="vbox_New_Task" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
-                     <children>
-                        <Label text="NEW TASK" />
                      </children>
                   </VBox>
                   <VBox fx:id="vbox_New_Subtask" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
@@ -242,6 +213,110 @@
                                  </graphic>
                               </Button>
                            </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <VBox id="vbox-tasks" fx:id="vbox_task" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css" StackPane.alignment="TOP_CENTER">
+                     <children>
+                        <HBox id="tasks-filters-hbox" prefHeight="150.0" prefWidth="200.0" stylesheets="@style.css" />
+                        <ScrollPane id="tasks-scrollpane" prefHeight="520.0" prefWidth="1200.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                           <content>
+                              <GridPane id="grid-tasks" fx:id="grid_vbox_tasks" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" styleClass="background" stylesheets="@style.css">
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
+                           </content>
+                           <padding>
+                              <Insets left="3.0" right="2.0" />
+                           </padding></ScrollPane>
+                     </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                     <padding>
+                        <Insets left="40.0" right="40.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="vbox_expand" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
+                     <padding>
+                        <Insets bottom="20.0" left="40.0" right="40.0" />
+                     </padding>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                              <ScrollPane id="tasks-scrollpane" prefHeight="400.0" prefWidth="1200.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER">
+                                 <content>
+                                    <GridPane id="grid-tasks" fx:id="grid_subtasks" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" styleClass="background" stylesheets="@style.css">
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </content>
+                                 <padding>
+                                    <Insets left="3.0" right="2.0" />
+                                 </padding>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <AnchorPane fx:id="vbox_New_Task" StackPane.alignment="TOP_CENTER">
+                     <children>
+                        <VBox id="vbox-add-tasks" alignment="CENTER" layoutX="415.0" layoutY="110.0" prefHeight="450.0" prefWidth="450.0" spacing="12.0" stylesheets="@style.css">
+                           <children>
+                              <Button id="bt-close" fx:id="bt_close_newTask" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="menu-buttons" stylesheets="@style.css" translateX="185.0" translateY="5.0">
+                                 <graphic>
+                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/close_104px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Label id="create-task-header" alignment="CENTER" prefHeight="30.0" prefWidth="394.0" stylesheets="@style.css" text="Create Task">
+                                 <VBox.margin>
+                                    <Insets bottom="12.0" top="-12.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField id="txtField-title-createTask" fx:id="txtfield_title_add" prefHeight="40.0" promptText="Title(144 caracteres)" stylesheets="@style.css" />
+                              <TextArea id="txtField-description-createTask" fx:id="txtarea_description_add" prefHeight="120.0" prefWidth="200.0" promptText="Description" styleClass="text-area" stylesheets="@style.css" wrapText="true" />
+                              <HBox prefHeight="21.0" prefWidth="450.0" spacing="8.0">
+                                 <children>
+                                    <ComboBox fx:id="comboBox_project_add" prefWidth="150.0" promptText="Project" styleClass="combo-boxes-createTask" stylesheets="@style.css" />
+                                    <ComboBox fx:id="comboBox_type_add" prefWidth="150.0" promptText="Type" styleClass="combo-boxes-createTask" />
+                                    <ComboBox fx:id="comboBox_priority_add" prefWidth="150.0" promptText="Priority" styleClass="combo-boxes-createTask" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="14.0" prefWidth="450.0" spacing="8.0">
+                                 <children>
+                                    <DatePicker fx:id="datepicker_PStart" promptText="Planned Start" styleClass="datepickers-createTask" stylesheets="@style.css">
+                                       <effect>
+                                          <ColorAdjust contrast="0.25" />
+                                       </effect></DatePicker>
+                                    <DatePicker fx:id="datepicker_PFinish" promptText="Planned Finish" styleClass="datepickers-createTask" stylesheets="@style.css">
+                                       <effect>
+                                          <ColorAdjust contrast="-0.25" />
+                                       </effect></DatePicker>
+                                 </children>
+                              </HBox>
+                              <Button id="create-button" fx:id="bt_create_add" alignment="CENTER" graphicTextGap="8.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" stylesheets="@style.css" text="Create!">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" top="12.0" />
+                                 </VBox.margin>
+                                 <graphic>
+                                    <ImageView fx:id="imgView_plus_createTask" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/plus_math_104px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
                         </VBox>
                      </children>
                   </AnchorPane>

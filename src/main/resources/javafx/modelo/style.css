@@ -100,6 +100,23 @@ Montserrat Alternates*/
     -fx-background-color: -DARK-BACKGROUND
 }
 
+.scroll-pane {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.scroll-pane:focused {
+    -fx-background-insets: 0;
+}
+
+.scroll-pane .corner {
+    -fx-background-insets: 0;
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
 /*Menu*/
 
 #menu-hbox{
@@ -203,7 +220,7 @@ Montserrat Alternates*/
 
     -fx-border-color: -LIGHTER-GRAY;
     -fx-border-radius: 16px;
-    -fx-border-width: 6px;
+    -fx-border-width: 4px;
 }
 
 #task-block:hover,
@@ -216,6 +233,7 @@ Montserrat Alternates*/
 }
 
 #bt-confirm-task:hover {
+    -fx-pref-height: 0px;
     -fx-background-color: -CONFIRM-BT;
     -fx-background-radius: 0;
     -fx-background-radius: 0px 0px 0px 12px;
@@ -236,6 +254,21 @@ Montserrat Alternates*/
     -fx-background-color: -REMOVE-BT;
     -fx-background-radius: 0;
     -fx-background-radius: 0px 0px 12px 0px;
+}
+
+/*SUBTASKS BLOCK*/
+#subtask-vbox{
+    -fx-background-color: -PURPLEISH-BLUE;
+    -fx-background-radius: 20px;
+
+    -fx-border-color: -LIGHTER-GRAY;
+    -fx-border-radius: 16px;
+    -fx-border-width: 4px;
+}
+
+#txtField-description-subtask{
+    -fx-font: normal normal 1.0em 'Montserrat';
+    -fx-text-fill: -LIGHT-GRAY;
 }
 
 /*ADD OPTIONS*/
@@ -260,4 +293,75 @@ Montserrat Alternates*/
 #bt-create-project:hover{
     -fx-background-color: -LIGHTER-GRAY;
     -fx-background-radius: 0px 0px 32px 32px;
+}
+
+/*Add tasks tab*/
+
+#vbox-add-tasks{
+    -fx-background-color: -BLACK;
+    -fx-background-radius: 40px;
+
+    -fx-border-color: -LIGHTER-GRAY;
+    -fx-border-radius: 32px;
+    -fx-border-width: 8px;
+}
+
+#create-task-header{
+    -fx-font: normal normal 2.25em 'Bebas Neue';
+    -fx-text-fill: -WHITE;
+}
+
+.text-area .content{
+    -fx-font: normal normal 1.2em 'Questrial';
+    -fx-background-color: -GRAY;
+    -fx-text-fill: -WHITE;
+}
+
+.text-area:hover .content:hover,
+.text-area:focused .content:focused{
+    -fx-background-color: -LIGHTER-GRAY;
+    -fx-text-fill: -BLACK;
+}
+
+#txtField-title-createTask{
+    -fx-font: normal normal 1.2em 'Questrial';
+    -fx-background-color: -GRAY;
+    -fx-text-fill: -WHITE;
+}
+
+#txtField-title-createTask:hover,
+#txtField-title-createTask:focused{
+    -fx-background-color: -LIGHTER-GRAY;
+    -fx-text-fill: -BLACK;
+}
+
+.combo-boxes-createTask{
+    -fx-font: normal normal 1.2em 'Questrial';
+    -fx-background-color: -LIGHT-GRAY;
+    -fx-prompt-text-fill: -WHITE;
+    -fx-text-fill: -WHITE;
+}
+
+.combo-boxes-createTask:hover,
+.combo-boxes-createTask:focused{
+    -fx-background-color: -MATTE-WHITE;
+    -fx-prompt-text-fill: -BLACK;
+    -fx-text-fill: -BLACK;
+}
+
+.datepickers-createTask{
+    -fx-background-color: -BLACK;
+}
+
+#create-button{
+    -fx-font: normal normal 1.75em 'Bebas Neue';
+    -fx-text-fill: -WHITE;
+
+    -fx-background-radius: 8px;
+    -fx-background-color: -GREEN;
+}
+
+#create-button:hover{
+    -fx-background-color: -MATTE-WHITE;
+    -fx-text-fill: -BLACK;
 }

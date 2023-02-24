@@ -47,7 +47,16 @@ public class TaskController{
     @FXML
     private Button bt_type_task;
     @FXML
+    private ImageView imgView_Done;
+
+    @FXML
+    private ImageView imgView_addSubtask;
+
+    @FXML
     private ImageView imgView_edit;
+
+    @FXML
+    private ImageView imgView_remove;
     @FXML
     private ImageView imgView_task_Pfinish;
 
@@ -110,25 +119,12 @@ public class TaskController{
         this.task = task;
 
         /*Buttons appear when you enter the task*/
-        buttons_hbox.setStyle("-fx-scale-x: 0;");
-        buttons_hbox.setStyle("-fx-scale-y: 0;");
+        firstStep();
 
         vbox_task_fxml.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                buttons_hbox.setStyle("-fx-scale-x: 1;");
-                buttons_hbox.setStyle("-fx-scale-y: 1;");
-                txtField_title.setStyle("-fx-text-fill: -BLACK;");
-                label_status.setStyle("-fx-text-fill: -GRAY;");
-                label_type.setStyle("-fx-text-fill: -GRAY;");
-                label_priority.setStyle("-fx-text-fill: -GRAY;");
-                label_Pstart.setStyle("-fx-text-fill: -GRAY;");
-                label_Pfinish.setStyle("-fx-text-fill: -GRAY;");
-                label_project.setStyle("-fx-text-fill: -GRAY;");
-                imgView_task_project.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px)");
-                imgView_task_Pstart.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px)");
-                imgView_task_Pfinish.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px)");
-
+                secondStep();
                 animation(mouseEvent);
             }
         });
@@ -136,19 +132,7 @@ public class TaskController{
         vbox_task_fxml.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                buttons_hbox.setStyle("-fx-scale-x: 0;");
-                buttons_hbox.setStyle("-fx-scale-y: 0;");
-                txtField_title.setStyle("-fx-text-fill: -WHITE;");
-                label_status.setStyle("-fx-text-fill: -LIGHT-GRAY;");
-                label_type.setStyle("-fx-text-fill: -LIGHT-GRAY;");
-                label_priority.setStyle("-fx-text-fill: -LIGHT-GRAY;");
-                label_Pstart.setStyle("-fx-text-fill: -LIGHT-GRAY;");
-                label_Pfinish.setStyle("-fx-text-fill: -LIGHT-GRAY;");
-                label_project.setStyle("-fx-text-fill: -LIGHT-GRAY;");
-                imgView_task_project.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px)");
-                imgView_task_Pstart.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px)");
-                imgView_task_Pfinish.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px)");
-
+                thirdStep();
                 animation(mouseEvent);
             }
         });
@@ -256,5 +240,60 @@ public class TaskController{
             txtField_title.setEditable(true);
             isEditing = true;
         }
+    }
+    /*The following methods were created to do the buttons appear
+     when you hover a task in the grid, and make readability better*/
+
+    public void firstStep(){
+        /*Initial position of the fxml*/
+        buttons_hbox.setStyle("-fx-scale-x: 0;");
+        buttons_hbox.setStyle("-fx-scale-y: 0;");
+        buttons_hbox.setStyle("-fx-pref-height: 0;");
+        imgView_Done.setStyle("-fx-scale-y: 0;");
+        imgView_addSubtask.setStyle("-fx-scale-y: 0;");
+        imgView_remove.setStyle("-fx-scale-y: 0;");
+        imgView_edit.setStyle("-fx-scale-y: 0;");
+    }
+
+    public void secondStep(){
+        /*All appear when you hover the task*/
+        buttons_hbox.setStyle("-fx-scale-x: 1;");
+        buttons_hbox.setStyle("-fx-scale-y: 1;");
+        buttons_hbox.setStyle("-fx-pref-height: 30;");
+        imgView_Done.setStyle("-fx-scale-y: 1;");
+        imgView_addSubtask.setStyle("-fx-scale-y: 1;");
+        imgView_remove.setStyle("-fx-scale-y: 1;");
+        imgView_edit.setStyle("-fx-scale-y: 1;");
+        bt_edit_task.setStyle("-fx-scale-y: 1;");
+        txtField_title.setStyle("-fx-text-fill: -BLACK;");
+        label_status.setStyle("-fx-text-fill: -GRAY;");
+        label_type.setStyle("-fx-text-fill: -GRAY;");
+        label_priority.setStyle("-fx-text-fill: -GRAY;");
+        label_Pstart.setStyle("-fx-text-fill: -GRAY;");
+        label_Pfinish.setStyle("-fx-text-fill: -GRAY;");
+        label_project.setStyle("-fx-text-fill: -GRAY;");
+        imgView_task_project.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px)");
+        imgView_task_Pstart.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px)");
+        imgView_task_Pfinish.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px)");
+    }
+    public void thirdStep(){
+        buttons_hbox.setStyle("-fx-scale-x: 0;");
+        buttons_hbox.setStyle("-fx-scale-y: 0;");
+        buttons_hbox.setStyle("-fx-pref-height: 0;");
+        imgView_Done.setStyle("-fx-scale-y: 0;");
+        imgView_addSubtask.setStyle("-fx-scale-y: 0;");
+        imgView_remove.setStyle("-fx-scale-y: 0;");
+        imgView_edit.setStyle("-fx-scale-y: 0;");
+        bt_edit_task.setStyle("-fx-scale-y: 0;");
+        txtField_title.setStyle("-fx-text-fill: -WHITE;");
+        label_status.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        label_type.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        label_priority.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        label_Pstart.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        label_Pfinish.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        label_project.setStyle("-fx-text-fill: -LIGHT-GRAY;");
+        imgView_task_project.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px)");
+        imgView_task_Pstart.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px)");
+        imgView_task_Pfinish.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px)");
     }
 }
