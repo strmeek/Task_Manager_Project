@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -39,35 +39,12 @@ public class MainController implements Initializable {
 
     /* FXML VARIABLES MADE BY SCENEBUILDER for example:*/
 
-    @FXML
-    private AnchorPane anchorpane;
-
-    @FXML
-    private Button btClose_expand;
-
-    @FXML
-    private Button bt_add_home;
 
     @FXML
     private Button bt_add_menu;
 
     @FXML
-    private Button bt_add_projects;
-
-    @FXML
-    private Button bt_add_tasks;
-
-    @FXML
-    private Button bt_all_tasks;
-
-    @FXML
-    private Button bt_close_add;
-
-    @FXML
-    private Button bt_close_newBlock;
-
-    @FXML
-    private Button bt_close_newProject;
+    private Button bt_close_menu;
 
     @FXML
     private Button bt_close_newSubtask;
@@ -85,19 +62,7 @@ public class MainController implements Initializable {
     private Button bt_create_addSubtask;
 
     @FXML
-    private Button bt_filter_close;
-
-    @FXML
-    private Button bt_filters_tasks;
-
-    @FXML
     private Button bt_home_menu;
-
-    @FXML
-    private Button bt_leftarrow_tasks;
-
-    @FXML
-    private Button bt_newblock_add;
 
     @FXML
     private Button bt_newproject_add;
@@ -109,45 +74,23 @@ public class MainController implements Initializable {
     private Button bt_projects_menu;
 
     @FXML
-    private Button bt_rightarrow_tasks;
-
-    @FXML
-    private Button bt_search_config;
-
-    @FXML
-    private Button bt_search_home;
-
-    @FXML
-    private Button bt_search_projects;
-
-    @FXML
-    private Button bt_search_tasks;
+    private Button bt_search_menu;
 
     @FXML
     private Button bt_tasks_menu;
-
-    @FXML
-    private Button bt_today_tasks;
-
-    @FXML
-    private Button bt_tomorrow_tasks;
-
-    @FXML
-    private ComboBox<String> comboBoxPriority_expand;
-
-    @FXML
-    private ComboBox<String> comboBoxType_expand;
 
     @FXML
     private ComboBox<String> comboBox_priority_add;
 
     @FXML
     private ComboBox<String> comboBox_priority_addSubtask;
+
     @FXML
     private ComboBox<String> comboBox_project_add;
 
     @FXML
     private ComboBox<String> comboBox_type_add;
+
     @FXML
     private ComboBox<String> comboBox_type_addSubtask;
 
@@ -164,31 +107,28 @@ public class MainController implements Initializable {
     private DatePicker datepicker_PStartSubtask;
 
     @FXML
-    private Label expandCreatedAt;
-
-    @FXML
-    private Label expandPlannedStart;
-
-    @FXML
-    private Label expandUpdatedAt;
-
-    @FXML
-    private Label expand_idTask;
-
-    @FXML
-    private GridPane grid_home;
-
-    @FXML
     private GridPane grid_projects;
+
+    @FXML
+    private GridPane grid_projects_home;
 
     @FXML
     private GridPane grid_subtasks;
 
     @FXML
+    private GridPane grid_today_home;
+
+    @FXML
+    private GridPane grid_urgent_home;
+
+    @FXML
     private GridPane grid_vbox_tasks;
 
     @FXML
-    private ImageView imgViewStatus_Expand;
+    private ImageView imgView_plus_createTask;
+
+    @FXML
+    private ImageView imgView_plus_createTask1;
 
     @FXML
     private Label menu_Clock;
@@ -200,13 +140,7 @@ public class MainController implements Initializable {
     private Label menu_Day;
 
     @FXML
-    private TextField txtFieldDescription_expand;
-
-    @FXML
-    private TextField txtFieldFinishDate_expand;
-
-    @FXML
-    private TextField txtFieldTitle_expand;
+    private TextField txtField_search_menu;
 
     @FXML
     private TextArea txtarea_description_add;
@@ -215,25 +149,10 @@ public class MainController implements Initializable {
     private TextArea txtarea_description_addSubtask;
 
     @FXML
-    private TextField txtfield_search_config;
-
-    @FXML
-    private TextField txtfield_search_home;
-
-    @FXML
-    private TextField txtfield_search_projects;
-
-    @FXML
-    private TextField txtfield_search_tasks;
-
-    @FXML
     private TextField txtfield_title_add;
 
     @FXML
     private TextField txtfield_title_addSubtask;
-
-    @FXML
-    private VBox vbox_New_Block;
 
     @FXML
     private VBox vbox_New_Project;
@@ -248,19 +167,16 @@ public class MainController implements Initializable {
     private AnchorPane vbox_add;
 
     @FXML
+    private ScrollPane scrollpane_projects_home;
+
+    @FXML
     private VBox vbox_config;
 
     @FXML
     private VBox vbox_expand;
 
     @FXML
-    private VBox vbox_filters;
-
-    @FXML
     private VBox vbox_home;
-
-    @FXML
-    private VBox vbox_menu;
 
     @FXML
     private VBox vbox_projects;
@@ -268,19 +184,11 @@ public class MainController implements Initializable {
     @FXML
     private VBox vbox_task;
 
-
-    @FXML
-    private Button bt_close_menu;
-    @FXML
-    private Button bt_search_menu;
-
-    @FXML
-    private TextField txtField_search_menu;
-
     ObservableList<String> list_type = FXCollections.observableArrayList();
     ObservableList<String> list_type_subtasks = FXCollections.observableArrayList();
     ObservableList<String> list_priority = FXCollections.observableArrayList();
 
+    private List<Project> projects;
     private List<Task> tasks;
     private List<Subtask> subtasks;
 
@@ -291,7 +199,9 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         /* Home always the first screen */
+        refreshHomeGridProjects();
         vbox_home.toFront();
+
 
         /*Clock*/
         menuClock();
@@ -309,6 +219,20 @@ public class MainController implements Initializable {
         comboBox_priority_addSubtask.setItems(list_priority);
         //comboBoxPriority_expand.setItems(list_priority);
 
+        grid_projects_home.setOnScroll(new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent scrollEvent) {
+                double hValue = scrollpane_projects_home.getHvalue();
+                double delta = scrollEvent.getDeltaX();
+                double width = scrollpane_projects_home.getContent().getBoundsInLocal().getWidth();
+                double viewportWidth = scrollpane_projects_home.getViewportBounds().getWidth();
+                double maxH = width - viewportWidth;
+
+                hValue = Math.min(maxH, Math.max(0, hValue - delta / width));
+                scrollpane_projects_home.setHvalue(hValue);
+            }
+        });
+
         /* CLOSE BUTTON */
         bt_close_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -320,6 +244,7 @@ public class MainController implements Initializable {
         bt_home_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                refreshHomeGridProjects();
                 vbox_home.toFront();
             }
         });
@@ -335,6 +260,7 @@ public class MainController implements Initializable {
         bt_projects_menu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                refreshGridProjects();
                 vbox_projects.toFront();
             }
         });
@@ -477,6 +403,60 @@ public class MainController implements Initializable {
                 }
             }
         });
+    }
+    public void refreshGridProjects(){
+        grid_projects.getChildren().clear();
+
+        //Task Grid
+        projects = new ArrayList<>(DataBase.gridListProjects());
+
+        int columns = 0;
+        int row = 1;
+
+        try {
+            for (int i = 0; i < projects.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("project.fxml"));
+                VBox projectBlock = fxmlLoader.load();
+                ProjectController projectController = fxmlLoader.getController();
+                projectController.setProjectData(projects.get(i));
+                projectController.setMainController(this);
+
+                if (columns == 3) {
+                    columns = 0;
+                    ++row;
+                }
+                grid_projects.add(projectBlock, columns++, row);
+                GridPane.setMargin(projectBlock, new Insets(12));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void refreshHomeGridProjects(){
+        grid_projects_home.getChildren().clear();
+
+        //Task Grid
+        projects = new ArrayList<>(DataBase.gridListProjects());
+
+        int columns = projects.size();
+        int row = 1;
+
+        try {
+            for (int i = 0; i < projects.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("project.fxml"));
+                VBox projectBlock = fxmlLoader.load();
+                ProjectController projectController = fxmlLoader.getController();
+                projectController.setProjectData(projects.get(i));
+                projectController.setMainController(this);
+
+                grid_projects_home.add(projectBlock, columns++, row);
+                GridPane.setMargin(projectBlock, new Insets(16));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
         public void refreshGridTasks(){
             grid_vbox_tasks.getChildren().clear();

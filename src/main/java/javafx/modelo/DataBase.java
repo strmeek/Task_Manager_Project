@@ -31,13 +31,13 @@ public class DataBase {
         try{
             connection = DriverManager.getConnection(db_Url,db_User,db_Password);
             psAdd = connection.prepareStatement("INSERT INTO task " +
-                    "(type_task,title_task,description_task,project_task,priority_task,status_task,created_at,planned_start,planned_finish) " +
+                    "(type_task,title_task,description_task,id_project,priority_task,status_task,created_at,planned_start,planned_finish) " +
                     "VALUES (?,?,?,?,?,?,?,?,?)");
             //sets with the information that came from the user
             psAdd.setString(1, type);
             psAdd.setString(2, title);
             psAdd.setString(3, description);
-            psAdd.setString(4, project);
+            psAdd.setInt(4, project.length());
             psAdd.setString(5, priority);
             psAdd.setString(6, status);
             psAdd.setDate(8, planned_start);
@@ -342,6 +342,68 @@ public class DataBase {
         }
     }
 
+    public static List<Project> gridListProjects() {
+        List<Project> grid = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement psList = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DriverManager.getConnection(db_Url, db_User, db_Password);
+            psList = connection.prepareStatement("SELECT * FROM project");
+            resultSet = psList.executeQuery();
+
+            while (resultSet.next()) {
+                Project project = new Project();
+                project.setId_Project(resultSet.getInt("id_project"));
+                project.setType_Project(resultSet.getString("type_project"));
+                project.setTitle_Project(resultSet.getString("title_project"));
+                project.setDescription_Project(resultSet.getString("description_project"));
+                project.setPriority_Project(resultSet.getString("priority_project"));
+                project.setStatus_Project(resultSet.getString("status_project"));
+                project.setCreatedAt_Project(resultSet.getDate("created_at").toString());
+                project.setPlannedStart_Project(resultSet.getDate("planned_start").toString());
+                project.setPlannedFinish_Project(resultSet.getDate("planned_finish").toString());
+
+                if (resultSet.getDate("updated_at") == null) {
+                    project.setUpdatedAt_Project("None");
+                } else {
+                    project.setUpdatedAt_Project(resultSet.getDate("updated_at").toString());
+                }
+                if (resultSet.getDate("started_at") == null) {
+                    project.setStartedAt_Project("None");
+                } else {
+                    project.setStartedAt_Project(resultSet.getDate("started_at").toString());
+                }
+                if (resultSet.getDate("finished_at") == null) {
+                    project.setFinishedAt_Project("None");
+                } else {
+                    project.setFinishedAt_Project(resultSet.getDate("finished_at").toString());
+                }
+
+                grid.add(project);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (psList != null) {
+                    psList.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return grid;
+    }
+
     public static List<Task> grid_List_tasks() {
         List<Task> grid = new ArrayList<>();
 
@@ -360,7 +422,7 @@ public class DataBase {
                 task.setType_task(resultSet.getString("type_task"));
                 task.setTitle_task(resultSet.getString("title_task"));
                 task.setDescription_task(resultSet.getString("description_task"));
-                task.setProject_task(resultSet.getString("project_task"));
+                //task.setProject_task(resultSet.getString("id_project"));
                 task.setPriority_task(resultSet.getString("priority_task"));
                 task.setStatus_task(resultSet.getString("status_task"));
                 task.setTask_created_at(resultSet.getDate("created_at").toString());

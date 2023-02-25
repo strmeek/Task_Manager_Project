@@ -8,6 +8,7 @@ public class Project {
     private String priority_Project;
     private String status_Project;
     private String createdAt_Project;
+    private String updatedAt_Project;
     private String startedAt_Project;
     private String finishedAt_Project;
     private String plannedStart_Project;
@@ -23,6 +24,7 @@ public class Project {
                    String priority_Project,
                    String status_Project,
                    String createdAt_Project,
+                   String updatedAt_Project,
                    String startedAt_Project,
                    String finishedAt_Project,
                    String plannedStart_Project,
@@ -34,6 +36,7 @@ public class Project {
         this.priority_Project = priority_Project;
         this.status_Project = status_Project;
         this.createdAt_Project = createdAt_Project;
+        this.updatedAt_Project = updatedAt_Project;
         this.startedAt_Project = startedAt_Project;
         this.finishedAt_Project = finishedAt_Project;
         this.plannedStart_Project = plannedStart_Project;
@@ -126,5 +129,13 @@ public class Project {
 
     public void setPlannedFinish_Project(String plannedFinish_Project) {
         this.plannedFinish_Project = plannedFinish_Project;
+    }
+
+    public String getUpdatedAt_Project() {
+        return updatedAt_Project;
+    }
+
+    public void setUpdatedAt_Project(String updatedAt_Project) {
+        this.updatedAt_Project = updatedAt_Project;
     }
 }
