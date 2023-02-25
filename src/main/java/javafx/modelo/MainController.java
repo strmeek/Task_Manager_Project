@@ -12,12 +12,10 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -242,6 +240,7 @@ public class MainController implements Initializable {
 
                 hValue = Math.min(maxH, Math.max(0, hValue - delta / width));
                 scrollpane_projects_home.setHvalue(hValue + faster);
+
                 /*double scrollDelta = scrollEvent.getDeltaY();
                 double hValue = scrollpane_projects_home.getHvalue();
                 do{

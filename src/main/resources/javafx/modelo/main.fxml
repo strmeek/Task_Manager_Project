@@ -362,7 +362,7 @@
                         <VBox>
                            <children>
                               <Label styleClass="header-label" stylesheets="@style.css" text="Projects" />
-                              <ScrollPane fx:id="scrollpane_projects_home" fitToWidth="true" minHeight="300.0" prefHeight="300.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER">
+                              <ScrollPane fx:id="scrollpane_projects_home" fitToWidth="true" hbarPolicy="NEVER" minHeight="300.0" prefHeight="300.0" styleClass="transparent" stylesheets="@style.css">
                                  <content>
                                     <GridPane fx:id="grid_projects_home" prefHeight="0.0" prefWidth="3.0">
                                       <rowConstraints>
