@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox id="project-block" fx:id="vbox_task_fxml" alignment="CENTER" minHeight="275.0" minWidth="375.0" onMouseClicked="#btExpandTaskAction" prefHeight="275.0" prefWidth="375.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" layoutX="20.0" layoutY="20.0" onMouseClicked="#btExpandTaskAction" prefHeight="40.0" prefWidth="263.0" styleClass="alignment-center" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+         <children>
+            <Button fx:id="bt_status_task" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#btExpandTaskAction" prefHeight="27.0" prefWidth="100.0" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <Label id="label-status" fx:id="label_status" alignment="CENTER" contentDisplay="CENTER" prefWidth="100.0" stylesheets="@style.css" text="Status">
+                     <styleClass>
+                        <String fx:value="task-block-label" />
+                        <String fx:value="alignment-center" />
+                     </styleClass>
+                  </Label>
+               </graphic>
+               <styleClass>
+                  <String fx:value="task-block-buttons" />
+                  <String fx:value="alignment-center" />
+               </styleClass>
+            </Button>
+            <Button id="bt-type-task" fx:id="bt_type_task" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+               <styleClass>
+                  <String fx:value="task-block-buttons" />
+                  <String fx:value="alignment-center" />
+               </styleClass>
+               <graphic>
+                  <Label id="label-type-task" fx:id="label_type" onMouseClicked="#btExpandTaskAction" prefHeight="22.0" prefWidth="139.0" stylesheets="@style.css" text="Type">
+                     <styleClass>
+                        <String fx:value="task-block-label" />
+                        <String fx:value="alignment-center" />
+                     </styleClass>
+                  </Label>
+               </graphic>
+            </Button>
+            <Button id="bt-priority-task" fx:id="bt_priority_tasks" alignment="CENTER" mnemonicParsing="false" prefWidth="100.0" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <Label id="label-priority" fx:id="label_priority" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#btExpandTaskAction" prefWidth="100.0" stylesheets="@style.css" text="Priority">
+                     <styleClass>
+                        <String fx:value="task-block-label" />
+                        <String fx:value="alignment-center" />
+                     </styleClass>
+                  </Label>
+               </graphic>
+               <styleClass>
+                  <String fx:value="task-block-buttons" />
+                  <String fx:value="alignment-center" />
+               </styleClass>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin>
+      </HBox>
+      <VBox>
+         <children>
+            <TextField id="txtfield-title-task" fx:id="txtField_title" alignment="CENTER" onMouseClicked="#btExpandTaskAction" prefHeight="50.0" prefWidth="213.0" styleClass="alignment-center-left" stylesheets="@style.css" text="Title" />
+            <TextField id="txtField-description-subtask" alignment="TOP_LEFT" prefHeight="100.0" promptText="Description" styleClass="transparent" stylesheets="@style.css">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </TextField>
+         </children>
+      </VBox>
+      <VBox onMouseClicked="#btExpandTaskAction" stylesheets="@style.css">
+         <children>
+            <Button id="bt-pstart-task" fx:id="bt_Pstart_task" mnemonicParsing="false" prefHeight="30.0" prefWidth="214.0" stylesheets="@style.css">
+               <graphic>
+                  <Label id="label-pstart-task" fx:id="label_Pstart" alignment="CENTER" graphicTextGap="8.0" onMouseClicked="#btExpandTaskAction" prefHeight="22.0" prefWidth="203.0" styleClass="task-block-label" stylesheets="@style.css" text="PStart: DD-MM">
+                     <graphic>
+                        <ImageView fx:id="imgView_task_Pstart" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/launch_104px.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-0.25" />
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </graphic>
+               <styleClass>
+                  <String fx:value="task-block-buttons" />
+                  <String fx:value="alignment-center-left" />
+               </styleClass>
+            </Button>
+            <Button id="bt-pfinish-task" fx:id="bt_Pfinish_task" mnemonicParsing="false" prefHeight="30.0" prefWidth="215.0" stylesheets="@style.css">
+               <graphic>
+                  <Label id="label-pfinish-task" fx:id="label_Pfinish" alignment="CENTER" graphicTextGap="8.0" onMouseClicked="#btExpandTaskAction" prefHeight="22.0" prefWidth="208.0" styleClass="task-block-label" stylesheets="@style.css" text="PFinish: DD-MM" underline="true">
+                     <graphic>
+                        <ImageView fx:id="imgView_task_Pfinish" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/finish_flag_104px.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-0.25" />
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </graphic>
+               <styleClass>
+                  <String fx:value="task-block-buttons" />
+                  <String fx:value="alignment-center-left" />
+               </styleClass>
+            </Button>
+         </children>
+      </VBox>
+      <HBox id="hbox-buttons-task" fx:id="buttons_hbox" alignment="CENTER" minHeight="0.0" prefHeight="30.0" prefWidth="267.0" spacing="10.0" styleClass="alignment-center" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+         <children>
+            <Button id="bt-confirm-task" fx:id="bt_completed_task" mnemonicParsing="false" onAction="#btCompleteTaskAction" prefHeight="30.0" prefWidth="85.0" styleClass="task-block-buttons" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <ImageView id="img" fx:id="imgView_Done" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/done_104px.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="bt-addsubtask-task" fx:id="bt_addsubtask_task" mnemonicParsing="false" onAction="#btAddSubtaskAction" prefHeight="30.0" prefWidth="85.0" styleClass="task-block-buttons" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <ImageView fx:id="imgView_addSubtask" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/plus_math_104px.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="bt-edit-task" fx:id="bt_edit_task" mnemonicParsing="false" onAction="#btEditTaskAction" prefHeight="30.0" prefWidth="85.0" styleClass="task-block-buttons" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <ImageView fx:id="imgView_edit" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/edit_104px.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="bt-remove-task" fx:id="bt_remove_task" mnemonicParsing="false" onAction="#btDeleteTaskAction" prefHeight="30.0" prefWidth="85.0" styleClass="task-block-buttons" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <ImageView fx:id="imgView_remove" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/remove_104px.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -1,12 +1,9 @@
 package javafx.modelo;
 
-import java.util.Date;
-
 public class Task {
     private int id_task;
     private String type_task;
     private String title_task;
-    private String projectTask;
     private String priority_task;
     private String status_task;
     private String task_created_at;
@@ -16,6 +13,7 @@ public class Task {
     private String description_task;
     private String task_updated_at;
     private String finished_at;
+    private String foreign_idProject;//mudar para int
 
     public Task() {
     }
@@ -23,7 +21,7 @@ public class Task {
     public Task(int id_task,
                 String type_task,
                 String title_task,
-                String projectTask,
+                String foreign_idProject,
                 String priority_task,
                 String status_task,
                 String task_created_at,
@@ -36,7 +34,7 @@ public class Task {
         this.id_task = id_task;
         this.type_task = type_task;
         this.title_task = title_task;
-        this.projectTask = projectTask;
+        this.foreign_idProject = foreign_idProject;
         this.priority_task = priority_task;
         this.status_task = status_task;
         this.task_created_at = task_created_at;
@@ -145,10 +143,10 @@ public class Task {
     }
 
     public String getProject_task() {
-        return projectTask;
+        return foreign_idProject;
     }
 
     public void setProject_task(String project_task) {
-        projectTask = project_task;
+        foreign_idProject = project_task;
     }
 }

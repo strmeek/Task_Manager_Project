@@ -27,7 +27,8 @@ Montserrat Alternates*/
     -PURPLEISH-BLUE: #131862; /*Federal Blue*/
     -DARK-BLUE: #041A40; /*Oxford Blue*/
     -MEDIUM-BLUE: #0A3361; /*Berkeley Blue*/
-    -LIGHT-BLUE: #87CEEB; /*Sky Blue*/
+    -LIGHT-BLUE: #7EA0B7; /*Air superiority blue*/
+    -LIGHTER-BLUE: #87CEEB; /*Sky Blue*/
 
     /*Whites*/
     -WHITE: #FFFAFB; /*Snow White*/
@@ -37,6 +38,7 @@ Montserrat Alternates*/
     -BLACK: #121113; /*Night*/
     -DARK-GRAY: #3F3F3F; /*Onyx*/
     -GRAY: #575757; /*Davys Gray*/
+    -CADET-GRAY: #8499B1; /*CADET GRAY*/
     -LIGHT-GRAY: #C9C9C9; /*Silver*/
     -LIGHTER-GRAY: #EAEAEA; /*Platinum*/
 
@@ -194,6 +196,12 @@ Montserrat Alternates*/
 }
 
 /*Tasks Grid*/
+
+/*Projects block*/
+
+#project-block{
+    -fx-background-color: -LIGHT-BLUE;
+}
 
 /*Tasks Block*/
 

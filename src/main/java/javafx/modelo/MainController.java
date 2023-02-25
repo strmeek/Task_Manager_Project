@@ -285,7 +285,7 @@ public class MainController implements Initializable {
     private List<Subtask> subtasks;
 
     private int saveTask;
-    private boolean isOnAddTab = true;
+    private boolean isOnAddTab = false;
 
 
     @Override
@@ -365,6 +365,7 @@ public class MainController implements Initializable {
             public void handle(ActionEvent event) {
                 vbox_add.toFront();
                 closeAddTabAction();
+                isOnAddTab = true;
             }
         });
         /*Collapse add tabs*/
@@ -373,6 +374,7 @@ public class MainController implements Initializable {
             public void handle(ActionEvent actionEvent) {
                 vbox_New_Task.toBack();
                 vbox_add.toBack();
+                isOnAddTab = false;
             }
         });
 
@@ -425,6 +427,7 @@ public class MainController implements Initializable {
 
                         vbox_New_Task.toBack();
                         vbox_add.toBack();
+                        isOnAddTab = false;
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -577,6 +580,7 @@ public class MainController implements Initializable {
                 public void handle(ActionEvent event) {
                     vbox_add.toFront();
                     closeAddTabAction();
+                    isOnAddTab = true;
                 }
             });
         }
@@ -588,6 +592,7 @@ public class MainController implements Initializable {
                 public void handle(ActionEvent event) {
                     vbox_add.toBack();
                     openAddTabAction();
+                    isOnAddTab = false;
                 }
             });
         }

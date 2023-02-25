@@ -14,46 +14,9 @@ public class DataBase {
 
     /* connection = DriverManager.getConnection(db_Url,db_User,db_Password); */
 
-    /*Table: task
-    Columns:
-    id_task int AI PK
-    type_task varchar(16)
-    title_task varchar(144)
-    description_task varchar(512)
-    priority_task varchar(6)
-    status_task varchar(11)
-    created_at datetime
-    updated_at datetime
-    started_at datetime
-    finished_at datetime
-    planned_start datetime
-    planned_finish datetime
+    /*Add Project to the DB*/
 
-    to do the statements faster:
-    (type_task,title_task,description_task,priority_task,status_task,created_at,updated_at,started_at,finished_at,planned_start,planned_finish)
-    */
-
-
-
-    /*Table: subtask
-    Columns:
-    id_subtask int AI PK
-    title_subtask varchar(144)
-    description_subtask varchar(512)
-    priority_subtask varchar(6)
-    status_subtask varchar(11)
-    created_at datetime
-    started_at datetime
-    finished_at datetime
-    planned_start datetime
-    planned_finish datetime
-    id_task (foreign key)
-
-    to do the statements faster:
-    (title_subtask,description_subtask,priority_subtask,status_subtask,created_at,started_at,finished_at,planned_start,planned_finish,id_task)
-    */
-
-    /*Add the tasks to the DB*/
+    /*Add the Task to the DB*/
     public static void addTask(String type,
                                String title,
                                String description,
