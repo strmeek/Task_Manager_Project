@@ -1,5 +1,6 @@
 package javafx.modelo;
 
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,10 +12,12 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -219,17 +222,38 @@ public class MainController implements Initializable {
         comboBox_priority_addSubtask.setItems(list_priority);
         //comboBoxPriority_expand.setItems(list_priority);
 
-        grid_projects_home.setOnScroll(new EventHandler<ScrollEvent>() {
+
+        scrollpane_projects_home.setContent(grid_projects_home);
+        scrollpane_projects_home.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent scrollEvent) {
                 double hValue = scrollpane_projects_home.getHvalue();
-                double delta = scrollEvent.getDeltaX();
+                double delta = scrollEvent.getDeltaY();
                 double width = scrollpane_projects_home.getContent().getBoundsInLocal().getWidth();
                 double viewportWidth = scrollpane_projects_home.getViewportBounds().getWidth();
                 double maxH = width - viewportWidth;
 
+                double faster = 0;
+                if(delta < 0){
+                    faster = -0.06;
+                } else if( delta > 0){
+                    faster = 0.06;
+                }
+
                 hValue = Math.min(maxH, Math.max(0, hValue - delta / width));
-                scrollpane_projects_home.setHvalue(hValue);
+                scrollpane_projects_home.setHvalue(hValue + faster);
+                /*double scrollDelta = scrollEvent.getDeltaY();
+                double hValue = scrollpane_projects_home.getHvalue();
+                do{
+                    double scroll = 0;
+                    if(scrollDelta < 0){
+                        scroll = -0.01;
+                    } else if (scrollDelta > 0){
+                        scroll = 0.01;
+                    }
+                    hValue = hValue + scroll;
+                    scrollpane_projects_home.setHvalue(hValue);
+                }while(hValue <= 1 && hValue >= 0);*/
             }
         });
 
@@ -454,6 +478,11 @@ public class MainController implements Initializable {
                 grid_projects_home.add(projectBlock, columns++, row);
                 GridPane.setMargin(projectBlock, new Insets(16));
             }
+            VBox emptyBox = new VBox();
+            emptyBox.setStyle("-fx-background-color: rgba(0 ,0 ,0 ,0);");
+            emptyBox.setMinWidth(350);
+            emptyBox.setMinHeight(250);
+            grid_projects_home.add(emptyBox, columns, row);
         } catch (IOException e) {
             e.printStackTrace();
         }

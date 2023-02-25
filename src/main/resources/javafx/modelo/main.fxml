@@ -362,14 +362,20 @@
                         <VBox>
                            <children>
                               <Label styleClass="header-label" stylesheets="@style.css" text="Projects" />
-                              <ScrollPane fx:id="scrollpane_projects_home" hbarPolicy="NEVER" minHeight="300.0" prefHeight="300.0" prefWidth="200.0" styleClass="transparent" stylesheets="@style.css">
+                              <ScrollPane fx:id="scrollpane_projects_home" fitToWidth="true" minHeight="300.0" prefHeight="300.0" styleClass="transparent" stylesheets="@style.css" vbarPolicy="NEVER">
                                  <content>
                                     <GridPane fx:id="grid_projects_home" prefHeight="0.0" prefWidth="3.0">
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
                                     </GridPane>
                                  </content>
+                                 <VBox.margin>
+                                    <Insets right="-360.0" />
+                                 </VBox.margin>
                               </ScrollPane>
                            </children>
                         </VBox>
