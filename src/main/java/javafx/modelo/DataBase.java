@@ -55,44 +55,36 @@ public class DataBase {
     }
 
     /*Add the Task to the DB*/
-    public static void addTask(String type,
-                               String title,
-                               String description,
-                               String project,
-                               String priority,
-                               String status,
-                               Date planned_start,
-                               Date planned_finish){
+    public static void addTask(Task task){
         Connection connection = null;
-        PreparedStatement psAdd = null;
+        PreparedStatement psAddSubtask = null;
 
         try{
             connection = DriverManager.getConnection(db_Url,db_User,db_Password);
-            psAdd = connection.prepareStatement("INSERT INTO task " +
-                    "(type_task,title_task,description_task,id_project,priority_task,status_task,created_at,planned_start,planned_finish) " +
-                    "VALUES (?,?,?,?,?,?,?,?,?)");
-            //sets with the information that came from the user
-            psAdd.setString(1, type);
-            psAdd.setString(2, title);
-            psAdd.setString(3, description);
-            psAdd.setInt(4, project.length());
-            psAdd.setString(5, priority);
-            psAdd.setString(6, status);
-            psAdd.setDate(8, planned_start);
-            psAdd.setDate(9, planned_finish);
+            psAddSubtask = connection.prepareStatement("INSERT INTO task " +
+                    "(title_task, description_task, priority_task, status_task, created_at, planned_start, planned_finish, type_subtask, id_project) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            //Gets the datetime in the instant that the program adds in the DB
-            Timestamp created_at = new Timestamp(System.currentTimeMillis());
-            psAdd.setTimestamp(7, created_at);
+            psAddSubtask.setString(1, task.getTitle_task());
+            psAddSubtask.setString(2, task.getDescription_task());
+            psAddSubtask.setString(3, task.getPriority_task());
+            psAddSubtask.setString(4, task.getStatus_task());
+            psAddSubtask.setDate(6, Date.valueOf(task.getPlanned_start()));
+            psAddSubtask.setDate(7, Date.valueOf(task.getPlanned_finish()));
+            psAddSubtask.setString(8,task.getType_task());
+            psAddSubtask.setInt(9, task.getForeign_idProject());
 
-            psAdd.executeUpdate();
+            Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+            psAddSubtask.setTimestamp(5, createdAt);
 
-        } catch(SQLException e){
+            psAddSubtask.executeUpdate();
+
+        }catch (SQLException e){
             e.printStackTrace();
         } finally {
             try {
-                if(psAdd != null){
-                    psAdd.close();
+                if(psAddSubtask != null){
+                    psAddSubtask.close();
                 }
                 if (connection != null){
                     connection.close();
@@ -618,20 +610,20 @@ public class DataBase {
         return grid;
     }
 
-    public static List<Subtask> gridListSubtask(int idTask){
+    public static List<Subtask> gridListSubtask(int idTask) {
         List<Subtask> grid = new ArrayList<>();
 
         Connection connection = null;
         PreparedStatement psList = null;
         ResultSet resultSet = null;
 
-        try{
+        try {
             connection = DriverManager.getConnection(db_Url, db_User, db_Password);
             psList = connection.prepareStatement("SELECT * FROM subtask WHERE id_task = ?");
             psList.setInt(1, idTask);
             resultSet = psList.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Subtask subtask = new Subtask();
                 subtask.setId_subtask(resultSet.getInt("id_subtask"));
                 subtask.setType_subtask(resultSet.getString("type_subtask"));
@@ -643,17 +635,17 @@ public class DataBase {
                 subtask.setSubtask_plannedStart(resultSet.getDate("planned_start").toString());
                 subtask.setSubtask_plannedFinish(resultSet.getDate("planned_finish").toString());
 
-                if(resultSet.getDate("started_at") == null){
+                if (resultSet.getDate("started_at") == null) {
                     subtask.setSubtask_startedAt("None");
-                }else {
+                } else {
                     subtask.setSubtask_startedAt(resultSet.getDate("started_at").toString());
                 }
-                if(resultSet.getDate("finished_at") == null){
+                if (resultSet.getDate("finished_at") == null) {
                     subtask.setSubtask_finishedAt("None");
-                }else {
+                } else {
                     subtask.setSubtask_finishedAt(resultSet.getDate("finished_at").toString());
                 }
-                if(resultSet.getDate("updated_at") == null){
+                if (resultSet.getDate("updated_at") == null) {
                     subtask.setSubtask_updatedAt("None");
                 } else {
                     subtask.setSubtask_updatedAt(resultSet.getDate("updated_at").toString());
@@ -678,5 +670,41 @@ public class DataBase {
             }
         }
         return grid;
+    }
+    /*Devolve o id do projeto com o seu titulo (resolver problema com titulos iguais depois)*/
+    public static int findProject(String project){
+        Connection connection = null;
+        PreparedStatement psFind = null;
+        ResultSet resultSet = null;
+
+        int id_project = 0;
+
+        try{
+            connection = DriverManager.getConnection(db_Url, db_User, db_Password);
+            psFind = connection.prepareStatement("SELECT id_project FROM project WHERE title_project = ?");
+            psFind.setString(1, project);
+            resultSet = psFind.executeQuery();
+
+            if (resultSet.first()){
+                id_project = resultSet.getInt("id_project");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (psFind != null) {
+                    psFind.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return id_project;
     }
 }

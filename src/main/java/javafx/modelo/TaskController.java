@@ -104,6 +104,7 @@ public class TaskController{
     /*Saves information*/
     private MainController mainController;
     private Task task;
+    private Project project;
 
     /*All Task info is set here and appears on the block inside the grid*/
     public void setTaskData(Task task){
@@ -113,7 +114,7 @@ public class TaskController{
 
         txtField_title.setText(task.getTitle_task());
         txtField_title.setEditable(false);
-        label_project.setText(task.getProject_task());//SEM CONEXÃO COM OS DADOS, CONSERTAR DEPOIS
+        label_project.setText(project.getTitle_Project());//SEM CONEXÃO COM OS DADOS, CONSERTAR DEPOIS
 
         label_Pstart.setText(task.getPlanned_start());
         label_Pfinish.setText(task.getPlanned_finish());

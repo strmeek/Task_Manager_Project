@@ -13,7 +13,7 @@ public class Task {
     private String description_task;
     private String task_updated_at;
     private String finished_at;
-    private String foreign_idProject;//mudar para int
+    private int foreign_idProject;
 
     public Task() {
     }
@@ -21,7 +21,7 @@ public class Task {
     public Task(int id_task,
                 String type_task,
                 String title_task,
-                String foreign_idProject,
+                int foreign_idProject,
                 String priority_task,
                 String status_task,
                 String task_created_at,
@@ -142,11 +142,11 @@ public class Task {
         this.id_task = id_task;
     }
 
-    public String getProject_task() {
+    public int getForeign_idProject() {
         return foreign_idProject;
     }
 
-    public void setProject_task(String project_task) {
-        foreign_idProject = project_task;
+    public void setForeign_idProject(int foreign_idProject) {
+        this.foreign_idProject = foreign_idProject;
     }
 }

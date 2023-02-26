@@ -396,8 +396,18 @@ public class MainController implements Initializable {
                         project.setType_Project(type);
                         project.setPriority_Project(priority);
                         project.setStatus_Project(status);
-                        project.setPlannedStart_Project(planned_Start.toString());
-                        project.setPlannedFinish_Project(planned_Finish.toString());
+                        if(planned_Start == null){
+                            planned_Start = new Date(System.currentTimeMillis());
+                            project.setPlannedStart_Project(String.valueOf(planned_Start));
+                        }else{
+                            project.setPlannedStart_Project(String.valueOf(planned_Start));
+                        }
+                        if(planned_Finish == null){
+                            planned_Finish = new Date(System.currentTimeMillis());
+                            project.setPlannedFinish_Project(String.valueOf(planned_Finish));
+                        }else{
+                            project.setPlannedFinish_Project(String.valueOf(planned_Finish));
+                        }
 
                         DataBase.addProject(project);
                         refreshGridProjects();
@@ -439,9 +449,31 @@ public class MainController implements Initializable {
                 if (!title.isEmpty() &&
                     !description.isEmpty() &&
                     !type.isEmpty() &&
-                    !status.isEmpty() && !priority.isEmpty()){
+                    !status.isEmpty() &&
+                        !priority.isEmpty() &&
+                        !project.isEmpty()){
                     try {
-                        DataBase.addTask(type, title, description, project, priority, status, planned_Start, planned_Finish);
+                        Task task = new Task();
+                        task.setTitle_task(title);
+                        task.setDescription_task(description);
+                        task.setType_task(type);
+                        task.setPriority_task(priority);
+                        task.setStatus_task(status);
+                        task.setForeign_idProject(saveProject);
+
+                        if(planned_Start == null){
+                            planned_Start = new Date(System.currentTimeMillis());
+                            task.setPlanned_start(String.valueOf(planned_Start));
+                        }else{
+                            task.setPlanned_start(String.valueOf(planned_Start));
+                        }
+                        if(planned_Finish == null){
+                            planned_Finish = new Date(System.currentTimeMillis());
+                            task.setPlanned_finish(String.valueOf(planned_Finish));
+                        }else{
+                            task.setPlanned_finish(String.valueOf(planned_Finish));
+                        }
+                        DataBase.addTask(task);
                         refreshGridTasks();
 
                         vbox_New_Task.toBack();
@@ -479,14 +511,25 @@ public class MainController implements Initializable {
                         !type.isEmpty()){
                     try{
                         Subtask subtask = new Subtask();
-                        subtask.setSubtask_plannedFinish(planned_Finish.toString());
                         subtask.setStatus_subtask(status);
                         subtask.setPriority_subtask(priority);
-                        subtask.setSubtask_plannedStart(plannedStart.toString());
                         subtask.setTitle_subtask(title);
                         subtask.setDescription_subtask(description);
                         subtask.setType_subtask(type);
                         subtask.setForeign_idTask(saveTask);
+
+                        if(plannedStart == null){
+                            plannedStart = new Date(System.currentTimeMillis());
+                            subtask.setSubtask_plannedStart(String.valueOf(plannedStart));
+                        }else{
+                            subtask.setSubtask_plannedStart(String.valueOf(plannedStart));
+                        }
+                        if(planned_Finish == null){
+                            planned_Finish = new Date(System.currentTimeMillis());
+                            subtask.setSubtask_plannedFinish(String.valueOf(planned_Finish));
+                        }else{
+                            subtask.setSubtask_plannedFinish(String.valueOf(planned_Finish));
+                        }
 
                         DataBase.addSubTask(subtask);
                         refreshGridSubtasks();

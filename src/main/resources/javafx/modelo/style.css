@@ -415,35 +415,6 @@ Montserrat Alternates*/
     -fx-border-width: 8px;
 }
 
-/*#txtField-title-createSubtask{
-    -fx-font: normal normal 1.2em 'Questrial';
-    -fx-background-color: -GRAY;
-    -fx-text-fill: -WHITE;
-}
-
-#txtField-title-createSubtask:hover,
-#txtField-title-createSubtask:focused{
-    -fx-background-color: -LIGHTER-GRAY;
-    -fx-text-fill: -BLACK;
-}
-
-.combo-boxes-createSubtask{
-    -fx-font: normal bolder 1.2em 'Sen';
-    -fx-text-fill: -WHITE;
-    -fx-background-color: -GRAY;
-}
-
-.combo-boxes-createSubtask:hover,
-.combo-boxes-createSubtask:focused{
-    -fx-background-color: -LIGHTER-GRAY;
-}
-
-.datepickers-createSubtask{
-    -fx-font: normal bolder 1.2em 'Sen';
-    -fx-text-fill: -BLACK;
-    -fx-background-color: -BLACK;
-}*/
-
 /*Expand task tab*/
 
 #vbox-expand{
