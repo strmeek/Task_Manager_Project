@@ -15,6 +15,44 @@ public class DataBase {
     /* connection = DriverManager.getConnection(db_Url,db_User,db_Password); */
 
     /*Add Project to the DB*/
+    public static void addProject(Project project){
+        Connection connection = null;
+        PreparedStatement psAdd = null;
+
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+            psAdd = connection.prepareStatement("INSERT INTO project " +
+                    "(title_project, description_project, type_project, priority_project, status_project, planned_start, planned_finish, created_at) " +
+                    "VALUES (?,?,?,?,?,?,?,?)");
+
+            psAdd.setString(1, project.getTitle_Project());
+            psAdd.setString(2, project.getDescription_Project());
+            psAdd.setString(3, project.getType_Project());
+            psAdd.setString(4, project.getPriority_Project());
+            psAdd.setString(5, project.getStatus_Project());
+            psAdd.setDate(6, Date.valueOf(project.getPlannedStart_Project()));
+            psAdd.setDate(7, Date.valueOf(project.getPlannedFinish_Project()));
+
+            Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+            psAdd.setTimestamp(8, createdAt);
+
+            psAdd.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if(psAdd != null){
+                    psAdd.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
 
     /*Add the Task to the DB*/
     public static void addTask(String type,
@@ -175,6 +213,31 @@ public class DataBase {
         }
     }
 
+    public static void deleteProject(Project project){
+        Connection connection = null;
+        PreparedStatement psDelete = null;
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+            psDelete = connection.prepareStatement("DELETE FROM project WHERE id_project = ?");
+            psDelete.setInt(1, project.getId_Project());
+
+            psDelete.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if(psDelete != null){
+                    psDelete.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void deleteTask(Task task){
         Connection connection = null;
         PreparedStatement psDelete = null;
@@ -224,6 +287,32 @@ public class DataBase {
             }
         }
     }
+
+    public static void deleteAllTask(Project project){
+        Connection connection = null;
+        PreparedStatement psDelete = null;
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+            psDelete = connection.prepareStatement("DELETE FROM task WHERE id_project = ?");
+            psDelete.setInt(1, project.getId_Project());
+
+            psDelete.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if(psDelete != null){
+                    psDelete.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void deleteAllSubtask(Task task){
         Connection connection = null;
         PreparedStatement psDelete = null;
@@ -244,6 +333,37 @@ public class DataBase {
                     connection.close();
                 }
             }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void completeProject(Project project){
+        Connection connection = null;
+        PreparedStatement psComplete = null;
+
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+
+            psComplete = connection.prepareStatement("UPDATE project " +
+                    "SET status_project = \"Done\", finished_at = \"" + now + "\" " +
+                    "WHERE id_project = ?");
+            psComplete.setInt(1, project.getId_Project());
+
+            psComplete.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(psComplete != null){
+                    psComplete.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e){
                 e.printStackTrace();
             }
         }
@@ -293,6 +413,37 @@ public class DataBase {
                     "SET status_subtask = \"Done\", finished_at = \"" + now + "\" " +
                     "WHERE id_subtask = ?");
             psComplete.setInt(1, subtask.getId_subtask());
+
+            psComplete.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(psComplete != null){
+                    psComplete.close();
+                }
+                if (connection != null){
+                    connection.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void completeAllTask(Project project){
+        Connection connection = null;
+        PreparedStatement psComplete = null;
+
+        try{
+            connection = DriverManager.getConnection(db_Url,db_User,db_Password);
+
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+
+            psComplete = connection.prepareStatement("UPDATE task " +
+                    "SET status_task = \"Done\", finished_at = \"" + now + "\" " +
+                    "WHERE id_project = ?");
+            psComplete.setInt(1, project.getId_Project());
 
             psComplete.executeUpdate();
         }catch (SQLException e){

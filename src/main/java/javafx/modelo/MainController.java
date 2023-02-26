@@ -48,6 +48,9 @@ public class MainController implements Initializable {
     private Button bt_close_newSubtask;
 
     @FXML
+    private Button bt_close_newProject;
+
+    @FXML
     private Button bt_close_newTask;
 
     @FXML
@@ -55,6 +58,9 @@ public class MainController implements Initializable {
 
     @FXML
     private Button bt_create_add;
+
+    @FXML
+    private Button bt_create_addProject;
 
     @FXML
     private Button bt_create_addSubtask;
@@ -81,6 +87,9 @@ public class MainController implements Initializable {
     private ComboBox<String> comboBox_priority_add;
 
     @FXML
+    private ComboBox<String> comboBox_priority_addProject;
+
+    @FXML
     private ComboBox<String> comboBox_priority_addSubtask;
 
     @FXML
@@ -90,16 +99,25 @@ public class MainController implements Initializable {
     private ComboBox<String> comboBox_type_add;
 
     @FXML
+    private ComboBox<String> comboBox_type_addProject;
+
+    @FXML
     private ComboBox<String> comboBox_type_addSubtask;
 
     @FXML
     private DatePicker datepicker_PFinish;
 
     @FXML
+    private DatePicker datepicker_PFinishProject;
+
+    @FXML
     private DatePicker datepicker_PFinishSubtask;
 
     @FXML
     private DatePicker datepicker_PStart;
+
+    @FXML
+    private DatePicker datepicker_PStartProject;
 
     @FXML
     private DatePicker datepicker_PStartSubtask;
@@ -123,6 +141,9 @@ public class MainController implements Initializable {
     private GridPane grid_vbox_tasks;
 
     @FXML
+    private ImageView imgView_plus_createProject;
+
+    @FXML
     private ImageView imgView_plus_createTask;
 
     @FXML
@@ -138,10 +159,16 @@ public class MainController implements Initializable {
     private Label menu_Day;
 
     @FXML
+    private ScrollPane scrollpane_projects_home;
+
+    @FXML
     private TextField txtField_search_menu;
 
     @FXML
     private TextArea txtarea_description_add;
+
+    @FXML
+    private TextArea txtarea_description_addProject;
 
     @FXML
     private TextArea txtarea_description_addSubtask;
@@ -150,10 +177,13 @@ public class MainController implements Initializable {
     private TextField txtfield_title_add;
 
     @FXML
+    private TextField txtfield_title_addProject;
+
+    @FXML
     private TextField txtfield_title_addSubtask;
 
     @FXML
-    private VBox vbox_New_Project;
+    private AnchorPane vbox_New_Project;
 
     @FXML
     private AnchorPane vbox_New_Subtask;
@@ -163,9 +193,6 @@ public class MainController implements Initializable {
 
     @FXML
     private AnchorPane vbox_add;
-
-    @FXML
-    private ScrollPane scrollpane_projects_home;
 
     @FXML
     private VBox vbox_config;
@@ -188,6 +215,7 @@ public class MainController implements Initializable {
     ObservableList<String> list_type = FXCollections.observableArrayList();
     ObservableList<String> list_type_subtasks = FXCollections.observableArrayList();
     ObservableList<String> list_priority = FXCollections.observableArrayList();
+    ObservableList<String> list_projects = FXCollections.observableArrayList();
 
     /*these lists save information for the grids*/
     private List<Project> projects;
@@ -197,12 +225,16 @@ public class MainController implements Initializable {
     /*Saves the task from TaskController so the system knows what task
     * the user clicked*/
     private int saveTask;
+    private int saveProject;
     private boolean isOnAddTab = false;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         /* Home always the first screen */
+        refreshGridProjects();
+        refreshGridTasks();
+        refreshGridSubtasks();
         refreshHomeGridProjects();
         vbox_home.toFront();
 
@@ -212,14 +244,17 @@ public class MainController implements Initializable {
         /*ComboBoxes items*/
         list_type.addAll("Work", "House", "Routine", "Special");
         comboBox_type_add.setItems(list_type);
+        comboBox_type_addProject.setItems(list_type);
         //comboBoxType_expand.setItems(list_type);
 
         list_type_subtasks.addAll("Documentation", "Coding");
         comboBox_type_addSubtask.setItems(list_type_subtasks);
+        comboBox_priority_addProject.setItems(list_type_subtasks);
 
         list_priority.addAll("High", "Medium", "Low");
         comboBox_priority_add.setItems(list_priority);
         comboBox_priority_addSubtask.setItems(list_priority);
+        comboBox_priority_addProject.setItems(list_priority);
         //comboBoxPriority_expand.setItems(list_priority);
 
         /*carousel effect on home projects*/
@@ -233,6 +268,7 @@ public class MainController implements Initializable {
                 double viewportWidth = scrollpane_projects_home.getViewportBounds().getWidth();
                 double maxH = width - viewportWidth;
 
+                //makes the scrolling more confortable
                 double faster = 0;
                 if(delta < 0){
                     faster = -0.06;
@@ -323,13 +359,57 @@ public class MainController implements Initializable {
             }
         });
         /*Collapse add tabs*/
-        /*bt_close_newProject.setOnAction(new EventHandler<ActionEvent>() {
+        bt_close_newProject.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 vbox_New_Project.toBack();
                 vbox_add.toBack();
             }
-        });*/
+        });
+
+        bt_create_addProject.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String title = txtfield_title_addProject.getText();
+                String description = txtarea_description_addProject.getText();
+                String type = comboBox_type_addProject.getValue();
+                String priority = comboBox_priority_addProject.getValue();
+                String status = "To-Do";
+
+                //transforming planning start and finish to date
+                LocalDateTime planned_start_dt = datepicker_PStartProject.getValue().atStartOfDay();
+                Timestamp planned_start_tstamp = Timestamp.valueOf(planned_start_dt);
+                Date planned_Start = new Date(planned_start_tstamp.getTime());//converted
+                LocalDateTime planned_finish_dt = datepicker_PFinishProject.getValue().atStartOfDay();
+                Timestamp planned_finish_tstamp = Timestamp.valueOf(planned_finish_dt);
+                Date planned_Finish = new Date(planned_finish_tstamp.getTime());//converted
+
+                /*actually add to the database*/
+                if (!title.isEmpty() &&
+                        !description.isEmpty() &&
+                        !type.isEmpty() &&
+                        !status.isEmpty() && !priority.isEmpty()){
+                    try {
+                        Project project = new Project();
+                        project.setTitle_Project(title);
+                        project.setDescription_Project(description);
+                        project.setType_Project(type);
+                        project.setPriority_Project(priority);
+                        project.setStatus_Project(status);
+                        project.setPlannedStart_Project(planned_Start.toString());
+                        project.setPlannedFinish_Project(planned_Finish.toString());
+
+                        DataBase.addProject(project);
+                        refreshGridProjects();
+                        refreshHomeGridProjects();
+                        vbox_New_Project.toBack();
+                        vbox_add.toBack();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
 
         /*Get the info from the screen and makes the adition to the database*/
         bt_create_add.setOnAction(new EventHandler<ActionEvent>() {
@@ -421,6 +501,7 @@ public class MainController implements Initializable {
     /*Generates the grid with the Projects information*/
     public void refreshGridProjects(){
         grid_projects.getChildren().clear();
+        list_projects.clear();
 
         //Task Grid
         projects = new ArrayList<>(DataBase.gridListProjects());
@@ -443,7 +524,11 @@ public class MainController implements Initializable {
                 }
                 grid_projects.add(projectBlock, columns++, row);
                 GridPane.setMargin(projectBlock, new Insets(12));
+                /*Recognize all existing projects*/
+                list_projects.add(projects.get(i).getTitle_Project());
             }
+            /*User can link task to project in the create task screen*/
+            comboBox_project_add.setItems(list_projects);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -476,7 +561,6 @@ public class MainController implements Initializable {
                 grid_projects_home.add(projectBlock, columns++, row);
                 GridPane.setMargin(projectBlock, new Insets(16));
             }
-
             VBox emptyBoxEnd = new VBox();
             emptyBoxEnd.setStyle("-fx-background-color: rgba(0 ,0 ,0 ,0);");
             emptyBoxEnd.setMinWidth(350);
@@ -551,6 +635,11 @@ public class MainController implements Initializable {
         public void toFrontExpand(Task task) {
             vbox_expand.toFront();
             saveTask = task.getId_task();
+        }
+
+        public void toFrontNewTask(Project project){
+            vbox_New_Task.toFront();
+            saveProject = project.getId_Project();
         }
 
         public void toFrontNewSubtask(Task task) {

@@ -5,6 +5,7 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -67,6 +68,12 @@ public class ProjectController {
     private ImageView imgView_task_Pstart;
 
     @FXML
+    private ImageView imgView_tasksCount;
+
+    @FXML
+    private ImageView imgView_updated;
+
+    @FXML
     private Label label_Pfinish;
 
     @FXML
@@ -85,6 +92,9 @@ public class ProjectController {
     private Label label_type;
 
     @FXML
+    private Label label_updatedAt;
+
+    @FXML
     private TextField txtField_description_project;
 
     @FXML
@@ -101,6 +111,8 @@ public class ProjectController {
     private MainController mainController;
     private Project project;
 
+    private int countTasks = 9; //FAZER O MÉTODO PARA CONTAR AS TASKS DE CADA PROJETO DEPOIS
+
     /*All info from the project is set here*/
     public void setProjectData(Project project){
         label_status.setText(project.getStatus_Project());
@@ -108,10 +120,15 @@ public class ProjectController {
         label_priority.setText(project.getPriority_Project());
 
         txtField_title_project.setText(project.getTitle_Project());
+        txtField_description_project.setText(project.getDescription_Project());
         txtField_title_project.setEditable(false);
+        txtField_description_project.setEditable(false);
 
         label_Pstart.setText(project.getPlannedStart_Project());
         label_Pfinish.setText(project.getPlannedFinish_Project());
+
+        label_remaining.setText(String.valueOf(countTasks));
+        label_updatedAt.setText(project.getUpdatedAt_Project());
 
         this.project = project;
 
@@ -141,20 +158,30 @@ public class ProjectController {
     public void callRefreshGridTasks(){
         mainController.refreshGridTasks();
     }
+
+    public void callRefreshGridProjects(){
+        mainController.refreshGridProjects();
+        mainController.refreshHomeGridProjects();
+    }
     /* ------------------------------------ */
     @FXML
     void btAddTaskAction(ActionEvent event) {
-
+        mainController.toFrontNewTask(project);
+        callRefreshGridTasks();
     }
 
     @FXML
     void btCompleteProjectAction(ActionEvent event) {
-
+        DataBase.completeProject(project);
+        callRefreshGridProjects();
+        DataBase.completeAllTask(project);
     }
 
     @FXML
     void btDeleteProjectAction(ActionEvent event) {
-
+        DataBase.deleteProject(project);
+        callRefreshGridProjects();
+        DataBase.deleteAllTask(project);
     }
 
     @FXML
@@ -191,13 +218,18 @@ public class ProjectController {
         imgView_edit.setStyle("-fx-scale-y: 1;");
         bt_edit_Project.setStyle("-fx-scale-y: 1;");
         txtField_title_project.setStyle("-fx-text-fill: -BLACK;");
+        txtField_description_project.setStyle("-fx-text-fill: -GRAY;");
         label_status.setStyle("-fx-text-fill: -GRAY;");
         label_type.setStyle("-fx-text-fill: -GRAY;");
         label_priority.setStyle("-fx-text-fill: -GRAY;");
         label_Pstart.setStyle("-fx-text-fill: -GRAY;");
         label_Pfinish.setStyle("-fx-text-fill: -GRAY;");
-        imgView_task_Pstart.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px)");
-        imgView_task_Pfinish.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px)");
+        label_remaining.setStyle("-fx-text-fill: -GRAY;");
+        label_updatedAt.setStyle("-fx-text-fill: -GRAY;");
+        imgView_task_Pstart.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px);");
+        imgView_task_Pfinish.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px);");
+        imgView_tasksCount.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px);");
+        imgView_updated.setStyle("-fx-effect: innershadow( gaussian, #000, 10, 0, 255px, 255px);");
     }
     public void thirdStep(){
         buttons_hbox.setStyle("-fx-scale-x: 0;");
@@ -209,13 +241,18 @@ public class ProjectController {
         imgView_edit.setStyle("-fx-scale-y: 0;");
         bt_edit_Project.setStyle("-fx-scale-y: 0;");
         txtField_title_project.setStyle("-fx-text-fill: -WHITE;");
+        txtField_description_project.setStyle("-fx-text-fill: -LIGHTER-GRAY;");
         label_status.setStyle("-fx-text-fill: -LIGHTER-GRAY;");
         label_type.setStyle("-fx-text-fill: -LIGHTER-GRAY;");
         label_priority.setStyle("-fx-text-fill: -LIGHTER-GRAY;");
         label_Pstart.setStyle("-fx-text-fill: -LIGHTER-GRAY;");
         label_Pfinish.setStyle("-fx-text-fill: -LIGHTER-GRAY;");
-        imgView_task_Pstart.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px)");
-        imgView_task_Pfinish.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px)");
+        label_remaining.setStyle("-fx-text-fill: -LIGHTER-GRAY;");
+        label_updatedAt.setStyle("-fx-text-fill: -LIGHTER-GRAY;");
+        imgView_task_Pstart.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px);");
+        imgView_task_Pfinish.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px);");
+        imgView_tasksCount.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px);");
+        imgView_updated.setStyle("-fx-effect: innershadow( gaussian, #000, 0, 0, 0px, 0px);");
     }
     public void animation(MouseEvent mouseEvent) {
         if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_ENTERED)) {

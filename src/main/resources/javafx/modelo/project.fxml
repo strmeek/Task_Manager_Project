@@ -69,7 +69,7 @@
                      <graphic>
                         <Label fx:id="label_remaining" graphicTextGap="8.0" styleClass="project-block-label" stylesheets="@style.css" text="Remaining Tasks:">
                            <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgView_tasksCount" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/task_96px.png" />
                                  </image>
@@ -80,9 +80,9 @@
                   </Button>
                   <Button mnemonicParsing="false" prefWidth="170.0" styleClass="task-block-buttons" stylesheets="@style.css">
                      <graphic>
-                        <Label graphicTextGap="8.0" styleClass="project-block-label" stylesheets="@style.css" text="Updated at:">
+                        <Label fx:id="label_updatedAt" graphicTextGap="8.0" styleClass="project-block-label" stylesheets="@style.css" text="Updated at:">
                            <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgView_updated" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/update_96px.png" />
                                  </image>

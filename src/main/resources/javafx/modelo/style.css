@@ -451,3 +451,14 @@ Montserrat Alternates*/
     -fx-border-color: -LIGHTER-GRAY;
     -fx-border-width: 8px;
 }
+
+/*Add project tab*/
+
+#vbox-newProject{
+    -fx-background-color: -LIGHT-BLUE;
+    -fx-background-radius: 40px;
+
+    -fx-border-color: -LIGHTER-GRAY;
+    -fx-border-radius: 32px;
+    -fx-border-width: 8px;
+}

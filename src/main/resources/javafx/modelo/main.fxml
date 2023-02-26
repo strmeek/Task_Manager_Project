@@ -117,11 +117,6 @@
                      <children>
                         <Label text="CONFIG" textFill="WHITE" />
                      </children></VBox>
-                  <VBox fx:id="vbox_New_Project" prefHeight="200.0" prefWidth="100.0" styleClass="background" stylesheets="@style.css">
-                     <children>
-                        <Label text="NEW Project" />
-                     </children>
-                  </VBox>
                   <AnchorPane fx:id="vbox_add" prefHeight="670.0" prefWidth="1037.0">
                      <StackPane.margin>
                         <Insets />
@@ -419,6 +414,69 @@
                         <Insets bottom="20.0" left="40.0" right="40.0" top="12.0" />
                      </padding>
                   </VBox>
+                  <AnchorPane fx:id="vbox_New_Project">
+                     <children>
+                        <VBox id="vbox-newProject" alignment="CENTER" layoutX="415.0" layoutY="110.0" prefHeight="450.0" prefWidth="450.0" spacing="12.0" stylesheets="@style.css">
+                           <children>
+                              <Button id="bt-close" fx:id="bt_close_newProject" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="menu-buttons" stylesheets="@style.css" translateX="185.0" translateY="5.0">
+                                 <graphic>
+                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/close_104px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Label id="create-task-header" alignment="CENTER" prefHeight="30.0" prefWidth="394.0" stylesheets="@style.css" text="Create Project">
+                                 <VBox.margin>
+                                    <Insets bottom="12.0" top="-12.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField id="txtField-title-createTask" fx:id="txtfield_title_addProject" prefHeight="40.0" promptText="Title(144 caracteres)" stylesheets="@style.css" />
+                              <TextArea id="txtField-description-createTask" fx:id="txtarea_description_addProject" prefHeight="120.0" prefWidth="200.0" promptText="Description" styleClass="text-area" stylesheets="@style.css" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </TextArea>
+                              <HBox prefHeight="21.0" prefWidth="450.0" spacing="8.0">
+                                 <children>
+                                    <ComboBox fx:id="comboBox_type_addProject" prefHeight="32.0" prefWidth="193.0" promptText="Type" styleClass="combo-boxes-createTask" />
+                                    <ComboBox fx:id="comboBox_priority_addProject" prefWidth="193.0" promptText="Priority" styleClass="combo-boxes-createTask" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="14.0" prefWidth="450.0" spacing="8.0">
+                                 <children>
+                                    <DatePicker fx:id="datepicker_PStartProject" promptText="Planned Start" styleClass="datepickers-createTask" stylesheets="@style.css">
+                                       <effect>
+                                          <ColorAdjust contrast="-0.25" />
+                                       </effect>
+                                    </DatePicker>
+                                    <DatePicker fx:id="datepicker_PFinishProject" promptText="Planned Finish" styleClass="datepickers-createTask" stylesheets="@style.css">
+                                       <effect>
+                                          <ColorAdjust contrast="-0.25" />
+                                       </effect>
+                                    </DatePicker>
+                                 </children>
+                              </HBox>
+                              <Button id="create-button" fx:id="bt_create_addProject" alignment="CENTER" graphicTextGap="8.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" stylesheets="@style.css" text="Create!">
+                                 <graphic>
+                                    <ImageView fx:id="imgView_plus_createProject" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/plus_math_104px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" top="12.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
                </children>
                <VBox.margin>
                   <Insets />
