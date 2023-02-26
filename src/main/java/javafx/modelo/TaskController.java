@@ -95,15 +95,17 @@ public class TaskController{
 
     @FXML
     private VBox vbox_task_over;
-
-    private Task task;
-
+    /*Variable necessary to make the toggle edit button work*/
     private boolean isEditing = false;
+    /*Animation Variables*/
     private TranslateTransition animation;
     private PauseTransition pause;
 
+    /*Saves information*/
     private MainController mainController;
+    private Task task;
 
+    /*All Task info is set here and appears on the block inside the grid*/
     public void setTaskData(Task task){
         label_status.setText(task.getStatus_task());
         label_type.setText(task.getType_task());
@@ -167,6 +169,8 @@ public class TaskController{
         callRefreshGridSubtasks();
     }
 
+    /*Edit button made in toggle style, one click activates
+    * another click confirms the operation*/
     @FXML
     public void btEditTaskAction(ActionEvent event) {
         if (!isEditing) {
@@ -186,6 +190,7 @@ public class TaskController{
             saveTask();
         }
     }
+    /*talks with the database and sucessfully edit the information*/
     private void saveTask(){
         task.setTitle_task(txtField_title.getText());
 
@@ -228,18 +233,21 @@ public class TaskController{
             pause.play();
         }
     }
+    /*When edit is off, maked sure that the expand tab will open
+    * wherever you click inside the block*/
     public void btExpandTaskAction() {
         if (!isEditing) {
             mainController.toFrontExpand(task);
             callRefreshGridSubtasks();
         } else{
             txtField_title.setEditable(true);
+            txtField_title.requestFocus();
             isEditing = true;
         }
     }
+
     /*The following methods were created to do the buttons appear
      when you hover a task in the grid, and make readability better*/
-
     public void firstStep(){
         /*Initial position of the fxml*/
         buttons_hbox.setStyle("-fx-scale-x: 0;");

@@ -1,6 +1,5 @@
 package javafx.modelo;
 
-import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,9 +37,7 @@ public class MainController implements Initializable {
      * responsivefx library, which is really great and keep all
      * organized in the controller */
 
-    /* FXML VARIABLES MADE BY SCENEBUILDER for example:*/
-
-
+    /* FXML VARIABLES MADE BY SCENEBUILDER:*/
     @FXML
     private Button bt_add_menu;
 
@@ -185,14 +182,20 @@ public class MainController implements Initializable {
     @FXML
     private VBox vbox_task;
 
+    /*These lists go inside the ComboBoxes for the user to select
+    * the Type/Priority/Project on Task/Subtask/Project creation and help
+    * me on linking information and sorting*/
     ObservableList<String> list_type = FXCollections.observableArrayList();
     ObservableList<String> list_type_subtasks = FXCollections.observableArrayList();
     ObservableList<String> list_priority = FXCollections.observableArrayList();
 
+    /*these lists save information for the grids*/
     private List<Project> projects;
     private List<Task> tasks;
     private List<Subtask> subtasks;
 
+    /*Saves the task from TaskController so the system knows what task
+    * the user clicked*/
     private int saveTask;
     private boolean isOnAddTab = false;
 
@@ -202,7 +205,6 @@ public class MainController implements Initializable {
         /* Home always the first screen */
         refreshHomeGridProjects();
         vbox_home.toFront();
-
 
         /*Clock*/
         menuClock();
@@ -220,7 +222,7 @@ public class MainController implements Initializable {
         comboBox_priority_addSubtask.setItems(list_priority);
         //comboBoxPriority_expand.setItems(list_priority);
 
-
+        /*carousel effect on home projects*/
         scrollpane_projects_home.setContent(grid_projects_home);
         scrollpane_projects_home.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
@@ -240,19 +242,6 @@ public class MainController implements Initializable {
 
                 hValue = Math.min(maxH, Math.max(0, hValue - delta / width));
                 scrollpane_projects_home.setHvalue(hValue + faster);
-
-                /*double scrollDelta = scrollEvent.getDeltaY();
-                double hValue = scrollpane_projects_home.getHvalue();
-                do{
-                    double scroll = 0;
-                    if(scrollDelta < 0){
-                        scroll = -0.01;
-                    } else if (scrollDelta > 0){
-                        scroll = 0.01;
-                    }
-                    hValue = hValue + scroll;
-                    scrollpane_projects_home.setHvalue(hValue);
-                }while(hValue <= 1 && hValue >= 0);*/
             }
         });
 
@@ -342,6 +331,7 @@ public class MainController implements Initializable {
             }
         });*/
 
+        /*Get the info from the screen and makes the adition to the database*/
         bt_create_add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -383,6 +373,7 @@ public class MainController implements Initializable {
                 }
             }
         });
+        /*Get the info from the screen and makes the adition to the database*/
         bt_create_addSubtask.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -427,6 +418,7 @@ public class MainController implements Initializable {
             }
         });
     }
+    /*Generates the grid with the Projects information*/
     public void refreshGridProjects(){
         grid_projects.getChildren().clear();
 
@@ -456,6 +448,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+    /*Generates the grid with the Projects information for the home page*/
     public void refreshHomeGridProjects(){
         grid_projects_home.getChildren().clear();
 
@@ -464,6 +457,12 @@ public class MainController implements Initializable {
 
         int columns = projects.size();
         int row = 1;
+
+        VBox emptyBoxStart = new VBox();
+        emptyBoxStart.setStyle("-fx-background-color: rgba(0 ,0 ,0 ,0);");
+        emptyBoxStart.setMinWidth(350);
+        emptyBoxStart.setMinHeight(250);
+        grid_projects_home.add(emptyBoxStart, 0, row);
 
         try {
             for (int i = 0; i < projects.size(); i++) {
@@ -477,15 +476,17 @@ public class MainController implements Initializable {
                 grid_projects_home.add(projectBlock, columns++, row);
                 GridPane.setMargin(projectBlock, new Insets(16));
             }
-            VBox emptyBox = new VBox();
-            emptyBox.setStyle("-fx-background-color: rgba(0 ,0 ,0 ,0);");
-            emptyBox.setMinWidth(350);
-            emptyBox.setMinHeight(250);
-            grid_projects_home.add(emptyBox, columns, row);
+
+            VBox emptyBoxEnd = new VBox();
+            emptyBoxEnd.setStyle("-fx-background-color: rgba(0 ,0 ,0 ,0);");
+            emptyBoxEnd.setMinWidth(350);
+            emptyBoxEnd.setMinHeight(250);
+            grid_projects_home.add(emptyBoxEnd, columns, row);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    /*Generates the grid with the tasks information*/
         public void refreshGridTasks(){
             grid_vbox_tasks.getChildren().clear();
 
@@ -515,7 +516,7 @@ public class MainController implements Initializable {
                 e.printStackTrace();
             }
         }
-
+    /*Generates the grid with the Subtasks information inside the tasks*/
     public void refreshGridSubtasks(){
         grid_subtasks.getChildren().clear();
         int idTask = saveTask;
@@ -557,6 +558,7 @@ public class MainController implements Initializable {
             saveTask = task.getId_task();
         }
 
+        /*Clock that is shown in the top left*/
         public void menuClock() {
             Thread clock = new Thread() {
                 public void run() {

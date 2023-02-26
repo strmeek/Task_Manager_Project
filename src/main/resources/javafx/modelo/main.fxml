@@ -374,7 +374,7 @@
                                     </GridPane>
                                  </content>
                                  <VBox.margin>
-                                    <Insets right="-360.0" />
+                                    <Insets left="-360.0" right="-360.0" />
                                  </VBox.margin>
                               </ScrollPane>
                            </children>

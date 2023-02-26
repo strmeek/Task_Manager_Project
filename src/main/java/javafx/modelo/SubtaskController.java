@@ -68,15 +68,18 @@ public class SubtaskController {
     @FXML
     private VBox vbox_subtask;
 
+    /*Stores information*/
     private Subtask subtask;
     private int foreign_idTask;
     private MainController mainController;
 
+    /*Animation Variables*/
     private TranslateTransition animation;
     private PauseTransition pause;
-
+    /*Variable necessary to make the toggle edit button work*/
     private boolean isEditing = true;
 
+    /*Sets all subtask data inside the block*/
     public void setSubtaskData(Subtask subtask){
         txtFieldTitle.setText(subtask.getTitle_subtask());
         txtFieldDescription.setText(subtask.getDescription_subtask());
@@ -129,6 +132,7 @@ public class SubtaskController {
         callRefreshGridSubtasks();
     }
 
+    /*Edit in toggle style*/
     @FXML
     private void btEditSubtaskAction(ActionEvent event) {
         if(isEditing){
@@ -150,6 +154,7 @@ public class SubtaskController {
             saveSubtask();
         }
     }
+    /*Talks to the database and sucessfully edit the subtask*/
     private void saveSubtask(){
         subtask.setTitle_subtask(txtFieldTitle.getText());
         subtask.setDescription_subtask(txtFieldDescription.getText());
@@ -194,9 +199,9 @@ public class SubtaskController {
             pause.play();
         }
     }
+
     /*The following methods were created to do the buttons appear
      when you hover a task in the grid, and make readability better*/
-
     public void firstStep(){
         /*Initial position of the fxml*/
         buttons_hbox.setStyle("-fx-scale-x: 0;");

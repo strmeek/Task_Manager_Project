@@ -93,12 +93,15 @@ public class ProjectController {
     @FXML
     private VBox vbox_project_fxml;
 
+    /*Animation variables*/
     private TranslateTransition animation;
     private PauseTransition pause;
 
+    /*Saves Information*/
     private MainController mainController;
     private Project project;
 
+    /*All info from the project is set here*/
     public void setProjectData(Project project){
         label_status.setText(project.getStatus_Project());
         label_type.setText(project.getType_Project());
@@ -114,7 +117,6 @@ public class ProjectController {
 
         /*Buttons appear when you enter the task*/
         firstStep();
-
         vbox_project_fxml.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -139,7 +141,6 @@ public class ProjectController {
     public void callRefreshGridTasks(){
         mainController.refreshGridTasks();
     }
-
     /* ------------------------------------ */
     @FXML
     void btAddTaskAction(ActionEvent event) {
@@ -168,7 +169,6 @@ public class ProjectController {
 
      /*The following methods were created to do the buttons appear
      when you hover a task in the grid, and make readability better*/
-
     public void firstStep(){
         /*Initial position of the fxml*/
         buttons_hbox.setStyle("-fx-scale-x: 0;");
